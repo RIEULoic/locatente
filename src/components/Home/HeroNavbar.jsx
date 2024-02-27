@@ -42,7 +42,7 @@ function HeroNavbar() {
           className=" outline-none bg-transparent text-black"
         />
       </div>
-      <button className="m-2">Rechercher</button>
+      <button className="btn btn-primary">Rechercher</button>
     </div>
   );
 }
