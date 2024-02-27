@@ -11,7 +11,6 @@ function Hero(params) {
         alt="car with a tent"
         quality={100}
         fill
-        sizes="100vw"
         style={{
           objectFit: "cover",
           zIndex: -1,
