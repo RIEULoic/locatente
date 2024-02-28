@@ -1,11 +1,11 @@
 const Navbar = () => {
   return (
-    <div className="fixed w-full z-50 top-0 ">
-      <div className="flex justify-end gap-5 bg-gray-200 p-1 ">
+    <div className="fixed w-full z-50 top-0 blur-background ">
+      <div className="flex justify-end gap-5 bg-gray-200/40 p-1 ">
         <div>lolove@yopmail.com</div>
         <div>06 93 65 43 21</div>
       </div>
-      <nav className="flex justify-around bg-slate-300 rounded-b-xl rounded-t-none">
+      <nav className="flex justify-around bg-slate-300/40 rounded-b-xl rounded-t-none">
         <div className="dropdown dropdown-hover">
           <div tabIndex={0} role="button" className="btn m-1">
             Équipement de camping
