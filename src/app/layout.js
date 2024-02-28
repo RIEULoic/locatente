@@ -1,6 +1,7 @@
 import { inter } from "@/app/fonts";
 import "./globals.css";
 import FlagContact from "@/components/FlagContact";
+import Navbar from "@/components/Navbar";
 
 export const metadata = {
   title: "Create Next App",
@@ -11,7 +12,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <FlagContact />
+        {/* <FlagContact /> */}
+        <Navbar />
+
         {children}
       </body>
     </html>

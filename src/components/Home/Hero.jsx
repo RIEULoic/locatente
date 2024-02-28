@@ -4,7 +4,7 @@ import HeroNavbar from "./HeroNavbar";
 
 function Hero(params) {
   return (
-    <div className="lg:h-screen h-[80vh] relative">
+    <div className="lg:h-screen h-[80vh] relative mt-12">
       <Image
         priority="true"
         src="/hero.jpg"

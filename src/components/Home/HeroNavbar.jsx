@@ -1,6 +1,6 @@
 function HeroNavbar() {
   return (
-    <div className=" flex ">
+    <div className=" flex">
       <div className="flex items-center m-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@ function HeroNavbar() {
         <div className="text-gray-400">Date de départ</div>
         <input
           type="date"
-          className=" outline-none bg-transparent text-black"
+          className=" outline-none bg-transparent text-black "
         />
       </div>
       <div className="flex flex-col m-2">
@@ -42,7 +42,7 @@ function HeroNavbar() {
           className=" outline-none bg-transparent text-black"
         />
       </div>
-      <button className="m-2">Rechercher</button>
+      <button className="btn btn-info m-2 rounded-full">Rechercher</button>
     </div>
   );
 }
