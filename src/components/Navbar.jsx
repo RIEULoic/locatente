@@ -1,4 +1,10 @@
+"use client";
+
+import { useNavbarState } from "@/context/NavbarStateContext";
+
 const Navbar = () => {
+  const { isHeroNavbarExpanded } = useNavbarState();
+
   return (
     <div className="fixed w-full z-50 top-0 blur-background ">
       <div className="flex justify-end gap-5 bg-gray-200/40 p-1 ">
@@ -55,6 +61,26 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
+      <div style={{ display: isHeroNavbarExpanded ? "none" : "block" }}>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Sem nulla
+          pharetra diam sit amet nisl suscipit adipiscing. Faucibus purus in
+          massa tempor. Sed sed risus pretium quam vulputate dignissim
+          suspendisse in. Nec feugiat nisl pretium fusce. Consectetur adipiscing
+          elit ut aliquam purus sit amet luctus venenatis. Pellentesque elit
+          eget gravida cum sociis natoque penatibus et magnis. Lacus viverra
+          vitae congue eu consequat ac felis. Nec dui nunc mattis enim ut tellus
+          elementum. Nulla pharetra diam sit amet nisl suscipit adipiscing.
+          Posuere sollicitudin aliquam ultrices sagittis orci. Facilisis leo vel
+          fringilla est ullamcorper eget. Aliquam id diam maecenas ultricies mi
+          eget mauris. Lorem dolor sed viverra ipsum nunc aliquet. Faucibus
+          turpis in eu mi bibendum neque egestas. Venenatis tellus in metus
+          vulputate. Sit amet venenatis urna cursus eget nunc. Faucibus a
+          pellentesque sit amet porttitor eget dolor morbi non. Cras fermentum
+          odio eu feugiat pretium nibh ipsum consequat nisl. Blandit
+        </p>
+      </div>
     </div>
   );
 };
