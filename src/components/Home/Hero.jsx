@@ -7,7 +7,7 @@ function Hero(params) {
     <div className="lg:h-screen h-[80vh] relative mt-[88px]">
       <Image
         priority="true"
-        src="/hero.jpg"
+        src="/images/hero.jpg"
         alt="car with a tent"
         quality={100}
         fill
