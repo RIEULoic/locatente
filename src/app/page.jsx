@@ -56,13 +56,13 @@ export default function Home() {
           />
 
           <div
-            className="text-xl my-5"
+            className="text-xl my-5 font-bold"
             style={{ width: "auto", height: "auto" }}
           >
             De Nombreuses Agences
           </div>
           <div
-            className="text-center"
+            className="text-center text-slate-600"
             style={{ width: "auto", height: "auto" }}
           >
             10 agences à votre disposition pour être au plus proche de chez vous
@@ -78,13 +78,13 @@ export default function Home() {
           />
 
           <div
-            className="text-xl my-5"
+            className="text-xl my-5 font-bold"
             style={{ width: "auto", height: "auto" }}
           >
             Louer Tout Équipé
           </div>
           <div
-            className="text-center"
+            className="text-center text-slate-600"
             style={{ width: "auto", height: "auto" }}
           >
             Tente de toit, accessoires de camping et appli smartphone inclus
@@ -101,13 +101,13 @@ export default function Home() {
           />
 
           <div
-            className="text-xl my-5"
+            className="text-xl my-5 font-bold"
             style={{ width: "auto", height: "auto" }}
           >
             Kilométrage illimité
           </div>
           <div
-            className="text-center"
+            className="text-center text-slate-600"
             style={{ width: "auto", height: "auto" }}
           >
             Partez à l'aventure sans vous soucier du kilométrage
@@ -123,19 +123,20 @@ export default function Home() {
           />
 
           <div
-            className="text-xl my-5"
+            className="text-xl my-5 font-bold"
             style={{ width: "auto", height: "auto" }}
           >
             Partez En Toute Sérénité
           </div>
           <div
-            className="text-center"
+            className="text-center text-slate-600"
             style={{ width: "auto", height: "auto" }}
           >
             Assurance et assistance 24h/7j inclues
           </div>
         </div>
       </div>
+      <div className="text-4xl font-bold ">Nos véhicules aménagés</div>
       <div>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Commodo ullamcorper
