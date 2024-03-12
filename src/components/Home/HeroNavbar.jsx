@@ -11,10 +11,10 @@ function HeroNavbar() {
     const handleScroll = () => {
       if (window.scrollY > 650) {
         setHeroNavbarExpanded(false);
-        console.log("false à " + window.scrollY);
+        //console.log("false à " + window.scrollY);
       } else {
         setHeroNavbarExpanded(true);
-        console.log("true à " + window.scrollY);
+        //console.log("true à " + window.scrollY);
       }
     };
 
