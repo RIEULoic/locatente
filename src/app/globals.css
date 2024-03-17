@@ -18,3 +18,12 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+
+/*Pour appliquer un effet de flou à tout ce qui est derrière l'élément*/
+.blur-container {
+  backdrop-filter: blur(10px);
+}
+
+.black-text-placeholder::placeholder {
+  color: black;
+}
