@@ -46,7 +46,7 @@ export default function Home() {
           vitae congue eu consequat ac felis.
         </p>
       </div>
-      <div className="flex justify-around mb-10">
+      <div className="flex justify-around mb-44">
         <div className="flex flex-col items-center " style={{ width: "15%" }}>
           <Image
             src="/images/agency_icon.png"
@@ -137,36 +137,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="text-4xl font-bold ">Nos véhicules aménagés</div>
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Commodo ullamcorper
-        a lacus vestibulum sed arcu. Nulla malesuada pellentesque elit eget
-        gravida. Urna nunc id cursus metus. Nunc sed augue lacus viverra vitae
-        congue eu consequat. Vestibulum sed arcu non odio. Accumsan sit amet
-        nulla facilisi morbi. Porta non pulvinar neque laoreet suspendisse.
-        Commodo nulla facilisi nullam vehicula ipsum. Est sit amet facilisis
-        magna etiam. Lorem ipsum dolor sit amet consectetur adipiscing elit
-        pellentesque habitant. Vitae et leo duis ut diam quam nulla porttitor.
-        In nulla posuere sollicitudin aliquam ultrices sagittis orci. Nisi quis
-        eleifend quam adipiscing vitae proin. Sit amet nisl suscipit adipiscing
-        bibendum. Diam sollicitudin tempor id eu. Turpis egestas pretium aenean
-        pharetra magna ac placerat vestibulum lectus. Mi proin sed libero enim
-        sed faucibus turpis in. Ut venenatis tellus in metus vulputate eu
-        scelerisque. Mattis nunc sed blandit libero volutpat sed cras.
-        Ullamcorper malesuada proin libero nunc consequat. Placerat in egestas
-        erat imperdiet sed euismod nisi. Mauris pellentesque pulvinar
-        pellentesque habitant morbi tristique senectus. Libero justo laoreet sit
-        amet cursus sit. Facilisis sed odio morbi quis commodo odio aenean sed.
-        Mauris in aliquam sem fringilla ut morbi tincidunt augue interdum. Sed
-        arcu non odio euismod lacinia at quis risus. Feugiat in ante metus
-        dictum at tempor commodo. Nunc congue nisi vitae suscipit tellus mauris
-        a diam. Faucibus ornare suspendisse sed nisi lacus. Ultrices in iaculis
-        nunc sed augue lacus. Nullam non nisi est sit amet facilisis magna
-        etiam. Mus mauris vitae ultricies leo integer malesuada nunc vel risus.
-        Lorem ipsum dolor sit amet consectetur adipiscing elit. Ullamcorper
-        morbi tincidunt ornare massa eget.
-      </div>
+
       <Carousel />
       <div>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
