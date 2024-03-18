@@ -139,7 +139,7 @@ export default function Home() {
       </div>
 
       <Carousel />
-      <div>
+      <div className="">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Commodo ullamcorper
         a lacus vestibulum sed arcu. Nulla malesuada pellentesque elit eget
