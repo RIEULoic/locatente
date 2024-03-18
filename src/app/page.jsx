@@ -138,7 +138,16 @@ export default function Home() {
         </div>
       </div>
 
-      <Carousel />
+      <Carousel
+        carCarousel={true}
+        title="Nos Véhicules Aménagés"
+        catchPhrase="Le modèle conçu selon vos envies"
+      />
+      <Carousel
+        carCarousel={false}
+        title="Nos Agences"
+        catchPhrase="Retrouvez-nous tout près de chez vous "
+      />
       <div className="">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Commodo ullamcorper
