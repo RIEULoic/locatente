@@ -1,4 +1,5 @@
 import Image from "next/image";
+//import pic_test7 from "/public/images/pic_test7.jpg";
 
 export default function CarCard({ vehicle }) {
   //console.log(vehicle);
@@ -6,7 +7,7 @@ export default function CarCard({ vehicle }) {
   return (
     vehicle && (
       <div className="card w-96 bg-base-100 shadow-xl mb-10 ">
-        <figure>
+        <figure className="h-[200px] overflow-hidden">
           <Image src={vehicle.image} alt="van" width={400} height={200} />
         </figure>
         <div className="card-body pl-1 pt-3 pb-0 pr-0">

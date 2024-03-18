@@ -179,24 +179,32 @@ export default function Carousel({ title, catchPhrase, carCarousel }) {
   }, []);
   console.log(carCarousel);
   return (
-    <div className="mb-40">
-      <div className="mx-80 mb-4 flex justify-between">
+    <div className="mb-40 mx-80">
+      <div className=" mb-12 flex justify-between">
         <div className="flex flex-col">
-          <div className="text-3xl font-semibold">{title}</div>
-          <div className="mt-2 text-xl text-neutral-500">{catchPhrase}</div>
+          <div className="text-3xl font-semibold">
+            {carCarousel ? "Nos Véhicules Aménagés" : "Nos Agences"}
+          </div>
+          <div className="mt-2 text-xl text-neutral-500">
+            {carCarousel
+              ? "Le modèle conçu selon vos envies"
+              : "Retrouvez-nous tout près de chez vous"}
+          </div>
         </div>
         <div>
           <button className="btn btn-info m-2 rounded-full">
-            Voir tout nos véhicules
+            {carCarousel
+              ? "Voir tout nos véhicules"
+              : "Voir toutes nos agences"}
           </button>
         </div>
       </div>
 
-      <div className="mx-80 ">
+      <div className=" ">
         <swiper-container
-          className="mySwiper  "
+          className="mySwiper"
           space-between="45"
-          slides-per-view="3.2"
+          slides-per-view={carCarousel ? "3.2" : "4.3"}
           navigation="true"
         >
           {carCarousel
