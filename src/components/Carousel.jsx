@@ -1,11 +1,11 @@
 "use client";
 import { useEffect } from "react";
 import { register } from "swiper/element/bundle";
-import Image from "next/image";
+import { lobster } from "@/app/fonts";
 import CarCard from "./CarCard";
 import AgencyCard from "./AgencyCard";
 
-export default function Carousel({ title, catchPhrase, carCarousel }) {
+export default function Carousel({ carCarousel }) {
   const vehicles = [
     {
       id: 1,
@@ -182,7 +182,7 @@ export default function Carousel({ title, catchPhrase, carCarousel }) {
     <div className="mb-40 mx-80">
       <div className=" mb-12 flex justify-between">
         <div className="flex flex-col">
-          <div className="text-3xl font-semibold">
+          <div className={`text-4xl font-semibold ${lobster.className}`}>
             {carCarousel ? "Nos Véhicules Aménagés" : "Nos Agences"}
           </div>
           <div className="mt-2 text-xl text-neutral-500">
@@ -200,7 +200,7 @@ export default function Carousel({ title, catchPhrase, carCarousel }) {
         </div>
       </div>
 
-      <div className=" ">
+      <div>
         <swiper-container
           className="mySwiper"
           space-between="45"

@@ -17,7 +17,7 @@ function Hero(params) {
         }}
       />
       <div
-        className={`${lobster.className} text-5xl font-bold p-5 text-slate-300 absolute top-0 left-0 m-10 tracking-widest`}
+        className={`${lobster.className} text-6xl font-bold p-5 text-slate-300 absolute left-0 mx-10 mt-5 tracking-widest`}
       >
         Louez votre tente de toit et partez à l'aventure
       </div>

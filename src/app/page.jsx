@@ -1,7 +1,9 @@
-import { lobster } from "@/app/fonts";
-import Carousel from "@/components/Carousel";
-import Hero from "@/components/Home/Hero";
+import { Suspense } from "react";
 import Image from "next/image";
+import { lobster } from "@/app/fonts";
+import Hero from "@/components/Home/Hero";
+import Carousel from "@/components/Carousel";
+import VideoComponent from "./ui/VideoComponent";
 
 export default function Home() {
   return (
@@ -21,7 +23,7 @@ export default function Home() {
                 Achetez votre chambre à coucher de plein air
               </h1>
 
-              <button className="btn btn-info">
+              <button className="btn btn-info ">
                 Découvrez nos tentes à la vente
               </button>
             </div>
@@ -140,34 +142,40 @@ export default function Home() {
 
       <Carousel carCarousel={true} />
       <Carousel carCarousel={false} />
-      <div className="">
+      <div className="flex flex-col justify-center mx-80 mb-20">
+        <h1
+          className={`${lobster.className} text-4xl font-semibold  `}
+          style={{ width: "50%" }}
+        >
+          Découvrez notre vidéo de présentation
+        </h1>
+        <div className="mt-2 mb-12 text-xl text-neutral-500">
+          Évadez-vous avec la vanlife
+        </div>
+        <div className="flex justify-center ">
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className=" rounded-3xl overflow-hidden">
+              <VideoComponent />
+            </div>
+          </Suspense>
+        </div>
+      </div>
+      <div>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Commodo ullamcorper
-        a lacus vestibulum sed arcu. Nulla malesuada pellentesque elit eget
-        gravida. Urna nunc id cursus metus. Nunc sed augue lacus viverra vitae
-        congue eu consequat. Vestibulum sed arcu non odio. Accumsan sit amet
-        nulla facilisi morbi. Porta non pulvinar neque laoreet suspendisse.
-        Commodo nulla facilisi nullam vehicula ipsum. Est sit amet facilisis
-        magna etiam. Lorem ipsum dolor sit amet consectetur adipiscing elit
-        pellentesque habitant. Vitae et leo duis ut diam quam nulla porttitor.
-        In nulla posuere sollicitudin aliquam ultrices sagittis orci. Nisi quis
-        eleifend quam adipiscing vitae proin. Sit amet nisl suscipit adipiscing
-        bibendum. Diam sollicitudin tempor id eu. Turpis egestas pretium aenean
-        pharetra magna ac placerat vestibulum lectus. Mi proin sed libero enim
-        sed faucibus turpis in. Ut venenatis tellus in metus vulputate eu
-        scelerisque. Mattis nunc sed blandit libero volutpat sed cras.
-        Ullamcorper malesuada proin libero nunc consequat. Placerat in egestas
-        erat imperdiet sed euismod nisi. Mauris pellentesque pulvinar
-        pellentesque habitant morbi tristique senectus. Libero justo laoreet sit
-        amet cursus sit. Facilisis sed odio morbi quis commodo odio aenean sed.
-        Mauris in aliquam sem fringilla ut morbi tincidunt augue interdum. Sed
-        arcu non odio euismod lacinia at quis risus. Feugiat in ante metus
-        dictum at tempor commodo. Nunc congue nisi vitae suscipit tellus mauris
-        a diam. Faucibus ornare suspendisse sed nisi lacus. Ultrices in iaculis
-        nunc sed augue lacus. Nullam non nisi est sit amet facilisis magna
-        etiam. Mus mauris vitae ultricies leo integer malesuada nunc vel risus.
-        Lorem ipsum dolor sit amet consectetur adipiscing elit. Ullamcorper
-        morbi tincidunt ornare massa eget.
+        tempor incididunt ut labore et dolore magna aliqua. Sem nulla pharetra
+        diam sit amet nisl suscipit adipiscing. Faucibus purus in massa tempor.
+        Sed sed risus pretium quam vulputate dignissim suspendisse in. Nec
+        feugiat nisl pretium fusce. Consectetur adipiscing elit ut aliquam purus
+        sit amet luctus venenatis. Pellentesque elit eget gravida cum sociis
+        natoque penatibus et magnis. Lacus viverra vitae congue eu consequat ac
+        felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Sem nulla
+        pharetra diam sit amet nisl suscipit adipiscing. Faucibus purus in massa
+        tempor. Sed sed risus pretium quam vulputate dignissim suspendisse in.
+        Nec feugiat nisl pretium fusce. Consectetur adipiscing elit ut aliquam
+        purus sit amet luctus venenatis. Pellentesque elit eget gravida cum
+        sociis natoque penatibus et magnis. Lacus viverra vitae congue eu
+        consequat ac felis.
       </div>
     </div>
   );
