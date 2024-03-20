@@ -6,7 +6,7 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-end-rgb: 196, 188, 233;
 }
 /* Exemple pour se servir de la variable : color: rgb(var(--foreground-rgb)); */
 
@@ -17,6 +17,15 @@
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+}
+
+body {
+  background: linear-gradient(
+    to top,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  color: rgb(var(--foreground-rgb));
 }
 
 /*Pour appliquer un effet de flou à tout ce qui est derrière l'élément*/

@@ -6,7 +6,7 @@ export default function CarCard({ vehicle }) {
 
   return (
     vehicle && (
-      <div className="card w-96 bg-base-100 shadow-xl mb-10 ">
+      <div className="card w-96 bg-neutral-100 shadow-xl mb-10 ">
         <figure className="h-[200px] overflow-hidden">
           <Image src={vehicle.image} alt="van" width={400} height={200} />
         </figure>

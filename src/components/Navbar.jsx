@@ -7,24 +7,24 @@ const Navbar = () => {
   const { isHeroNavbarExpanded } = useNavbarState();
 
   return (
-    <div className="fixed w-full z-50 top-0  ">
+    <div className="fixed w-full z-50 top-0 ">
       <div
         className={`blur-container ${
-          isHeroNavbarExpanded ? "rounded-b-xl" : "rounded-b-full"
+          isHeroNavbarExpanded ? "" : "rounded-b-full"
         } overflow-hidden  `}
       >
-        <div className="flex justify-end gap-5 bg-gray-200/40 p-1 ">
+        <div className="flex justify-end gap-5  bg-violet-400/40 p-1 ">
           <div>lolove@yopmail.com</div>
-          <div>06 93 65 43 21</div>
+          <div className="pr-2">06 93 65 43 21</div>
         </div>
         <div>
-          <div
-            className={`flex justify-around bg-gray-200/40 ${
-              isHeroNavbarExpanded ? "rounded-b-xl" : ""
-            }  `}
-          >
+          <div className="flex justify-around pb-4 bg-violet-400/40">
             <div className="dropdown dropdown-hover">
-              <div tabIndex={0} role="button" className="btn m-1">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn m-1 border-zinc-300 bg-zinc-200"
+              >
                 Équipement de camping
               </div>
               <ul
@@ -40,7 +40,11 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="dropdown dropdown-hover">
-              <div tabIndex={0} role="button" className="btn m-1">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn m-1 border-zinc-300 bg-zinc-200"
+              >
                 Choisir une tente
               </div>
               <ul
@@ -56,7 +60,11 @@ const Navbar = () => {
               </ul>
             </div>
             <div className="dropdown dropdown-hover">
-              <div tabIndex={0} role="button" className="btn m-1">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn m-1 border-zinc-300 bg-zinc-200"
+              >
                 Agence de retrait
               </div>
               <ul
@@ -74,7 +82,7 @@ const Navbar = () => {
           </div>
           <div>
             <div style={{ display: isHeroNavbarExpanded ? "none" : "block" }}>
-              <div className=" bg-gray-200/40 px-2   relative bottom-0 left-1/2 -translate-x-1/2  rounded-b-full">
+              <div className="  bg-violet-400/40 px-2 pb-1  relative  left-1/2 -translate-x-1/2  rounded-b-full">
                 <RentalForm />
               </div>
             </div>

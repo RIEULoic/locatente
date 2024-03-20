@@ -54,7 +54,9 @@ function RentalForm(params) {
           className=" outline-none bg-transparent text-black"
         />
       </div>
-      <button className="btn btn-info m-2 rounded-full">Rechercher</button>
+      <button className="btn bg-violet-500 border-violet-600 m-2 rounded-full">
+        Rechercher
+      </button>
     </div>
   );
 }

@@ -192,7 +192,7 @@ export default function Carousel({ carCarousel }) {
           </div>
         </div>
         <div>
-          <button className="btn btn-info m-2 rounded-full">
+          <button className="btn bg-violet-500 border-violet-600 m-2 rounded-full">
             {carCarousel
               ? "Voir tout nos véhicules"
               : "Voir toutes nos agences"}

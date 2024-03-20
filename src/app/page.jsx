@@ -2,12 +2,12 @@ import { Suspense } from "react";
 import Image from "next/image";
 import { lobster } from "@/app/fonts";
 import Hero from "@/components/Home/Hero";
-import Carousel from "@/components/Carousel";
+import Carousel from "@/components/Home/Carousel";
 import VideoComponent from "./ui/VideoComponent";
 
 export default function Home() {
   return (
-    <div className="">
+    <div>
       <Hero />
       <div className="mx-auto mt-10 h-[80vh]" style={{ width: "50%" }}>
         <div
@@ -20,11 +20,11 @@ export default function Home() {
           <div className="hero-content text-center text-neutral-content mt-10">
             <div className="max-w-md">
               <h1 className="mb-10 text-5xl font-bold">
-                Achetez votre chambre à coucher de plein air
+                Achetez votre véhicule tout équipé
               </h1>
 
-              <button className="btn btn-info ">
-                Découvrez nos tentes à la vente
+              <button className="btn  border-zinc-300 bg-zinc-200 ">
+                Découvrez nos véhicules à la vente
               </button>
             </div>
           </div>
@@ -159,23 +159,6 @@ export default function Home() {
             </div>
           </Suspense>
         </div>
-      </div>
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Sem nulla pharetra
-        diam sit amet nisl suscipit adipiscing. Faucibus purus in massa tempor.
-        Sed sed risus pretium quam vulputate dignissim suspendisse in. Nec
-        feugiat nisl pretium fusce. Consectetur adipiscing elit ut aliquam purus
-        sit amet luctus venenatis. Pellentesque elit eget gravida cum sociis
-        natoque penatibus et magnis. Lacus viverra vitae congue eu consequat ac
-        felis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Sem nulla
-        pharetra diam sit amet nisl suscipit adipiscing. Faucibus purus in massa
-        tempor. Sed sed risus pretium quam vulputate dignissim suspendisse in.
-        Nec feugiat nisl pretium fusce. Consectetur adipiscing elit ut aliquam
-        purus sit amet luctus venenatis. Pellentesque elit eget gravida cum
-        sociis natoque penatibus et magnis. Lacus viverra vitae congue eu
-        consequat ac felis.
       </div>
     </div>
   );
