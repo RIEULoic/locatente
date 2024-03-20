@@ -45,3 +45,8 @@ body {
   width: calc(33.333%);
   margin-bottom: 40px;
 }
+
+.expandable-dropdown-container:hover,
+.expandable-dropdown-container:focus-within {
+  padding-bottom: 100px; /* Augmente le padding-bottom lors du survol */
+}
