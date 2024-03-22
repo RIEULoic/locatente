@@ -90,7 +90,7 @@ const Navbar = () => {
         </div>
         <div>
           <div style={{ display: isHeroNavbarExpanded ? "none" : "block" }}>
-            <div className="  bg-violet-400/40 px-2 pb-1  relative  left-1/2 -translate-x-1/2  rounded-b-full">
+            <div className="  bg-violet-400/40 px-2 pb-1  relative  left-1/2 -translate-x-1/2  rounded-b-full ">
               <RentalForm />
             </div>
           </div>
