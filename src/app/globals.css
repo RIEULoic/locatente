@@ -46,6 +46,10 @@ body {
   margin-bottom: 40px;
 }
 
+.expandable-dropdown-container {
+  transition: padding-bottom 0.5s;
+}
+
 .expandable-dropdown-container:hover,
 .expandable-dropdown-container:focus-within {
   padding-bottom: 100px; /* Augmente le padding-bottom lors du survol */
