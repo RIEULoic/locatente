@@ -35,7 +35,7 @@ export default function Home() {
           className={`${lobster.className} text-4xl font-bold  mb-5`}
           style={{ width: "50%" }}
         >
-          Pourquoi choisir Locatent ?
+          Pourquoi choisir Locatente ?
         </h1>
         <p className="text-xl" style={{ width: "50%" }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
