@@ -4,7 +4,7 @@ import HeroNavbar from "./HeroNavbar";
 
 function Hero(params) {
   return (
-    <div className="lg:h-screen h-[80vh] relative mt-[88px]">
+    <div className="lg:h-screen h-[80vh] relative mt-[104px] z-40">
       <Image
         priority="true"
         src="/images/hero.jpg"
@@ -17,9 +17,9 @@ function Hero(params) {
         }}
       />
       <div
-        className={`${lobster.className} text-5xl font-bold p-5 text-slate-300 absolute top-0 left-0 m-10 tracking-widest`}
+        className={`${lobster.className} text-6xl font-bold p-5 text-slate-300 absolute mx-40 mt-5 tracking-widest`}
       >
-        Louez votre tente de toit et partez à l'aventure
+        Louez votre véhicule aménagé et partez à l'aventure
       </div>
       <HeroNavbar />
     </div>

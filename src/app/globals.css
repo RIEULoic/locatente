@@ -6,7 +6,7 @@
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-end-rgb: 196, 188, 233;
 }
 /* Exemple pour se servir de la variable : color: rgb(var(--foreground-rgb)); */
 
@@ -19,6 +19,15 @@
   }
 }
 
+body {
+  background: linear-gradient(
+    to top,
+    rgb(var(--background-start-rgb)),
+    rgb(var(--background-end-rgb))
+  );
+  color: rgb(var(--foreground-rgb));
+}
+
 /*Pour appliquer un effet de flou à tout ce qui est derrière l'élément*/
 .blur-container {
   backdrop-filter: blur(10px);
@@ -26,4 +35,22 @@
 
 .black-text-placeholder::placeholder {
   color: black;
+}
+
+.icon-flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(33.333%);
+  margin-bottom: 40px;
+}
+
+.expandable-dropdown-container {
+  transition: padding-bottom 0.5s;
+}
+
+.expandable-dropdown-container:hover,
+.expandable-dropdown-container:focus-within {
+  padding-bottom: 100px; /* Augmente le padding-bottom lors du survol */
 }

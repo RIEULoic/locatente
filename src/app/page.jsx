@@ -1,10 +1,94 @@
-import { lobster } from "@/app/fonts";
-import Hero from "@/components/Home/Hero";
+"use client";
+import { request, gql } from "graphql-request";
+import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
+import { lobster } from "@/app/fonts";
+import Loading from "@/components/Loading";
+import Hero from "@/components/Home/Hero";
+import Carousel from "@/components/Home/Carousel";
+import VideoComponent from "./ui/VideoComponent";
 
 export default function Home() {
+  const [carList, setCarList] = useState([]);
+  const [agencyList, setAgencyList] = useState([]);
+  const [isCarListLoading, setIsCarListLoading] = useState(true);
+  const [isAgencyListLoading, setIsAgencyListLoading] = useState(true);
+
+  const fetchVehicles = async () => {
+    const query = gql`
+      query Vehicles {
+        vehicles {
+          id
+          price
+          name
+          image {
+            id
+            url
+          }
+          features {
+            beds
+            fridge
+            seats
+            tent
+            water
+            wc
+          }
+          createdAt
+          updatedAt
+        }
+      }
+    `;
+    try {
+      const data = await request(
+        "https://api-ap-south-1.hygraph.com/v2/clu3n13wt0dsm07upg0ccd3nh/master",
+        query
+      );
+      //console.log(data.vehicles);
+      setCarList(data.vehicles);
+      //console.log(carList);
+      setIsCarListLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchAgencies = async () => {
+    const query = gql`
+      query Agencies {
+        agencies {
+          adress
+          city
+          createdAt
+          id
+          updatedAt
+          tel
+          image {
+            id
+            url
+          }
+        }
+      }
+    `;
+    try {
+      const data = await request(
+        "https://api-ap-south-1.hygraph.com/v2/clu3n13wt0dsm07upg0ccd3nh/master",
+        query
+      );
+      //console.log(data.agencies);
+      setAgencyList(data.agencies);
+      //console.log(agencyList);
+      setIsAgencyListLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchVehicles();
+    fetchAgencies();
+  }, []);
   return (
-    <div className="">
+    <div>
       <Hero />
       <div className="mx-auto mt-10 h-[80vh]" style={{ width: "50%" }}>
         <div
@@ -17,11 +101,11 @@ export default function Home() {
           <div className="hero-content text-center text-neutral-content mt-10">
             <div className="max-w-md">
               <h1 className="mb-10 text-5xl font-bold">
-                Achetez votre chambre à coucher de plein air
+                Achetez votre véhicule tout équipé
               </h1>
 
-              <button className="btn btn-info">
-                Découvrez nos tentes à la vente
+              <button className="btn  border-zinc-300 bg-zinc-200 ">
+                Découvrez nos véhicules à la vente
               </button>
             </div>
           </div>
@@ -32,7 +116,7 @@ export default function Home() {
           className={`${lobster.className} text-4xl font-bold  mb-5`}
           style={{ width: "50%" }}
         >
-          Pourquoi choisir Locatent ?
+          Pourquoi choisir Locatente ?
         </h1>
         <p className="text-xl" style={{ width: "50%" }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -45,7 +129,7 @@ export default function Home() {
           vitae congue eu consequat ac felis.
         </p>
       </div>
-      <div className="flex justify-around mb-10">
+      <div className="flex justify-around mb-44">
         <div className="flex flex-col items-center " style={{ width: "15%" }}>
           <Image
             src="/images/agency_icon.png"
@@ -136,35 +220,32 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="text-4xl font-bold ">Nos véhicules aménagés</div>
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Commodo ullamcorper
-        a lacus vestibulum sed arcu. Nulla malesuada pellentesque elit eget
-        gravida. Urna nunc id cursus metus. Nunc sed augue lacus viverra vitae
-        congue eu consequat. Vestibulum sed arcu non odio. Accumsan sit amet
-        nulla facilisi morbi. Porta non pulvinar neque laoreet suspendisse.
-        Commodo nulla facilisi nullam vehicula ipsum. Est sit amet facilisis
-        magna etiam. Lorem ipsum dolor sit amet consectetur adipiscing elit
-        pellentesque habitant. Vitae et leo duis ut diam quam nulla porttitor.
-        In nulla posuere sollicitudin aliquam ultrices sagittis orci. Nisi quis
-        eleifend quam adipiscing vitae proin. Sit amet nisl suscipit adipiscing
-        bibendum. Diam sollicitudin tempor id eu. Turpis egestas pretium aenean
-        pharetra magna ac placerat vestibulum lectus. Mi proin sed libero enim
-        sed faucibus turpis in. Ut venenatis tellus in metus vulputate eu
-        scelerisque. Mattis nunc sed blandit libero volutpat sed cras.
-        Ullamcorper malesuada proin libero nunc consequat. Placerat in egestas
-        erat imperdiet sed euismod nisi. Mauris pellentesque pulvinar
-        pellentesque habitant morbi tristique senectus. Libero justo laoreet sit
-        amet cursus sit. Facilisis sed odio morbi quis commodo odio aenean sed.
-        Mauris in aliquam sem fringilla ut morbi tincidunt augue interdum. Sed
-        arcu non odio euismod lacinia at quis risus. Feugiat in ante metus
-        dictum at tempor commodo. Nunc congue nisi vitae suscipit tellus mauris
-        a diam. Faucibus ornare suspendisse sed nisi lacus. Ultrices in iaculis
-        nunc sed augue lacus. Nullam non nisi est sit amet facilisis magna
-        etiam. Mus mauris vitae ultricies leo integer malesuada nunc vel risus.
-        Lorem ipsum dolor sit amet consectetur adipiscing elit. Ullamcorper
-        morbi tincidunt ornare massa eget.
+      <Suspense fallback={<Loading />}>
+        {!isCarListLoading && <Carousel carCarousel={true} carList={carList} />}
+      </Suspense>
+      <Suspense fallback={<Loading />}>
+        {!isAgencyListLoading && (
+          <Carousel carCarousel={false} agencyList={agencyList} />
+        )}
+      </Suspense>
+
+      <div className="flex flex-col justify-center mx-80 mb-20">
+        <h1
+          className={`${lobster.className} text-4xl font-semibold  `}
+          style={{ width: "50%" }}
+        >
+          Découvrez notre vidéo de présentation
+        </h1>
+        <div className="mt-2 mb-12 text-xl text-neutral-500">
+          Évadez-vous avec la vanlife
+        </div>
+        <div className="flex justify-center ">
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className=" rounded-3xl overflow-hidden">
+              <VideoComponent />
+            </div>
+          </Suspense>
+        </div>
       </div>
     </div>
   );
