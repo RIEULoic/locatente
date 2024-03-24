@@ -6,7 +6,7 @@ export default function AgencyCard({ agency }) {
       <div className="card  bg-neutral-100  mb-10 ">
         <figure className="h-[160px]   ">
           <Image
-            src={agency.image}
+            src={`${agency.image.url}`}
             alt={agency.city}
             width={400}
             height={200}

@@ -8,7 +8,12 @@ export default function CarCard({ vehicle }) {
     vehicle && (
       <div className="card w-96 bg-neutral-100 shadow-xl mb-10 ">
         <figure className="h-[200px] overflow-hidden">
-          <Image src={vehicle.image} alt="van" width={400} height={200} />
+          <Image
+            src={`${vehicle.image.url}`}
+            alt="van"
+            width={400}
+            height={200}
+          />
         </figure>
         <div className="card-body pl-1 pt-3 pb-0 pr-0">
           <h2 className="card-title mb-4">

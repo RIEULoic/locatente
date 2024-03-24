@@ -1,11 +1,92 @@
-import { Suspense } from "react";
+"use client";
+import { request, gql } from "graphql-request";
+import { Suspense, useEffect, useState } from "react";
 import Image from "next/image";
 import { lobster } from "@/app/fonts";
+import Loading from "@/components/Loading";
 import Hero from "@/components/Home/Hero";
 import Carousel from "@/components/Home/Carousel";
 import VideoComponent from "./ui/VideoComponent";
 
 export default function Home() {
+  const [carList, setCarList] = useState([]);
+  const [agencyList, setAgencyList] = useState([]);
+  const [isCarListLoading, setIsCarListLoading] = useState(true);
+  const [isAgencyListLoading, setIsAgencyListLoading] = useState(true);
+
+  const fetchVehicles = async () => {
+    const query = gql`
+      query Vehicles {
+        vehicles {
+          id
+          price
+          name
+          image {
+            id
+            url
+          }
+          features {
+            beds
+            fridge
+            seats
+            tent
+            water
+            wc
+          }
+          createdAt
+          updatedAt
+        }
+      }
+    `;
+    try {
+      const data = await request(
+        "https://api-ap-south-1.hygraph.com/v2/clu3n13wt0dsm07upg0ccd3nh/master",
+        query
+      );
+      //console.log(data.vehicles);
+      setCarList(data.vehicles);
+      //console.log(carList);
+      setIsCarListLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchAgencies = async () => {
+    const query = gql`
+      query Agencies {
+        agencies {
+          adress
+          city
+          createdAt
+          id
+          updatedAt
+          tel
+          image {
+            id
+            url
+          }
+        }
+      }
+    `;
+    try {
+      const data = await request(
+        "https://api-ap-south-1.hygraph.com/v2/clu3n13wt0dsm07upg0ccd3nh/master",
+        query
+      );
+      //console.log(data.agencies);
+      setAgencyList(data.agencies);
+      //console.log(agencyList);
+      setIsAgencyListLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchVehicles();
+    fetchAgencies();
+  }, []);
   return (
     <div>
       <Hero />
@@ -139,9 +220,15 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Suspense fallback={<Loading />}>
+        {!isCarListLoading && <Carousel carCarousel={true} carList={carList} />}
+      </Suspense>
+      <Suspense fallback={<Loading />}>
+        {!isAgencyListLoading && (
+          <Carousel carCarousel={false} agencyList={agencyList} />
+        )}
+      </Suspense>
 
-      <Carousel carCarousel={true} />
-      <Carousel carCarousel={false} />
       <div className="flex flex-col justify-center mx-80 mb-20">
         <h1
           className={`${lobster.className} text-4xl font-semibold  `}
