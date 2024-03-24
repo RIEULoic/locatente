@@ -1,5 +1,3 @@
-"use client";
-
 import { inter } from "@/app/fonts";
 import "./globals.css";
 import { NavbarStateProvider } from "@/context/NavbarStateContext";
