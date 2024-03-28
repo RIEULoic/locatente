@@ -8,11 +8,10 @@ const Navbar = () => {
   const { isHeroNavbarExpanded } = useNavbarState();
 
   const handleScrollToAgencies = () => {
-    // console.log("scrolling to agencies");
+    // console.log("scrolling to agencies list");
     const agenciesDiv = document.getElementById("agencies");
     if (agenciesDiv) {
-      const offsetTop = agenciesDiv.offsetTop;
-      -1000;
+      const offsetTop = agenciesDiv.offsetTop - 300;
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth",

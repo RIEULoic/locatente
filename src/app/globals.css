@@ -54,3 +54,7 @@ body {
 .expandable-dropdown-container:focus-within {
   padding-bottom: 100px; /* Augmente le padding-bottom lors du survol */
 }
+
+.agency-card-image:hover {
+  filter: brightness(0.8); /* Assombrit l'image lors du survol */
+}

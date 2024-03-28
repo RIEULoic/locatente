@@ -230,6 +230,7 @@ export default function Home() {
           )}
         </Suspense>
       </div>
+
       <div id="agencies">
         <Suspense fallback={<Loading />}>
           {!isAgencyListLoading && (
