@@ -7,6 +7,32 @@ import RentalForm from "./RentalForm";
 const Navbar = () => {
   const { isHeroNavbarExpanded } = useNavbarState();
 
+  const handleScrollToAgencies = () => {
+    // console.log("scrolling to agencies");
+    const agenciesDiv = document.getElementById("agencies");
+    if (agenciesDiv) {
+      const offsetTop = agenciesDiv.offsetTop;
+      -1000;
+      window.scrollTo({
+        top: offsetTop,
+        behavior: "smooth",
+      });
+    }
+
+    //petite tech pour enlever le focus du bouton. Dans daisyui le dropdown reste ouvert si le bouton a le focus
+    const elem = document.activeElement;
+    if (elem) {
+      elem?.blur();
+    }
+  };
+
+  const handleClick = () => {
+    const elem = document.activeElement;
+    if (elem) {
+      elem?.blur();
+    }
+  };
+
   return (
     <div className="fixed w-full z-50 top-0 ">
       <div
@@ -44,11 +70,11 @@ const Navbar = () => {
                     tabIndex={0}
                     className="dropdown-content z-[1] menu p-2  border-zinc-300 bg-zinc-200 rounded-box w-52"
                   >
-                    <li>
-                      <a>Item 1</a>
+                    <li onClick={handleClick}>
+                      <a>Véhicules en location</a>
                     </li>
-                    <li>
-                      <a>Item 2</a>
+                    <li onClick={handleClick}>
+                      <a>Véhicules à la vente</a>
                     </li>
                   </ul>
                 </div>
@@ -66,11 +92,16 @@ const Navbar = () => {
                     tabIndex={0}
                     className="dropdown-content z-[1] menu p-2  border-zinc-300 bg-zinc-200 rounded-box w-52"
                   >
-                    <li>
-                      <a>Item 1</a>
-                    </li>
-                    <li>
-                      <a>Item 2</a>
+                    {/* 
+                    We can't use <button> here because Safari has a bug that prevents the button from being   focused.
+                    <div role="button" tabindex="0"> is a workaround for this bug.
+                    It is accessible and works in all browsers. */}
+                    <li
+                      tabIndex={0}
+                      role="button"
+                      onClick={handleScrollToAgencies}
+                    >
+                      <div>Liste des agences</div>
                     </li>
                   </ul>
                 </div>
@@ -88,10 +119,10 @@ const Navbar = () => {
                     tabIndex={0}
                     className="dropdown-content z-[1] menu p-2  border-zinc-300 bg-zinc-200 rounded-box w-52"
                   >
-                    <li>
+                    <li onClick={handleClick}>
                       <a>Item 1</a>
                     </li>
-                    <li>
+                    <li onClick={handleClick}>
                       <a>Item 2</a>
                     </li>
                   </ul>

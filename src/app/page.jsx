@@ -1,6 +1,7 @@
 "use client";
 import { request, gql } from "graphql-request";
 import { Suspense, useEffect, useState } from "react";
+//import Link from "next/link";
 import Image from "next/image";
 import { lobster } from "@/app/fonts";
 import Loading from "@/components/Loading";
@@ -90,6 +91,7 @@ export default function Home() {
   return (
     <div>
       <Hero />
+
       <div className="mx-auto mt-10 h-[80vh]" style={{ width: "50%" }}>
         <div
           className="hero items-start  rounded-box shadow-2xl "
@@ -220,16 +222,23 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Suspense fallback={<Loading />}>
-        {!isCarListLoading && <Carousel carCarousel={true} carList={carList} />}
-      </Suspense>
-      <Suspense fallback={<Loading />}>
-        {!isAgencyListLoading && (
-          <Carousel carCarousel={false} agencyList={agencyList} />
-        )}
-      </Suspense>
+      <div>
+        {/* Apparement, <Suspense/> ne fonctionne pas. <Loading/> n'est jamais appelé. J'ai du mal à le croire (genre la connexion est tellement rapide que le fallback de <Suspense/> n'a pas le temps d'être utilisé) */}
+        <Suspense fallback={<Loading />}>
+          {!isCarListLoading && (
+            <Carousel carCarousel={true} carList={carList} />
+          )}
+        </Suspense>
+      </div>
+      <div id="agencies">
+        <Suspense fallback={<Loading />}>
+          {!isAgencyListLoading && (
+            <Carousel carCarousel={false} agencyList={agencyList} />
+          )}
+        </Suspense>
+      </div>
 
-      <div className="flex flex-col justify-center mx-80 mb-20">
+      <div className="flex flex-col justify-center mx-80 mb-20 mt-40">
         <h1
           className={`${lobster.className} text-4xl font-semibold  `}
           style={{ width: "50%" }}
