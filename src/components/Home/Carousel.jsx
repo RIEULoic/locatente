@@ -8,12 +8,11 @@ import AgencyCard from "./AgencyCard";
 export default function Carousel({ carCarousel, carList, agencyList }) {
   useEffect(() => {
     register();
-    console.log(agencyList);
-    //console.log(carList[0]);
+    //console.log(agencyList);
   }, []);
   // console.log(carCarousel);
   return (
-    <div className="mb-40 mx-80">
+    <div className="mt-40 mx-80">
       <div className=" mb-12 flex justify-between">
         <div className="flex flex-col">
           <div className={`text-4xl font-semibold ${lobster.className}`}>
