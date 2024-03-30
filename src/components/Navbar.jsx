@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import { useNavbarState } from "@/context/NavbarStateContext";
 import Image from "next/image";
 import RentalForm from "./RentalForm";
@@ -41,12 +41,14 @@ const Navbar = () => {
       >
         <div className="grid grid-cols-12  bg-violet-400/40">
           <div className="pl-10 pt-1 ">
-            <Image
-              src="/images/logo2.png"
-              alt="locatent logo"
-              width={100}
-              height={100}
-            />
+            <Link href="/">
+              <Image
+                src="/images/logo2.png"
+                alt="locatent logo"
+                width={100}
+                height={100}
+              />
+            </Link>
           </div>
           <div className="col-span-11">
             <div>

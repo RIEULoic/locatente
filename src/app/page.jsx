@@ -1,7 +1,7 @@
 "use client";
 import { request, gql } from "graphql-request";
 import { Suspense, useEffect, useState } from "react";
-//import Link from "next/link";
+import Link from "next/link";
 import Image from "next/image";
 import { lobster } from "@/app/fonts";
 import Loading from "@/components/Loading";
@@ -91,7 +91,6 @@ export default function Home() {
   return (
     <div>
       <Hero />
-
       <div className="mx-auto mt-10 h-[80vh]" style={{ width: "50%" }}>
         <div
           className="hero items-start  rounded-box shadow-2xl "

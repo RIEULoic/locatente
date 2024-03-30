@@ -4,6 +4,7 @@ import { register } from "swiper/element/bundle";
 import { lobster } from "@/app/fonts";
 import CarCard from "./CarCard";
 import AgencyCard from "./AgencyCard";
+import Link from "next/link";
 
 export default function Carousel({ carCarousel, carList, agencyList }) {
   useEffect(() => {
@@ -51,7 +52,9 @@ export default function Carousel({ carCarousel, carList, agencyList }) {
             : agencyList.map((agency) => {
                 return (
                   <swiper-slide key={agency.id}>
-                    <AgencyCard agency={agency} />
+                    <Link href={`/agencies/${agency.city}`}>
+                      <AgencyCard agency={agency} />
+                    </Link>
                   </swiper-slide>
                 );
               })}
