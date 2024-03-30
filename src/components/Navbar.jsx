@@ -1,11 +1,30 @@
 "use client";
+import { useEffect } from "react";
 import Link from "next/link";
+
 import { useNavbarState } from "@/context/NavbarStateContext";
 import Image from "next/image";
 import RentalForm from "./RentalForm";
 
 const Navbar = () => {
-  const { isHeroNavbarExpanded } = useNavbarState();
+  const { isHeroNavbarExpanded, setHeroNavbarExpanded } = useNavbarState();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const shouldModif = window.scrollY <= 650;
+      if (shouldModif !== isHeroNavbarExpanded) {
+        console.log("modifying");
+        setHeroNavbarExpanded(shouldModif);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isHeroNavbarExpanded]);
+  /*Pas clair cette histoire de dépendance */
 
   const handleScrollToAgencies = () => {
     // console.log("scrolling to agencies list");

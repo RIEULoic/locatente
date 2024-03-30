@@ -1,29 +1,8 @@
-"use client";
-
 import { useNavbarState } from "@/context/NavbarStateContext";
-import { useEffect } from "react";
 import RentalForm from "../RentalForm";
 
 function HeroNavbar() {
-  const { isHeroNavbarExpanded, setHeroNavbarExpanded } = useNavbarState();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 650) {
-        setHeroNavbarExpanded(false);
-        //console.log("false à " + window.scrollY);
-      } else {
-        setHeroNavbarExpanded(true);
-        //console.log("true à " + window.scrollY);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [setHeroNavbarExpanded]);
+  const { isHeroNavbarExpanded } = useNavbarState();
 
   return (
     <div
