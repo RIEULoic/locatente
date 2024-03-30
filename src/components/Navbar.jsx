@@ -1,9 +1,10 @@
 "use client";
-import { useEffect } from "react";
-import Link from "next/link";
 
-import { useNavbarState } from "@/context/NavbarStateContext";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useNavbarState } from "@/context/NavbarStateContext";
 import RentalForm from "./RentalForm";
 
 const Navbar = () => {
@@ -26,6 +27,7 @@ const Navbar = () => {
   }, [isHeroNavbarExpanded]);
   /*Pas clair cette histoire de dépendance */
 
+  const router = useRouter();
   const handleScrollToAgencies = () => {
     // console.log("scrolling to agencies list");
     const agenciesDiv = document.getElementById("agencies");
@@ -35,6 +37,16 @@ const Navbar = () => {
         top: offsetTop,
         behavior: "smooth",
       });
+    } else {
+      router.push("/");
+      setTimeout(() => {
+        const agenciesDiv = document.getElementById("agencies");
+        const offsetTop = agenciesDiv.offsetTop - 300;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
+      }, 500);
     }
 
     //petite tech pour enlever le focus du bouton. Dans daisyui le dropdown reste ouvert si le bouton a le focus
