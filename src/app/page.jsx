@@ -8,7 +8,7 @@ import Loading from "@/components/Loading";
 import Hero from "@/components/Home/Hero";
 import Carousel from "@/components/Home/Carousel";
 import VideoComponent from "./ui/VideoComponent";
-import HeroNavbar from "../components/Home/HeroNavbar";
+import RentalFormContainer from "../components/Home/RentalFormContainer";
 
 export default function Home() {
   const [carList, setCarList] = useState([]);
@@ -91,7 +91,7 @@ export default function Home() {
       <div className="relative border-solid border-green-400 border-2">
         <Hero />
         {/* <div id="hero-navbar">
-          <HeroNavbar />
+          <RentalFormContainer />
         </div> */}
       </div>
 

@@ -4,14 +4,15 @@ import { useEffect, useState } from "react";
 
 import { useNavbarState } from "@/context/NavbarStateContext";
 import Image from "next/image";
-import HeroNavbar from "@/components/Home/HeroNavbar";
+import RentalFormContainer from "@/components/Home/RentalFormContainer";
 import { lobster } from "@/app/fonts";
 import { useRouter } from "next/router";
 
 export default function Page({ params }) {
   console.log(params.agencyCity);
 
-  const { isHeroNavbarExpanded, setHeroNavbarExpanded } = useNavbarState();
+  const { isRentalFormContainerExpanded, setRentalFormContainerExpanded } =
+    useNavbarState();
 
   const [data, setData] = useState(null);
 
@@ -44,14 +45,14 @@ export default function Page({ params }) {
 
   useEffect(() => {
     fetchAgency();
-    // if (!isHeroNavbarExpanded) {
-    setHeroNavbarExpanded(true);
+    // if (!isRentalFormContainerExpanded) {
+    setRentalFormContainerExpanded(true);
     // }
   }, []);
 
   // useEffect(() => {
-  //   console.log(isHeroNavbarExpanded);
-  // }, [isHeroNavbarExpanded]);
+  //   console.log(isRentalFormContainerExpanded);
+  // }, [isRentalFormContainerExpanded]);
 
   if (!data)
     return (
@@ -135,7 +136,7 @@ export default function Page({ params }) {
           id="hero-navbar"
           className=" absolute bottom-0 left-1/2 -translate-x-1/2  mb-52"
         >
-          <HeroNavbar />
+          <RentalFormContainer />
         </div>
       </div>
       <p>

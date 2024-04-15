@@ -1,12 +1,12 @@
 import { useNavbarState } from "@/context/NavbarStateContext";
 import RentalForm from "../RentalForm";
 
-function HeroNavbar() {
-  const { isHeroNavbarExpanded } = useNavbarState();
+function RentalFormContainer() {
+  const { isRentalFormContainerExpanded } = useNavbarState();
 
   return (
     <div
-      style={{ display: isHeroNavbarExpanded ? "block" : "none" }}
+      style={{ display: isRentalFormContainerExpanded ? "block" : "none" }}
       className=" bg-white px-2 border-2  border-gray-400  rounded-full"
     >
       <RentalForm />
@@ -14,4 +14,4 @@ function HeroNavbar() {
   );
 }
 
-export default HeroNavbar;
+export default RentalFormContainer;

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { lobster } from "@/app/fonts";
-import HeroNavbar from "./HeroNavbar";
+import RentalFormContainer from "./RentalFormContainer";
 
 function Hero(params) {
   return (
@@ -9,7 +9,7 @@ function Hero(params) {
         id="hero-navbar"
         className=" absolute bottom-0 left-1/2 -translate-x-1/2 mb-40 "
       >
-        <HeroNavbar />
+        <RentalFormContainer />
       </div>
       <Image
         priority={true}

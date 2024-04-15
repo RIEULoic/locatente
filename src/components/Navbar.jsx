@@ -11,21 +11,23 @@ import RentalForm from "./RentalForm";
 const Navbar = () => {
   const router = useRouter();
 
-  const { isHeroNavbarExpanded, setHeroNavbarExpanded } = useNavbarState();
+  const { isRentalFormContainerExpanded, setRentalFormContainerExpanded } =
+    useNavbarState();
 
   useEffect(() => {
     const handleScroll = () => {
       if (document.getElementById("hero-navbar") == null) return;
 
-      const heroNavbarPosition = document
+      const RentalFormContainerPosition = document
         .getElementById("hero-navbar")
         .getBoundingClientRect();
-      console.log("heronavpos : " + heroNavbarPosition.top);
+      console.log("heronavpos : " + RentalFormContainerPosition.top);
       console.log("window.scrollY : " + window.scrollY);
-      const shouldModif = window.scrollY <= heroNavbarPosition.top + 650;
-      if (shouldModif !== isHeroNavbarExpanded) {
+      const shouldModif =
+        window.scrollY <= RentalFormContainerPosition.top + 650;
+      if (shouldModif !== isRentalFormContainerExpanded) {
         console.log("modifying");
-        setHeroNavbarExpanded(shouldModif);
+        setRentalFormContainerExpanded(shouldModif);
       }
     };
 
@@ -34,7 +36,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isHeroNavbarExpanded]);
+  }, [isRentalFormContainerExpanded]);
   /*Pas clair cette histoire de dépendance */
 
   const handleScrollToAgencies = () => {
@@ -76,7 +78,7 @@ const Navbar = () => {
     <div className="fixed w-full z-50 top-0 ">
       <div
         className={`blur-container ${
-          isHeroNavbarExpanded ? "" : "rounded-b-full"
+          isRentalFormContainerExpanded ? "" : "rounded-b-full"
         } overflow-hidden  `}
       >
         <div className="grid grid-cols-12  bg-violet-400/40">
@@ -171,7 +173,11 @@ const Navbar = () => {
               </div>
             </div>
             <div>
-              <div style={{ display: isHeroNavbarExpanded ? "none" : "block" }}>
+              <div
+                style={{
+                  display: isRentalFormContainerExpanded ? "none" : "block",
+                }}
+              >
                 <div className="px-2 pb-1  relative  left-1/2 -translate-x-1/2  rounded-b-full">
                   <RentalForm />
                 </div>

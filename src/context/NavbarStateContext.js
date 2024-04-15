@@ -9,11 +9,12 @@ export const useNavbarState = () => {
 };
 
 export const NavbarStateProvider = ({ children }) => {
-  const [isHeroNavbarExpanded, setHeroNavbarExpanded] = useState(true);
+  const [isRentalFormContainerExpanded, setRentalFormContainerExpanded] =
+    useState(true);
 
   return (
     <NavbarStateContext.Provider
-      value={{ isHeroNavbarExpanded, setHeroNavbarExpanded }}
+      value={{ isRentalFormContainerExpanded, setRentalFormContainerExpanded }}
     >
       {children}
     </NavbarStateContext.Provider>

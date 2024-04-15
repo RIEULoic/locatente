@@ -1,7 +1,7 @@
 import { useNavbarState } from "@/context/NavbarStateContext";
 
 function RentalForm(params) {
-  const { isHeroNavbarExpanded } = useNavbarState();
+  const { isRentalFormContainerExpanded } = useNavbarState();
 
   return (
     <div className=" flex justify-center">
@@ -30,14 +30,16 @@ function RentalForm(params) {
           type="text"
           placeholder="Lieu de départ"
           className={`p-2 outline-none bg-transparent border-b-2  ${
-            isHeroNavbarExpanded
+            isRentalFormContainerExpanded
               ? "border-gray-400"
               : "black-text-placeholder border-b-black"
           } `}
         />
       </div>
       <div className="flex flex-col m-2">
-        <div className={`${isHeroNavbarExpanded ? "text-gray-400" : ""}`}>
+        <div
+          className={`${isRentalFormContainerExpanded ? "text-gray-400" : ""}`}
+        >
           Date de départ
         </div>
         <input
@@ -46,7 +48,9 @@ function RentalForm(params) {
         />
       </div>
       <div className="flex flex-col m-2">
-        <div className={`${isHeroNavbarExpanded ? "text-gray-400" : ""}`}>
+        <div
+          className={`${isRentalFormContainerExpanded ? "text-gray-400" : ""}`}
+        >
           Date de retour
         </div>
         <input
