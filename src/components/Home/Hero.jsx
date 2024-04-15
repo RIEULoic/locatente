@@ -4,9 +4,15 @@ import HeroNavbar from "./HeroNavbar";
 
 function Hero(params) {
   return (
-    <div className="lg:h-screen h-[80vh] relative mt-[104px] z-40">
+    <div className="h-screen relative mt-[104px] z-40">
+      <div
+        id="hero-navbar"
+        className=" absolute bottom-0 left-1/2 -translate-x-1/2 mb-40 "
+      >
+        <HeroNavbar />
+      </div>
       <Image
-        priority="true"
+        priority={true}
         src="/images/hero.jpg"
         alt="car with a tent"
         quality={100}
@@ -21,7 +27,6 @@ function Hero(params) {
       >
         Louez votre véhicule aménagé et partez à l'aventure
       </div>
-      <HeroNavbar />
     </div>
   );
 }

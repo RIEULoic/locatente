@@ -52,7 +52,7 @@ export default function Carousel({ carCarousel, carList, agencyList }) {
             : agencyList.map((agency) => {
                 return (
                   <swiper-slide key={agency.id}>
-                    <Link href={`/agencies/${agency.city}`}>
+                    <Link href={`/agencies/${agency.id}`}>
                       <AgencyCard agency={agency} />
                     </Link>
                   </swiper-slide>

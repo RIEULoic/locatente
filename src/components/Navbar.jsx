@@ -2,17 +2,27 @@
 
 import Image from "next/image";
 import Link from "next/link";
+
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useNavbarState } from "@/context/NavbarStateContext";
 import RentalForm from "./RentalForm";
 
 const Navbar = () => {
+  const router = useRouter();
+
   const { isHeroNavbarExpanded, setHeroNavbarExpanded } = useNavbarState();
 
   useEffect(() => {
     const handleScroll = () => {
-      const shouldModif = window.scrollY <= 650;
+      if (document.getElementById("hero-navbar") == null) return;
+
+      const heroNavbarPosition = document
+        .getElementById("hero-navbar")
+        .getBoundingClientRect();
+      console.log("heronavpos : " + heroNavbarPosition.top);
+      console.log("window.scrollY : " + window.scrollY);
+      const shouldModif = window.scrollY <= heroNavbarPosition.top + 650;
       if (shouldModif !== isHeroNavbarExpanded) {
         console.log("modifying");
         setHeroNavbarExpanded(shouldModif);
@@ -27,7 +37,6 @@ const Navbar = () => {
   }, [isHeroNavbarExpanded]);
   /*Pas clair cette histoire de dépendance */
 
-  const router = useRouter();
   const handleScrollToAgencies = () => {
     // console.log("scrolling to agencies list");
     const agenciesDiv = document.getElementById("agencies");
@@ -46,7 +55,7 @@ const Navbar = () => {
           top: offsetTop,
           behavior: "smooth",
         });
-      }, 500);
+      }, 600);
     }
 
     //petite tech pour enlever le focus du bouton. Dans daisyui le dropdown reste ouvert si le bouton a le focus
