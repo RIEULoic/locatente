@@ -16,10 +16,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (document.getElementById("hero-navbar") == null) return;
+      if (document.getElementById("rental-form-container") == null) return;
 
       const RentalFormContainerPosition = document
-        .getElementById("hero-navbar")
+        .getElementById("rental-form-container")
         .getBoundingClientRect();
       console.log("heronavpos : " + RentalFormContainerPosition.top);
       console.log("window.scrollY : " + window.scrollY);

@@ -90,7 +90,7 @@ export default function Home() {
     <div>
       <div className="relative border-solid border-green-400 border-2">
         <Hero />
-        {/* <div id="hero-navbar">
+        {/* <div id="rental-form-container">
           <RentalFormContainer />
         </div> */}
       </div>

@@ -133,7 +133,7 @@ export default function Page({ params }) {
           </div>
         </div>
         <div
-          id="hero-navbar"
+          id="rental-form-container"
           className=" absolute bottom-0 left-1/2 -translate-x-1/2  mb-52"
         >
           <RentalFormContainer />
