@@ -64,10 +64,8 @@ export default function Page({ params }) {
   return (
     <>
       <div className="h-screen relative">
-        <div className="h-4/6 mx-10 relative mt-[104px] grid grid-rows-4 grid-cols-2 pt-10 border-solid border-black border-2  ">
-          <div className=" row-span-1 col-span-1 border-solid border-green-400 border-2">
-            NE SERT A RIEN 1
-          </div>
+        <div className="h-4/6 mx-10 relative mt-[104px] grid grid-rows-4 grid-cols-2 pt-10   ">
+          <div className=" row-span-1 col-span-1 "></div>
           <div className=" row-span-4 col-span-1 ">
             <div className="skeleton rounded-3xl  w-full h-full relative">
               <Image
@@ -80,65 +78,75 @@ export default function Page({ params }) {
               />
             </div>
           </div>
-          <div className=" row-span-2  col-span-1 border-solid border-red-600 border-4 ">
-            {/* <div
-            className={`${lobster.className} text-6xl text-center font-bold`}
-          >
-            Louez votre sublime véhicule aménagé à {data.agency.city} ! 2
-          </div>
-          <div className="flex  mt-16 pl-6">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6 "
+          <div className=" row-span-2  col-span-1 ">
+            <div
+              className={`${lobster.className} text-4xl text-center font-bold`}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+              Louez votre sublime véhicule aménagé à {data.agency.city} !
+            </div>
+            <div className="flex  mt-10 pl-5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6 "
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                />
+              </svg>
+              <div className="ml-2 text-slate-600 text-xl">
+                {data.agency.adress} 31400 {data.agency.city}
+              </div>
+            </div>
+            <div className="flex pl-6 mt-5">
+              <Image
+                src="/images/phone_icon.png"
+                alt="phone icon"
+                width={20}
+                height={20}
+                href="https://www.flaticon.com/free-icons/phone"
               />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+              <div className="ml-3 text-slate-600 text-xl">
+                {data.agency.tel}
+              </div>
+            </div>
+            <div className="flex pl-6 mt-5">
+              <Image
+                src="/images/clock_icon.png"
+                alt="clock icon created by dmitri13"
+                width={20}
+                height={20}
+                href="https://www.flaticon.com/free-icons/clock"
               />
-            </svg>
-            <div className="ml-2 text-slate-600 text-xl">
-              {data.agency.adress} 31400 {data.agency.city}
+              <div className="ml-2 text-slate-600 text-xl">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                de iqua.
+              </div>
             </div>
           </div>
-          <div className="flex pl-6 mt-6">
-            <Image
-              src="/images/phone_icon.png"
-              alt="phone icon"
-              width={20}
-              height={20}
-              href="https://www.flaticon.com/free-icons/phone"
-            />
-            <div className="ml-3 text-slate-600 text-xl">{data.agency.tel}</div>
-          </div>
-          <div className="flex pl-4 mt-6">
-            <div className="ml-2 text-black text-xl">Horaire</div>
-            <div className="ml-2 text-slate-600 text-xl">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </div>
-          </div> */}
-          </div>
-          <div className="row-span-1 col-span-1 border-solid border-yellow-400 border-2">
-            NE SERT A RIEN 3
+          <div className="row-span-1 col-span-1 ">
+            {/* Localiser sur la carte/ voir les véhicules dispo */}
           </div>
         </div>
+
         <div
           id="rental-form-container"
-          className=" absolute bottom-0 left-1/2 -translate-x-1/2  mb-52"
+          className=" absolute bottom-40 left-1/2 -translate-x-1/2  "
         >
           <RentalFormContainer />
         </div>
       </div>
+
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra
