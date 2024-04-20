@@ -1,3 +1,4 @@
+// import { GoogleMapsEmbed } from "@next/third-parties/google";
 import { inter } from "@/app/fonts";
 import "./globals.css";
 import { NavbarStateProvider } from "@/context/NavbarStateContext";
@@ -10,6 +11,13 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <NavbarStateProvider>
           <Navbar />
+          {/* <GoogleMapsEmbed
+            apiKey={process.env.GOOGLE_API_KEY}
+            height={200}
+            width="100%"
+            mode="place"
+            q="Brooklyn+Bridge,New+York,NY"
+          /> */}
           {children}
           <Footer />
         </NavbarStateProvider>
