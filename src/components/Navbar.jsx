@@ -1,22 +1,63 @@
 "use client";
 
-import { useNavbarState } from "@/context/NavbarStateContext";
 import Image from "next/image";
+import Link from "next/link";
+
+import { useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { useNavbarState } from "@/context/NavbarStateContext";
 import RentalForm from "./RentalForm";
 
 const Navbar = () => {
-  const { isHeroNavbarExpanded } = useNavbarState();
+  const router = useRouter();
+
+  const { isRentalFormContainerExpanded, setRentalFormContainerExpanded } =
+    useNavbarState();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (document.getElementById("rental-form-container") == null) return;
+
+      const RentalFormContainerPosition = document
+        .getElementById("rental-form-container")
+        .getBoundingClientRect();
+      console.log("heronavpos : " + RentalFormContainerPosition.top);
+      console.log("window.scrollY : " + window.scrollY);
+      const shouldModif =
+        window.scrollY <= RentalFormContainerPosition.top + 650;
+      if (shouldModif !== isRentalFormContainerExpanded) {
+        console.log("modifying");
+        setRentalFormContainerExpanded(shouldModif);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isRentalFormContainerExpanded]);
+  /*Pas clair cette histoire de dépendance */
 
   const handleScrollToAgencies = () => {
-    // console.log("scrolling to agencies");
+    // console.log("scrolling to agencies list");
     const agenciesDiv = document.getElementById("agencies");
     if (agenciesDiv) {
-      const offsetTop = agenciesDiv.offsetTop;
-      -1000;
+      const offsetTop = agenciesDiv.offsetTop - 300;
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth",
       });
+    } else {
+      router.push("/");
+      setTimeout(() => {
+        const agenciesDiv = document.getElementById("agencies");
+        const offsetTop = agenciesDiv.offsetTop - 300;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
+      }, 600);
     }
 
     //petite tech pour enlever le focus du bouton. Dans daisyui le dropdown reste ouvert si le bouton a le focus
@@ -37,17 +78,19 @@ const Navbar = () => {
     <div className="fixed w-full z-50 top-0 ">
       <div
         className={`blur-container ${
-          isHeroNavbarExpanded ? "" : "rounded-b-full"
+          isRentalFormContainerExpanded ? "" : "rounded-b-full"
         } overflow-hidden  `}
       >
         <div className="grid grid-cols-12  bg-violet-400/40">
           <div className="pl-10 pt-1 ">
-            <Image
-              src="/images/logo2.png"
-              alt="locatent logo"
-              width={100}
-              height={100}
-            />
+            <Link href="/">
+              <Image
+                src="/images/logo2.png"
+                alt="locatent logo"
+                width={100}
+                height={100}
+              />
+            </Link>
           </div>
           <div className="col-span-11">
             <div>
@@ -130,7 +173,11 @@ const Navbar = () => {
               </div>
             </div>
             <div>
-              <div style={{ display: isHeroNavbarExpanded ? "none" : "block" }}>
+              <div
+                style={{
+                  display: isRentalFormContainerExpanded ? "none" : "block",
+                }}
+              >
                 <div className="px-2 pb-1  relative  left-1/2 -translate-x-1/2  rounded-b-full">
                   <RentalForm />
                 </div>

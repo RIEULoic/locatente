@@ -1,13 +1,14 @@
 "use client";
 import { request, gql } from "graphql-request";
 import { Suspense, useEffect, useState } from "react";
-//import Link from "next/link";
+import Link from "next/link";
 import Image from "next/image";
 import { lobster } from "@/app/fonts";
 import Loading from "@/components/Loading";
 import Hero from "@/components/Home/Hero";
 import Carousel from "@/components/Home/Carousel";
 import VideoComponent from "./ui/VideoComponent";
+import RentalFormContainer from "../components/Home/RentalFormContainer";
 
 export default function Home() {
   const [carList, setCarList] = useState([]);
@@ -57,12 +58,8 @@ export default function Home() {
     const query = gql`
       query Agencies {
         agencies {
-          adress
           city
-          createdAt
           id
-          updatedAt
-          tel
           image {
             id
             url
@@ -87,10 +84,16 @@ export default function Home() {
   useEffect(() => {
     fetchVehicles();
     fetchAgencies();
+    console.log("fetching data");
   }, []);
   return (
     <div>
-      <Hero />
+      <div className="relative border-solid border-green-400 border-2">
+        <Hero />
+        {/* <div id="rental-form-container">
+          <RentalFormContainer />
+        </div> */}
+      </div>
 
       <div className="mx-auto mt-10 h-[80vh]" style={{ width: "50%" }}>
         <div
@@ -113,6 +116,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+
       <div className="flex flex-col items-center mb-10">
         <h1
           className={`${lobster.className} text-4xl font-bold  mb-5`}
@@ -131,6 +135,7 @@ export default function Home() {
           vitae congue eu consequat ac felis.
         </p>
       </div>
+
       <div className="flex justify-around mb-44">
         <div className="flex flex-col items-center " style={{ width: "15%" }}>
           <Image
@@ -230,6 +235,7 @@ export default function Home() {
           )}
         </Suspense>
       </div>
+
       <div id="agencies">
         <Suspense fallback={<Loading />}>
           {!isAgencyListLoading && (
