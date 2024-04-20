@@ -16,7 +16,7 @@ export default function Home() {
   const [agencyList, setAgencyList] = useState([]);
   const [isCarListLoading, setIsCarListLoading] = useState(true);
   const [isAgencyListLoading, setIsAgencyListLoading] = useState(true);
-  //console.log(process.env.GOOGLE_API_KEY);
+  console.log(process.env.GOOGLE_API_KEY);
   const fetchVehicles = async () => {
     const query = gql`
       query Vehicles {
