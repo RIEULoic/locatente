@@ -16,7 +16,8 @@ export default function Home() {
   const [agencyList, setAgencyList] = useState([]);
   const [isCarListLoading, setIsCarListLoading] = useState(true);
   const [isAgencyListLoading, setIsAgencyListLoading] = useState(true);
-  console.log(process.env.GOOGLE_API_KEY);
+  //console.log(process.env.NEXT_PUBLIC_GOOGLE_API_KEY);
+
   const fetchVehicles = async () => {
     const query = gql`
       query Vehicles {
@@ -99,7 +100,7 @@ export default function Home() {
         <Suspense fallback={<div>Loading...</div>}>
           <div className=" rounded-3xl overflow-hidden">
             <GoogleMapsEmbed
-              apiKey={process.env.GOOGLE_API_KEY}
+              apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
               height={200}
               width="100%"
               mode="place"
