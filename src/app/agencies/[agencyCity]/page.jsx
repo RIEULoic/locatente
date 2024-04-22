@@ -1,6 +1,9 @@
 "use client";
+
+import { GoogleMapsEmbed } from "@next/third-parties/google";
+
 import { request, gql } from "graphql-request";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
 import { useNavbarState } from "@/context/NavbarStateContext";
 import Image from "next/image";
@@ -9,7 +12,7 @@ import { lobster } from "@/app/fonts";
 import { useRouter } from "next/router";
 
 export default function Page({ params }) {
-  console.log(params.agencyCity);
+  //console.log(params.agencyCity);
 
   const { isRentalFormContainerExpanded, setRentalFormContainerExpanded } =
     useNavbarState();
@@ -135,7 +138,7 @@ export default function Page({ params }) {
             </div>
           </div>
           <div className="row-span-1 col-span-1 ">
-            {/* Localiser sur la carte/ voir les véhicules dispo */}
+            Localiser sur la carte/ voir les véhicules dispo
           </div>
         </div>
 
@@ -146,7 +149,20 @@ export default function Page({ params }) {
           <RentalFormContainer />
         </div>
       </div>
-
+      <div></div>
+      <div className="flex justify-center ">
+        <Suspense fallback={<div>Loading...</div>}>
+          <div className=" rounded-3xl overflow-hidden">
+            <GoogleMapsEmbed
+              apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
+              height={200}
+              width="100%"
+              mode="place"
+              q="Brooklyn+Bridge,New+York,NY"
+            />
+          </div>
+        </Suspense>
+      </div>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra

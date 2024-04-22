@@ -1,7 +1,6 @@
 "use client";
 import { request, gql } from "graphql-request";
 import { Suspense, useEffect, useState } from "react";
-import { GoogleMapsEmbed } from "@next/third-parties/google";
 import Link from "next/link";
 import Image from "next/image";
 import { lobster } from "@/app/fonts";
@@ -16,7 +15,6 @@ export default function Home() {
   const [agencyList, setAgencyList] = useState([]);
   const [isCarListLoading, setIsCarListLoading] = useState(true);
   const [isAgencyListLoading, setIsAgencyListLoading] = useState(true);
-  //console.log(process.env.NEXT_PUBLIC_GOOGLE_API_KEY);
 
   const fetchVehicles = async () => {
     const query = gql`
@@ -95,19 +93,6 @@ export default function Home() {
         {/* <div id="rental-form-container">
           <RentalFormContainer />
         </div> */}
-      </div>
-      <div className="flex justify-center ">
-        <Suspense fallback={<div>Loading...</div>}>
-          <div className=" rounded-3xl overflow-hidden">
-            <GoogleMapsEmbed
-              apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
-              height={200}
-              width="100%"
-              mode="place"
-              q="Brooklyn+Bridge,New+York,NY"
-            />
-          </div>
-        </Suspense>
       </div>
 
       <div className="mx-auto mt-10 h-[80vh]" style={{ width: "50%" }}>
