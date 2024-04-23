@@ -6,7 +6,9 @@ function RentalFormContainer() {
 
   return (
     <div
-      style={{ display: isRentalFormContainerExpanded ? "block" : "none" }}
+      style={{
+        visibility: isRentalFormContainerExpanded ? "visible" : "hidden",
+      }}
       className=" bg-white px-2 border-2  border-gray-400  rounded-full"
     >
       <RentalForm />
