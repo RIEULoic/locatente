@@ -1,6 +1,9 @@
 "use client";
 import { request, gql } from "graphql-request";
 import { Suspense, useEffect, useState } from "react";
+
+import { GoogleMapsEmbed } from "@next/third-parties/google";
+
 import Link from "next/link";
 import Image from "next/image";
 import { lobster } from "@/app/fonts";
@@ -116,7 +119,19 @@ export default function Home() {
           </div>
         </div>
       </div>
-
+      <div className="flex justify-center ">
+        <Suspense fallback={<div>Loading...</div>}>
+          <div className=" rounded-3xl overflow-hidden">
+            <GoogleMapsEmbed
+              apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
+              height={200}
+              width="100%"
+              mode="place"
+              q="Brooklyn+Bridge,New+York,NY"
+            />
+          </div>
+        </Suspense>
+      </div>
       <div className="flex flex-col items-center mb-10">
         <h1
           className={`${lobster.className} text-4xl font-bold  mb-5`}

@@ -8,6 +8,7 @@ import { useEffect, useState, Suspense } from "react";
 import { useNavbarState } from "@/context/NavbarStateContext";
 import Image from "next/image";
 import RentalFormContainer from "@/components/Home/RentalFormContainer";
+import Test from "@/components/Test";
 import { lobster } from "@/app/fonts";
 import { useRouter } from "next/router";
 
@@ -141,34 +142,72 @@ export default function Page({ params }) {
             Localiser sur la carte/ voir les véhicules dispo
           </div>
         </div>
+        <Test />
+      </div>
 
-        <div
-          id="rental-form-container"
-          className=" absolute bottom-40 left-1/2 -translate-x-1/2  "
-        >
-          <RentalFormContainer />
-        </div>
-      </div>
-      <div></div>
-      <div className="flex justify-center ">
-        <Suspense fallback={<div>Loading...</div>}>
-          <div className=" rounded-3xl overflow-hidden">
-            <GoogleMapsEmbed
-              apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
-              height={200}
-              width="100%"
-              mode="place"
-              q="Brooklyn+Bridge,New+York,NY"
-            />
-          </div>
-        </Suspense>
-      </div>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra
         ipsum nunc aliquet bibendum enim. Cursus risus at ultrices mi tempus
         imperdiet nulla malesuada pellentesque. Rhoncus mattis rhoncus urna
         neque viverra justo. Felis donec et odio pellentesque diam volutpat
+        commodo sed. Consectetur lorem donec massa sapien faucibus et. Malesuada
+        fames ac turpis egestas. Eget arcu dictum varius duis at. Adipiscing
+        commodo elit at imperdiet dui accumsan sit amet. Lorem ipsum dolor sit
+        amet consectetur adipiscing. Varius morbi enim nunc faucibus a
+        pellentesque. Laoreet id donec ultrices tincidunt arcu non sodales neque
+        sodales. Turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet.
+        Enim nulla aliquet porttitor lacus luctus accumsan tortor. Felis
+        imperdiet proin fermentum leo vel orci porta. Augue eget arcu dictum
+        varius duis at consectetur lorem donec. Sagittis purus sit amet volutpat
+        consequat mauris nunc congue. Egestas integer eget aliquet nibh. Amet
+        porttitor eget dolor morbi non arcu risus. Accumsan sit amet nulla
+        facilisi morbi tempus. Ornare suspendisse sed nisi lacus sed viverra
+        tellus. At in tellus integer feugiat scelerisque varius. Elementum
+        sagittis vitae et leo duis ut diam. Laoreet suspendisse interdum
+        consectetur libero id faucibus nisl. Facilisi morbi tempus iaculis urna
+        id volutpat lacus. Faucibus in ornare quam viverra orci sagittis eu
+        volutpat. Elit at imperdiet dui accumsan sit amet nulla facilisi.
+        Aliquam id diam maecenas ultricies. Et malesuada fames ac turpis egestas
+        sed tempus. Semper viverra nam libero justo laoreet sit amet. A diam
+        maecenas sed enim ut. A lacus vestibulum sed arcu non odio euismod.
+        Potenti nullam ac tortor vitae purus faucibus. Posuere morbi leo urna
+        molestie at. Faucibus pulvinar elementum integer enim neque. Non nisi
+        est sit amet facilisis magna. Tellus in hac habitasse platea dictumst
+        vestibulum. Id leo in vitae turpis massa sed elementum. Etiam tempor
+        orci eu lobortis elementum nibh tellus molestie nunc. Posuere urna nec
+        tincidunt praesent semper feugiat nibh sed. Erat pellentesque adipiscing
+        commodo elit at imperdiet. Leo integer malesuada nunc vel risus. Dictum
+        fusce ut placerat orci nulla pellentesque dignissim. Integer eget
+        aliquet nibh praesent.
+      </p>
+
+      <p>
+        Cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Leo urna
+        molestie at elementum eu facilisis sed odio morbi. Donec ultrices
+        tincidunt arcu non sodales neque sodales ut etiam. Malesuada proin
+        libero nunc consequat interdum. Purus in mollis nunc sed. Pretium fusce
+        id velit ut tortor. Pharetra diam sit amet nisl suscipit. Nisl rhoncus
+        mattis rhoncus urna neque viverra justo nec ultrices. Pharetra magna ac
+        placerat vestibulum. Vitae purus faucibus ornare suspendisse. Augue
+        mauris augue neque gravida in. Sit amet commodo nulla facilisi nullam
+        vehicula ipsum. At varius vel pharetra vel. Lobortis mattis aliquam
+        faucibus purus in massa tempor nec feugiat. Convallis aenean et tortor
+        at risus viverra adipiscing. Mi in nulla posuere sollicitudin aliquam
+        ultrices sagittis orci a. Odio pellentesque diam volutpat commodo sed
+        egestas egestas. Erat nam at lectus urna duis convallis convallis tellus
+        id. Purus ut faucibus pulvinar elementum integer. Viverra nibh cras
+        pulvinar mattis nunc sed blandit. Sed elementum tempus egestas sed sed
+        risus pretium quam. Imperdiet nulla malesuada pellentesque elit eget
+        gravida. Massa vitae tortor condimentum lacinia quis vel eros donec. Hac
+        habitasse platea dictumst vestibulum rhoncus est pellentesque elit.
+        Neque vitae tempus quam pellentesque nec nam aliquam. Tincidunt dui ut
+        ornare lectus sit amet est placerat in. Venenatis a condimentum vitae
+        sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed
+        viverra ipsum nunc aliquet bibendum enim. Cursus risus at ultrices mi
+        tempus imperdiet nulla malesuada pellentesque. Rhoncus mattis rhoncus
+        urna neque viverra justo. Felis donec et odio pellentesque diam volutpat
         commodo sed. Consectetur lorem donec massa sapien faucibus et. Malesuada
         fames ac turpis egestas. Eget arcu dictum varius duis at. Adipiscing
         commodo elit at imperdiet dui accumsan sit amet. Lorem ipsum dolor sit
@@ -270,62 +309,21 @@ export default function Page({ params }) {
         vitae tortor condimentum lacinia quis vel eros donec. Hac habitasse
         platea dictumst vestibulum rhoncus est pellentesque elit. Neque vitae
         tempus quam pellentesque nec nam aliquam. Tincidunt dui ut ornare lectus
-        sit amet est placerat in. Venenatis a condimentum vitae sapien.Lorem
-        ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        incididunt ut labore et dolore magna aliqua. Dolor sed viverra ipsum
-        nunc aliquet bibendum enim. Cursus risus at ultrices mi tempus imperdiet
-        nulla malesuada pellentesque. Rhoncus mattis rhoncus urna neque viverra
-        justo. Felis donec et odio pellentesque diam volutpat commodo sed.
-        Consectetur lorem donec massa sapien faucibus et. Malesuada fames ac
-        turpis egestas. Eget arcu dictum varius duis at. Adipiscing commodo elit
-        at imperdiet dui accumsan sit amet. Lorem ipsum dolor sit amet
-        consectetur adipiscing. Varius morbi enim nunc faucibus a pellentesque.
-        Laoreet id donec ultrices tincidunt arcu non sodales neque sodales.
-        Turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet. Enim nulla
-        aliquet porttitor lacus luctus accumsan tortor. Felis imperdiet proin
-        fermentum leo vel orci porta. Augue eget arcu dictum varius duis at
-        consectetur lorem donec. Sagittis purus sit amet volutpat consequat
-        mauris nunc congue. Egestas integer eget aliquet nibh. Amet porttitor
-        eget dolor morbi non arcu risus. Accumsan sit amet nulla facilisi morbi
-        tempus. Ornare suspendisse sed nisi lacus sed viverra tellus. At in
-        tellus integer feugiat scelerisque varius. Elementum sagittis vitae et
-        leo duis ut diam. Laoreet suspendisse interdum consectetur libero id
-        faucibus nisl. Facilisi morbi tempus iaculis urna id volutpat lacus.
-        Faucibus in ornare quam viverra orci sagittis eu volutpat. Elit at
-        imperdiet dui accumsan sit amet nulla facilisi. Aliquam id diam maecenas
-        ultricies. Et malesuada fames ac turpis egestas sed tempus. Semper
-        viverra nam libero justo laoreet sit amet. A diam maecenas sed enim ut.
-        A lacus vestibulum sed arcu non odio euismod. Potenti nullam ac tortor
-        vitae purus faucibus. Posuere morbi leo urna molestie at. Faucibus
-        pulvinar elementum integer enim neque. Non nisi est sit amet facilisis
-        magna. Tellus in hac habitasse platea dictumst vestibulum. Id leo in
-        vitae turpis massa sed elementum. Etiam tempor orci eu lobortis
-        elementum nibh tellus molestie nunc. Posuere urna nec tincidunt praesent
-        semper feugiat nibh sed. Erat pellentesque adipiscing commodo elit at
-        imperdiet. Leo integer malesuada nunc vel risus. Dictum fusce ut
-        placerat orci nulla pellentesque dignissim. Integer eget aliquet nibh
-        praesent. Cursus metus aliquam eleifend mi in nulla posuere
-        sollicitudin. Leo urna molestie at elementum eu facilisis sed odio
-        morbi. Donec ultrices tincidunt arcu non sodales neque sodales ut etiam.
-        Malesuada proin libero nunc consequat interdum. Purus in mollis nunc
-        sed. Pretium fusce id velit ut tortor. Pharetra diam sit amet nisl
-        suscipit. Nisl rhoncus mattis rhoncus urna neque viverra justo nec
-        ultrices. Pharetra magna ac placerat vestibulum. Vitae purus faucibus
-        ornare suspendisse. Augue mauris augue neque gravida in. Sit amet
-        commodo nulla facilisi nullam vehicula ipsum. At varius vel pharetra
-        vel. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat.
-        Convallis aenean et tortor at risus viverra adipiscing. Mi in nulla
-        posuere sollicitudin aliquam ultrices sagittis orci a. Odio pellentesque
-        diam volutpat commodo sed egestas egestas. Erat nam at lectus urna duis
-        convallis convallis tellus id. Purus ut faucibus pulvinar elementum
-        integer. Viverra nibh cras pulvinar mattis nunc sed blandit. Sed
-        elementum tempus egestas sed sed risus pretium quam. Imperdiet nulla
-        malesuada pellentesque elit eget gravida. Massa vitae tortor condimentum
-        lacinia quis vel eros donec. Hac habitasse platea dictumst vestibulum
-        rhoncus est pellentesque elit. Neque vitae tempus quam pellentesque nec
-        nam aliquam. Tincidunt dui ut ornare lectus sit amet est placerat in.
-        Venenatis a condimentum vitae sapien.
+        sit amet est placerat in. Venenatis a condimentum vitae sapien.
       </p>
+      <div className="flex justify-center ">
+        <Suspense fallback={<div>Loading...</div>}>
+          <div className=" rounded-3xl overflow-hidden">
+            <GoogleMapsEmbed
+              apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
+              height={200}
+              width="100%"
+              mode="place"
+              q="Brooklyn+Bridge,New+York,NY"
+            />
+          </div>
+        </Suspense>
+      </div>
       {/* <div className="row-span-3 col-span-2"> NE SERS A RIEN 4</div> */}
     </>
   );
