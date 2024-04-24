@@ -5,19 +5,11 @@ import { GoogleMapsEmbed } from "@next/third-parties/google";
 import { request, gql } from "graphql-request";
 import { useEffect, useState, Suspense } from "react";
 
-import { useNavbarState } from "@/context/NavbarStateContext";
 import Image from "next/image";
 import RentalFormContainer from "@/components/Home/RentalFormContainer";
-import Test from "@/components/Test";
 import { lobster } from "@/app/fonts";
-import { useRouter } from "next/router";
 
 export default function Page({ params }) {
-  //console.log(params.agencyCity);
-
-  const { isRentalFormContainerExpanded, setRentalFormContainerExpanded } =
-    useNavbarState();
-
   const [data, setData] = useState(null);
 
   const fetchAgency = async () => {
@@ -49,14 +41,7 @@ export default function Page({ params }) {
 
   useEffect(() => {
     fetchAgency();
-    // if (!isRentalFormContainerExpanded) {
-    setRentalFormContainerExpanded(true);
-    // }
   }, []);
-
-  // useEffect(() => {
-  //   console.log(isRentalFormContainerExpanded);
-  // }, [isRentalFormContainerExpanded]);
 
   if (!data)
     return (
@@ -142,7 +127,12 @@ export default function Page({ params }) {
             Localiser sur la carte/ voir les véhicules dispo
           </div>
         </div>
-        <Test />
+        <div
+          id="rental-form-container"
+          className=" absolute bottom-40 left-1/2 -translate-x-1/2  "
+        >
+          <RentalFormContainer />
+        </div>
       </div>
 
       <p>

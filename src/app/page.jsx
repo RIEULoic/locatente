@@ -1,17 +1,14 @@
 "use client";
 import { request, gql } from "graphql-request";
 import { Suspense, useEffect, useState } from "react";
-
 import { GoogleMapsEmbed } from "@next/third-parties/google";
 
-import Link from "next/link";
 import Image from "next/image";
 import { lobster } from "@/app/fonts";
 import Loading from "@/components/Loading";
 import Hero from "@/components/Home/Hero";
 import Carousel from "@/components/Home/Carousel";
 import VideoComponent from "./ui/VideoComponent";
-import RentalFormContainer from "../components/Home/RentalFormContainer";
 
 export default function Home() {
   const [carList, setCarList] = useState([]);
