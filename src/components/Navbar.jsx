@@ -21,8 +21,8 @@ const Navbar = () => {
       const RentalFormContainerPosition = document
         .getElementById("rental-form-container")
         .getBoundingClientRect();
-      console.log("heronavpos : " + RentalFormContainerPosition.top);
-      console.log("window.scrollY : " + window.scrollY);
+      // console.log("heronavpos : " + RentalFormContainerPosition.top);
+      // console.log("window.scrollY : " + window.scrollY);
       const shouldModif =
         window.scrollY <= RentalFormContainerPosition.top + 650;
       if (shouldModif !== isRentalFormContainerExpanded) {
