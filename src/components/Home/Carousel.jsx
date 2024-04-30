@@ -40,15 +40,22 @@ export default function Carousel({ carCarousel, carList, agencyList }) {
           space-between="45"
           slides-per-view={carCarousel ? "3.2" : "4.3"}
           navigation="true"
+          scrollbar="true"
+          pagination="true"
+          slides-per-group="2"
+          //loop="true"
+          number-of-slides="20"
         >
           {carCarousel
-            ? carList.map((vehicle) => {
-                return (
-                  <swiper-slide key={vehicle.id}>
-                    <CarCard vehicle={vehicle} />
-                  </swiper-slide>
-                );
-              })
+            ? carList
+                .filter((vehicle) => vehicle.goToTheCarCarousel)
+                .map((vehicle) => {
+                  return (
+                    <swiper-slide key={vehicle.id}>
+                      <CarCard vehicle={vehicle} />
+                    </swiper-slide>
+                  );
+                })
             : agencyList.map((agency) => {
                 return (
                   <swiper-slide key={agency.id}>

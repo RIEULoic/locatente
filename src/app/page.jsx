@@ -19,7 +19,7 @@ export default function Home() {
   const fetchVehicles = async () => {
     const query = gql`
       query Vehicles {
-        vehicles {
+        vehicles(first: 65) {
           id
           price
           name
@@ -35,8 +35,12 @@ export default function Home() {
             water
             wc
           }
+          agency {
+            city
+          }
           createdAt
           updatedAt
+          goToTheCarCarousel
         }
       }
     `;
@@ -84,8 +88,16 @@ export default function Home() {
   useEffect(() => {
     fetchVehicles();
     fetchAgencies();
+
     console.log("fetching data");
   }, []);
+
+  useEffect(() => {
+    if (!isCarListLoading) {
+      console.log(carList[0].goToTheCarCarousel);
+    }
+  }, [carList, isCarListLoading]); // Dépendances pour réexécuter ce useEffect lorsque carList ou isCarListLoading change
+
   return (
     <div>
       <div className="relative">
@@ -116,19 +128,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="flex justify-center ">
-        <Suspense fallback={<div>Loading...</div>}>
-          <div className=" rounded-3xl overflow-hidden">
-            <GoogleMapsEmbed
-              apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
-              height={200}
-              width="100%"
-              mode="place"
-              q="Brooklyn+Bridge,New+York,NY"
-            />
-          </div>
-        </Suspense>
-      </div>
+
       <div className="flex flex-col items-center mb-10">
         <h1
           className={`${lobster.className} text-4xl font-bold  mb-5`}

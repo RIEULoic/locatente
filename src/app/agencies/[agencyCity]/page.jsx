@@ -24,6 +24,9 @@ export default function Page({ params }) {
             id
             url
           }
+          vehicles (first: 20){
+            id
+          }
         }
       }
     `;
@@ -94,7 +97,7 @@ export default function Page({ params }) {
                 />
               </svg>
               <div className="ml-2 text-slate-600 text-xl">
-                {data.agency.adress} 31400 {data.agency.city}
+                {data.agency.adress}
               </div>
             </div>
             <div className="flex pl-6 mt-5">
@@ -135,43 +138,23 @@ export default function Page({ params }) {
         </div>
       </div>
 
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Dolor sed viverra
-        ipsum nunc aliquet bibendum enim. Cursus risus at ultrices mi tempus
-        imperdiet nulla malesuada pellentesque. Rhoncus mattis rhoncus urna
-        neque viverra justo. Felis donec et odio pellentesque diam volutpat
-        commodo sed. Consectetur lorem donec massa sapien faucibus et. Malesuada
-        fames ac turpis egestas. Eget arcu dictum varius duis at. Adipiscing
-        commodo elit at imperdiet dui accumsan sit amet. Lorem ipsum dolor sit
-        amet consectetur adipiscing. Varius morbi enim nunc faucibus a
-        pellentesque. Laoreet id donec ultrices tincidunt arcu non sodales neque
-        sodales. Turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet.
-        Enim nulla aliquet porttitor lacus luctus accumsan tortor. Felis
-        imperdiet proin fermentum leo vel orci porta. Augue eget arcu dictum
-        varius duis at consectetur lorem donec. Sagittis purus sit amet volutpat
-        consequat mauris nunc congue. Egestas integer eget aliquet nibh. Amet
-        porttitor eget dolor morbi non arcu risus. Accumsan sit amet nulla
-        facilisi morbi tempus. Ornare suspendisse sed nisi lacus sed viverra
-        tellus. At in tellus integer feugiat scelerisque varius. Elementum
-        sagittis vitae et leo duis ut diam. Laoreet suspendisse interdum
-        consectetur libero id faucibus nisl. Facilisi morbi tempus iaculis urna
-        id volutpat lacus. Faucibus in ornare quam viverra orci sagittis eu
-        volutpat. Elit at imperdiet dui accumsan sit amet nulla facilisi.
-        Aliquam id diam maecenas ultricies. Et malesuada fames ac turpis egestas
-        sed tempus. Semper viverra nam libero justo laoreet sit amet. A diam
-        maecenas sed enim ut. A lacus vestibulum sed arcu non odio euismod.
-        Potenti nullam ac tortor vitae purus faucibus. Posuere morbi leo urna
-        molestie at. Faucibus pulvinar elementum integer enim neque. Non nisi
-        est sit amet facilisis magna. Tellus in hac habitasse platea dictumst
-        vestibulum. Id leo in vitae turpis massa sed elementum. Etiam tempor
-        orci eu lobortis elementum nibh tellus molestie nunc. Posuere urna nec
-        tincidunt praesent semper feugiat nibh sed. Erat pellentesque adipiscing
-        commodo elit at imperdiet. Leo integer malesuada nunc vel risus. Dictum
-        fusce ut placerat orci nulla pellentesque dignissim. Integer eget
-        aliquet nibh praesent.
-      </p>
-
+      <div className="card card-side bg-base-100 shadow-xl ml-16 w-4/5 h-96">
+        <figure>
+          <Image
+            src="/images/pic_test1.jpg"
+            alt="Movie"
+            width={400}
+            height={400}
+          />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title">New movie is released!</h2>
+          <p>{data.agency.vehicles[0].id}</p>
+          <div className="card-actions justify-end">
+            <button className="btn btn-primary">Watch</button>
+          </div>
+        </div>
+      </div>
       <p>
         Cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Leo urna
         molestie at elementum eu facilisis sed odio morbi. Donec ultrices
@@ -301,20 +284,22 @@ export default function Page({ params }) {
         tempus quam pellentesque nec nam aliquam. Tincidunt dui ut ornare lectus
         sit amet est placerat in. Venenatis a condimentum vitae sapien.
       </p>
-      <div className="flex justify-center ">
-        <Suspense fallback={<div>Loading...</div>}>
-          <div className=" rounded-3xl overflow-hidden">
-            <GoogleMapsEmbed
-              apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
-              height={200}
-              width="100%"
-              mode="place"
-              q="Brooklyn+Bridge,New+York,NY"
-            />
-          </div>
-        </Suspense>
+
+      <div className="flex justify-center  mb-20 mt-20">
+        <div className="w-2/5 h-1/2">
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className=" rounded-3xl overflow-hidden">
+              <GoogleMapsEmbed
+                apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
+                width={800}
+                height={400}
+                mode="place"
+                q={data.agency.adress}
+              />
+            </div>
+          </Suspense>
+        </div>
       </div>
-      {/* <div className="row-span-3 col-span-2"> NE SERS A RIEN 4</div> */}
     </>
   );
 }
