@@ -10,7 +10,8 @@ import RentalFormContainer from "@/components/Home/RentalFormContainer";
 import { lobster } from "@/app/fonts";
 
 export default function Page({ params }) {
-  const [data, setData] = useState(null);
+  const [dataAgency, setDataAgency] = useState(null);
+  const [dataAgencyVehicles, setDataAgencyVehicles] = useState(null);
 
   const fetchAgency = async () => {
     const query = gql`
@@ -35,18 +36,71 @@ export default function Page({ params }) {
         "https://api-ap-south-1.hygraph.com/v2/clu3n13wt0dsm07upg0ccd3nh/master",
         query
       );
-      console.log(data.agency);
-      setData(data);
+      console.log(data.agency.vehicles);
+      setDataAgency(data);
+
+      /*ceci permet de retourner le mapping des vans dans le ".then()" qui suit fetchAgency */
+      return data.agency.vehicles.map((vehicle) => vehicle.id);
+      //(vehicle) => vehicle.id contient un return implicite
     } catch (error) {
       console.log(error);
     }
   };
 
+  const fetchAgencyVehicles = async (vehicleIds) => {
+    const query = vehicleIds.map(
+      (id) =>
+        gql`{
+        vehicle(where: { id: "${id}" }) {
+    name
+    price
+    features {
+      beds
+      fridge
+      id
+      seats
+      tent
+      water
+      wc
+    }
+    agency {
+      city
+    }
+    image {
+      id
+      url
+    }
+  }
+      }`
+    );
+
+    try {
+      const vehiclesData = await Promise.all(
+        query.map((q) =>
+          request(
+            "https://api-ap-south-1.hygraph.com/v2/clu3n13wt0dsm07upg0ccd3nh/master",
+            q
+          )
+        )
+      );
+
+      setDataAgencyVehicles(vehiclesData.map((v) => v.vehicle));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
-    fetchAgency();
+    console.log(params);
+    fetchAgency().then((vehiclesIds) => {
+      if (vehiclesIds && vehiclesIds.length > 0) {
+        console.log(vehiclesIds);
+        fetchAgencyVehicles(vehiclesIds);
+      }
+    });
   }, []);
 
-  if (!data)
+  if (!dataAgency || !dataAgencyVehicles)
     return (
       <div className="h-1/2 mt-[104px]">
         <span className="loading loading-spinner loading-lg"></span>
@@ -61,8 +115,8 @@ export default function Page({ params }) {
           <div className=" row-span-4 col-span-1 ">
             <div className="skeleton rounded-3xl  w-full h-full relative">
               <Image
-                src={data.agency.image.url}
-                alt={data.agency.city}
+                src={dataAgency.agency.image.url}
+                alt={dataAgency.agency.city}
                 quality={50}
                 sizes="33vw"
                 fill
@@ -74,7 +128,7 @@ export default function Page({ params }) {
             <div
               className={`${lobster.className} text-4xl text-center font-bold`}
             >
-              Louez votre sublime véhicule aménagé à {data.agency.city} !
+              Louez votre sublime véhicule aménagé à {dataAgency.agency.city} !
             </div>
             <div className="flex  mt-10 pl-5">
               <svg
@@ -97,7 +151,7 @@ export default function Page({ params }) {
                 />
               </svg>
               <div className="ml-2 text-slate-600 text-xl">
-                {data.agency.adress}
+                {dataAgency.agency.adress}
               </div>
             </div>
             <div className="flex pl-6 mt-5">
@@ -109,7 +163,7 @@ export default function Page({ params }) {
                 href="https://www.flaticon.com/free-icons/phone"
               />
               <div className="ml-3 text-slate-600 text-xl">
-                {data.agency.tel}
+                {dataAgency.agency.tel}
               </div>
             </div>
             <div className="flex pl-6 mt-5">
@@ -121,8 +175,7 @@ export default function Page({ params }) {
                 href="https://www.flaticon.com/free-icons/clock"
               />
               <div className="ml-2 text-slate-600 text-xl">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                de iqua.
+                Lundi au Samedi: 9h-12h / 14h-18h
               </div>
             </div>
           </div>
@@ -138,153 +191,113 @@ export default function Page({ params }) {
         </div>
       </div>
 
-      <div className="card card-side bg-base-100 shadow-xl ml-16 w-4/5 h-96">
-        <figure>
-          <Image
-            src="/images/pic_test1.jpg"
-            alt="Movie"
-            width={400}
-            height={400}
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">New movie is released!</h2>
-          <p>{data.agency.vehicles[0].id}</p>
-          <div className="card-actions justify-end">
-            <button className="btn btn-primary">Watch</button>
-          </div>
-        </div>
-      </div>
-      <p>
-        Cursus metus aliquam eleifend mi in nulla posuere sollicitudin. Leo urna
-        molestie at elementum eu facilisis sed odio morbi. Donec ultrices
-        tincidunt arcu non sodales neque sodales ut etiam. Malesuada proin
-        libero nunc consequat interdum. Purus in mollis nunc sed. Pretium fusce
-        id velit ut tortor. Pharetra diam sit amet nisl suscipit. Nisl rhoncus
-        mattis rhoncus urna neque viverra justo nec ultrices. Pharetra magna ac
-        placerat vestibulum. Vitae purus faucibus ornare suspendisse. Augue
-        mauris augue neque gravida in. Sit amet commodo nulla facilisi nullam
-        vehicula ipsum. At varius vel pharetra vel. Lobortis mattis aliquam
-        faucibus purus in massa tempor nec feugiat. Convallis aenean et tortor
-        at risus viverra adipiscing. Mi in nulla posuere sollicitudin aliquam
-        ultrices sagittis orci a. Odio pellentesque diam volutpat commodo sed
-        egestas egestas. Erat nam at lectus urna duis convallis convallis tellus
-        id. Purus ut faucibus pulvinar elementum integer. Viverra nibh cras
-        pulvinar mattis nunc sed blandit. Sed elementum tempus egestas sed sed
-        risus pretium quam. Imperdiet nulla malesuada pellentesque elit eget
-        gravida. Massa vitae tortor condimentum lacinia quis vel eros donec. Hac
-        habitasse platea dictumst vestibulum rhoncus est pellentesque elit.
-        Neque vitae tempus quam pellentesque nec nam aliquam. Tincidunt dui ut
-        ornare lectus sit amet est placerat in. Venenatis a condimentum vitae
-        sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-        eiusmod tempor incididunt ut labore et dolore magna aliqua. Dolor sed
-        viverra ipsum nunc aliquet bibendum enim. Cursus risus at ultrices mi
-        tempus imperdiet nulla malesuada pellentesque. Rhoncus mattis rhoncus
-        urna neque viverra justo. Felis donec et odio pellentesque diam volutpat
-        commodo sed. Consectetur lorem donec massa sapien faucibus et. Malesuada
-        fames ac turpis egestas. Eget arcu dictum varius duis at. Adipiscing
-        commodo elit at imperdiet dui accumsan sit amet. Lorem ipsum dolor sit
-        amet consectetur adipiscing. Varius morbi enim nunc faucibus a
-        pellentesque. Laoreet id donec ultrices tincidunt arcu non sodales neque
-        sodales. Turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet.
-        Enim nulla aliquet porttitor lacus luctus accumsan tortor. Felis
-        imperdiet proin fermentum leo vel orci porta. Augue eget arcu dictum
-        varius duis at consectetur lorem donec. Sagittis purus sit amet volutpat
-        consequat mauris nunc congue. Egestas integer eget aliquet nibh. Amet
-        porttitor eget dolor morbi non arcu risus. Accumsan sit amet nulla
-        facilisi morbi tempus. Ornare suspendisse sed nisi lacus sed viverra
-        tellus. At in tellus integer feugiat scelerisque varius. Elementum
-        sagittis vitae et leo duis ut diam. Laoreet suspendisse interdum
-        consectetur libero id faucibus nisl. Facilisi morbi tempus iaculis urna
-        id volutpat lacus. Faucibus in ornare quam viverra orci sagittis eu
-        volutpat. Elit at imperdiet dui accumsan sit amet nulla facilisi.
-        Aliquam id diam maecenas ultricies. Et malesuada fames ac turpis egestas
-        sed tempus. Semper viverra nam libero justo laoreet sit amet. A diam
-        maecenas sed enim ut. A lacus vestibulum sed arcu non odio euismod.
-        Potenti nullam ac tortor vitae purus faucibus. Posuere morbi leo urna
-        molestie at. Faucibus pulvinar elementum integer enim neque. Non nisi
-        est sit amet facilisis magna. Tellus in hac habitasse platea dictumst
-        vestibulum. Id leo in vitae turpis massa sed elementum. Etiam tempor
-        orci eu lobortis elementum nibh tellus molestie nunc. Posuere urna nec
-        tincidunt praesent semper feugiat nibh sed. Erat pellentesque adipiscing
-        commodo elit at imperdiet. Leo integer malesuada nunc vel risus. Dictum
-        fusce ut placerat orci nulla pellentesque dignissim. Integer eget
-        aliquet nibh praesent. Cursus metus aliquam eleifend mi in nulla posuere
-        sollicitudin. Leo urna molestie at elementum eu facilisis sed odio
-        morbi. Donec ultrices tincidunt arcu non sodales neque sodales ut etiam.
-        Malesuada proin libero nunc consequat interdum. Purus in mollis nunc
-        sed. Pretium fusce id velit ut tortor. Pharetra diam sit amet nisl
-        suscipit. Nisl rhoncus mattis rhoncus urna neque viverra justo nec
-        ultrices. Pharetra magna ac placerat vestibulum. Vitae purus faucibus
-        ornare suspendisse. Augue mauris augue neque gravida in. Sit amet
-        commodo nulla facilisi nullam vehicula ipsum. At varius vel pharetra
-        vel. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat.
-        Convallis aenean et tortor at risus viverra adipiscing. Mi in nulla
-        posuere sollicitudin aliquam ultrices sagittis orci a. Odio pellentesque
-        diam volutpat commodo sed egestas egestas. Erat nam at lectus urna duis
-        convallis convallis tellus id. Purus ut faucibus pulvinar elementum
-        integer. Viverra nibh cras pulvinar mattis nunc sed blandit. Sed
-        elementum tempus egestas sed sed risus pretium quam. Imperdiet nulla
-        malesuada pellentesque elit eget gravida. Massa vitae tortor condimentum
-        lacinia quis vel eros donec. Hac habitasse platea dictumst vestibulum
-        rhoncus est pellentesque elit. Neque vitae tempus quam pellentesque nec
-        nam aliquam. Tincidunt dui ut ornare lectus sit amet est placerat in.
-        Venenatis a condimentum vitae sapien.Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-        et dolore magna aliqua. Dolor sed viverra ipsum nunc aliquet bibendum
-        enim. Cursus risus at ultrices mi tempus imperdiet nulla malesuada
-        pellentesque. Rhoncus mattis rhoncus urna neque viverra justo. Felis
-        donec et odio pellentesque diam volutpat commodo sed. Consectetur lorem
-        donec massa sapien faucibus et. Malesuada fames ac turpis egestas. Eget
-        arcu dictum varius duis at. Adipiscing commodo elit at imperdiet dui
-        accumsan sit amet. Lorem ipsum dolor sit amet consectetur adipiscing.
-        Varius morbi enim nunc faucibus a pellentesque. Laoreet id donec
-        ultrices tincidunt arcu non sodales neque sodales. Turpis nunc eget
-        lorem dolor sed viverra ipsum nunc aliquet. Enim nulla aliquet porttitor
-        lacus luctus accumsan tortor. Felis imperdiet proin fermentum leo vel
-        orci porta. Augue eget arcu dictum varius duis at consectetur lorem
-        donec. Sagittis purus sit amet volutpat consequat mauris nunc congue.
-        Egestas integer eget aliquet nibh. Amet porttitor eget dolor morbi non
-        arcu risus. Accumsan sit amet nulla facilisi morbi tempus. Ornare
-        suspendisse sed nisi lacus sed viverra tellus. At in tellus integer
-        feugiat scelerisque varius. Elementum sagittis vitae et leo duis ut
-        diam. Laoreet suspendisse interdum consectetur libero id faucibus nisl.
-        Facilisi morbi tempus iaculis urna id volutpat lacus. Faucibus in ornare
-        quam viverra orci sagittis eu volutpat. Elit at imperdiet dui accumsan
-        sit amet nulla facilisi. Aliquam id diam maecenas ultricies. Et
-        malesuada fames ac turpis egestas sed tempus. Semper viverra nam libero
-        justo laoreet sit amet. A diam maecenas sed enim ut. A lacus vestibulum
-        sed arcu non odio euismod. Potenti nullam ac tortor vitae purus
-        faucibus. Posuere morbi leo urna molestie at. Faucibus pulvinar
-        elementum integer enim neque. Non nisi est sit amet facilisis magna.
-        Tellus in hac habitasse platea dictumst vestibulum. Id leo in vitae
-        turpis massa sed elementum. Etiam tempor orci eu lobortis elementum nibh
-        tellus molestie nunc. Posuere urna nec tincidunt praesent semper feugiat
-        nibh sed. Erat pellentesque adipiscing commodo elit at imperdiet. Leo
-        integer malesuada nunc vel risus. Dictum fusce ut placerat orci nulla
-        pellentesque dignissim. Integer eget aliquet nibh praesent. Cursus metus
-        aliquam eleifend mi in nulla posuere sollicitudin. Leo urna molestie at
-        elementum eu facilisis sed odio morbi. Donec ultrices tincidunt arcu non
-        sodales neque sodales ut etiam. Malesuada proin libero nunc consequat
-        interdum. Purus in mollis nunc sed. Pretium fusce id velit ut tortor.
-        Pharetra diam sit amet nisl suscipit. Nisl rhoncus mattis rhoncus urna
-        neque viverra justo nec ultrices. Pharetra magna ac placerat vestibulum.
-        Vitae purus faucibus ornare suspendisse. Augue mauris augue neque
-        gravida in. Sit amet commodo nulla facilisi nullam vehicula ipsum. At
-        varius vel pharetra vel. Lobortis mattis aliquam faucibus purus in massa
-        tempor nec feugiat. Convallis aenean et tortor at risus viverra
-        adipiscing. Mi in nulla posuere sollicitudin aliquam ultrices sagittis
-        orci a. Odio pellentesque diam volutpat commodo sed egestas egestas.
-        Erat nam at lectus urna duis convallis convallis tellus id. Purus ut
-        faucibus pulvinar elementum integer. Viverra nibh cras pulvinar mattis
-        nunc sed blandit. Sed elementum tempus egestas sed sed risus pretium
-        quam. Imperdiet nulla malesuada pellentesque elit eget gravida. Massa
-        vitae tortor condimentum lacinia quis vel eros donec. Hac habitasse
-        platea dictumst vestibulum rhoncus est pellentesque elit. Neque vitae
-        tempus quam pellentesque nec nam aliquam. Tincidunt dui ut ornare lectus
-        sit amet est placerat in. Venenatis a condimentum vitae sapien.
-      </p>
+      <div className="flex flex-col px-16">
+        {dataAgencyVehicles.map((vehicle, index) => (
+          <div
+            key={index}
+            className="card card-side bg-base-100 shadow-xl  mb-10 h-96"
+          >
+            <figure>
+              <Image
+                src={`${vehicle.image.url}`}
+                alt="Carte de visite d'un van"
+                width={400}
+                height={400}
+              />
+            </figure>
+            <div className="card-body pt-3 max-w-6xl ">
+              <h2 className="card-title mb-6 text-2xl">{vehicle.name}</h2>
+              <div className="flex">
+                <div className="icon-flex-container ">
+                  <Image
+                    src="/images/car_icons/seat.png"
+                    alt="icon of seat created by Atif Arshad"
+                    width={40}
+                    height={40}
+                    href="https://www.flaticon.com/free-icons/seat"
+                  />
+                  <div className="mt-2">{vehicle.features.seats} Places</div>
+                </div>
 
+                <div className="icon-flex-container">
+                  <Image
+                    src="/images/car_icons/slumber.png"
+                    alt="icon of man slumbering created by geotatah"
+                    width={40}
+                    height={40}
+                    href="https://www.flaticon.com/free-icons/sleep"
+                  />
+                  <div className="mt-2">{vehicle.features.beds} Couchages</div>
+                </div>
+                <div className="icon-flex-container">
+                  <Image
+                    src="/images/car_icons/tent.png"
+                    alt="icon of tent created by Dmytro Vyshnevskyi"
+                    width={40}
+                    height={40}
+                    href="https://www.flaticon.com/free-icons/tent"
+                  />
+                  <div className="mt-2">
+                    {vehicle.features.tent ? "Tente de toit" : "Pas de tente"}
+                  </div>
+                </div>
+                <div className="icon-flex-container">
+                  <Image
+                    src="/images/car_icons/fridge.png"
+                    alt="icon of refrigerator created by Freepik"
+                    width={40}
+                    height={40}
+                    href="https://www.flaticon.com/free-icons/refrigerator"
+                  />
+                  <div className="mt-2">
+                    {vehicle.features.fridge ? "Frigo" : "Pas de frigo"}
+                  </div>
+                </div>
+                <div className="icon-flex-container">
+                  <Image
+                    src="/images/car_icons/shower.png"
+                    alt="icon of shower created by fjstudio"
+                    width={40}
+                    height={40}
+                    href="https://www.flaticon.com/free-icons/sanitary"
+                  />
+                  <div className="mt-2">
+                    {vehicle.features.shower ? "Eau chaude" : "Pas d'eau"}
+                  </div>
+                </div>
+                <div className="icon-flex-container">
+                  <Image
+                    src="/images/car_icons/toilet.png"
+                    alt="icon of toilet created by Radhe Icon"
+                    width={40}
+                    height={40}
+                    href="https://www.flaticon.com/free-icons/furniture-and-household"
+                  />
+                  <div className="mt-2">
+                    {vehicle.features.toilet ? "WC interieur" : "Pas de WC"}
+                  </div>
+                </div>
+              </div>
+              <p className="mb-6">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
+                odio morbi quis commodo odio aenean. Ullamcorper morbi tincidunt
+                ornare massa eget egestas purus. Morbi tristique senectus et
+                netus et. Diam sollicitudin tempor id eu nisl nunc mi. Cursus
+                risus at ultrices mi tempus imperdiet nulla.
+              </p>
+
+              <div className="card-actions flex items-center">
+                <p className="text-xl">
+                  Location à partir de{" "}
+                  <span className="font-bold">{vehicle.price} € </span> par jour
+                </p>
+                <button className="btn btn-primary">VOIR</button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
       <div className="flex justify-center  mb-20 mt-20">
         <div className="w-2/5 h-1/2">
           <Suspense fallback={<div>Loading...</div>}>
@@ -294,7 +307,7 @@ export default function Page({ params }) {
                 width={800}
                 height={400}
                 mode="place"
-                q={data.agency.adress}
+                q={dataAgency.agency.adress}
               />
             </div>
           </Suspense>
