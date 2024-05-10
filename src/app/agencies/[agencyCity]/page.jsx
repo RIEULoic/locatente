@@ -8,6 +8,7 @@ import { useEffect, useState, Suspense } from "react";
 import Image from "next/image";
 import RentalFormContainer from "@/components/Home/RentalFormContainer";
 import { lobster } from "@/app/fonts";
+import AgencyCarCard from "@/components/AgencyCarCard";
 
 export default function Page({ params }) {
   const [dataAgency, setDataAgency] = useState(null);
@@ -157,108 +158,8 @@ export default function Page({ params }) {
 
       <div className="flex flex-col px-16">
         {dataAgency.agency.vehicles.map((vehicle, index) => (
-          <div
-            key={index}
-            className="card card-side bg-base-100 shadow-xl  mb-10 h-96"
-          >
-            <figure>
-              <Image
-                src={`${vehicle.image.url}`}
-                alt="Carte de visite d'un van"
-                width={400}
-                height={400}
-              />
-            </figure>
-            <div className="card-body pt-3 max-w-6xl ">
-              <h2 className="card-title mb-6 text-2xl">{vehicle.name}</h2>
-              <div className="flex">
-                <div className="icon-flex-container ">
-                  <Image
-                    src="/images/car_icons/seat.png"
-                    alt="icon of seat created by Atif Arshad"
-                    width={40}
-                    height={40}
-                    href="https://www.flaticon.com/free-icons/seat"
-                  />
-                  <div className="mt-2">{vehicle.features.seats} Places</div>
-                </div>
-
-                <div className="icon-flex-container">
-                  <Image
-                    src="/images/car_icons/slumber.png"
-                    alt="icon of man slumbering created by geotatah"
-                    width={40}
-                    height={40}
-                    href="https://www.flaticon.com/free-icons/sleep"
-                  />
-                  <div className="mt-2">{vehicle.features.beds} Couchages</div>
-                </div>
-                <div className="icon-flex-container">
-                  <Image
-                    src="/images/car_icons/tent.png"
-                    alt="icon of tent created by Dmytro Vyshnevskyi"
-                    width={40}
-                    height={40}
-                    href="https://www.flaticon.com/free-icons/tent"
-                  />
-                  <div className="mt-2">
-                    {vehicle.features.tent ? "Tente de toit" : "Pas de tente"}
-                  </div>
-                </div>
-                <div className="icon-flex-container">
-                  <Image
-                    src="/images/car_icons/fridge.png"
-                    alt="icon of refrigerator created by Freepik"
-                    width={40}
-                    height={40}
-                    href="https://www.flaticon.com/free-icons/refrigerator"
-                  />
-                  <div className="mt-2">
-                    {vehicle.features.fridge ? "Frigo" : "Pas de frigo"}
-                  </div>
-                </div>
-                <div className="icon-flex-container">
-                  <Image
-                    src="/images/car_icons/shower.png"
-                    alt="icon of shower created by fjstudio"
-                    width={40}
-                    height={40}
-                    href="https://www.flaticon.com/free-icons/sanitary"
-                  />
-                  <div className="mt-2">
-                    {vehicle.features.shower ? "Eau chaude" : "Pas d'eau"}
-                  </div>
-                </div>
-                <div className="icon-flex-container">
-                  <Image
-                    src="/images/car_icons/toilet.png"
-                    alt="icon of toilet created by Radhe Icon"
-                    width={40}
-                    height={40}
-                    href="https://www.flaticon.com/free-icons/furniture-and-household"
-                  />
-                  <div className="mt-2">
-                    {vehicle.features.toilet ? "WC interieur" : "Pas de WC"}
-                  </div>
-                </div>
-              </div>
-              <p className="mb-6">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed
-                odio morbi quis commodo odio aenean. Ullamcorper morbi tincidunt
-                ornare massa eget egestas purus. Morbi tristique senectus et
-                netus et. Diam sollicitudin tempor id eu nisl nunc mi. Cursus
-                risus at ultrices mi tempus imperdiet nulla.
-              </p>
-
-              <div className="card-actions flex items-center">
-                <p className="text-xl">
-                  Location à partir de{" "}
-                  <span className="font-bold">{vehicle.price} € </span> par jour
-                </p>
-                <button className="btn btn-primary">VOIR</button>
-              </div>
-            </div>
+          <div key={index}>
+            <AgencyCarCard vehicle={vehicle} />
           </div>
         ))}
       </div>
