@@ -1,7 +1,6 @@
 "use client";
 import { request, gql } from "graphql-request";
 import { Suspense, useEffect, useState } from "react";
-import { GoogleMapsEmbed } from "@next/third-parties/google";
 
 import Image from "next/image";
 import { lobster } from "@/app/fonts";
