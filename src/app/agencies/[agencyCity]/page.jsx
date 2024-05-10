@@ -11,22 +11,38 @@ import { lobster } from "@/app/fonts";
 
 export default function Page({ params }) {
   const [dataAgency, setDataAgency] = useState(null);
-  const [dataAgencyVehicles, setDataAgencyVehicles] = useState(null);
 
   const fetchAgency = async () => {
     const query = gql`
       query Agency {
         agency(where: { id: "${params.agencyCity}" }) {
+          id
           adress
           city
-          id
           tel
           image {
             id
             url
           }
-          vehicles (first: 20){
+          vehicles(first: 20) {
             id
+            name
+            price
+            features {
+              beds
+              fridge
+              seats
+              tent
+              water
+              wc
+            }
+            agency {
+              city
+            }
+            image {
+              id
+              url
+            }
           }
         }
       }
@@ -38,69 +54,17 @@ export default function Page({ params }) {
       );
       console.log(data.agency.vehicles);
       setDataAgency(data);
-
-      /*ceci permet de retourner le mapping des vans dans le ".then()" qui suit fetchAgency */
-      return data.agency.vehicles.map((vehicle) => vehicle.id);
-      //(vehicle) => vehicle.id contient un return implicite
     } catch (error) {
       console.log(error);
     }
   };
 
-  const fetchAgencyVehicles = async (vehicleIds) => {
-    const query = vehicleIds.map(
-      (id) =>
-        gql`{
-        vehicle(where: { id: "${id}" }) {
-    name
-    price
-    features {
-      beds
-      fridge
-      id
-      seats
-      tent
-      water
-      wc
-    }
-    agency {
-      city
-    }
-    image {
-      id
-      url
-    }
-  }
-      }`
-    );
-
-    try {
-      const vehiclesData = await Promise.all(
-        query.map((q) =>
-          request(
-            "https://api-ap-south-1.hygraph.com/v2/clu3n13wt0dsm07upg0ccd3nh/master",
-            q
-          )
-        )
-      );
-
-      setDataAgencyVehicles(vehiclesData.map((v) => v.vehicle));
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   useEffect(() => {
     console.log(params);
-    fetchAgency().then((vehiclesIds) => {
-      if (vehiclesIds && vehiclesIds.length > 0) {
-        console.log(vehiclesIds);
-        fetchAgencyVehicles(vehiclesIds);
-      }
-    });
+    fetchAgency();
   }, []);
 
-  if (!dataAgency || !dataAgencyVehicles)
+  if (!dataAgency)
     return (
       <div className="h-1/2 mt-[104px]">
         <span className="loading loading-spinner loading-lg"></span>
@@ -192,7 +156,7 @@ export default function Page({ params }) {
       </div>
 
       <div className="flex flex-col px-16">
-        {dataAgencyVehicles.map((vehicle, index) => (
+        {dataAgency.agency.vehicles.map((vehicle, index) => (
           <div
             key={index}
             className="card card-side bg-base-100 shadow-xl  mb-10 h-96"
