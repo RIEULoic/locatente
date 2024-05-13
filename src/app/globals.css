@@ -58,3 +58,21 @@ body {
 .agency-card-image:hover {
   filter: brightness(0.8); /* Assombrit l'image lors du survol */
 }
+
+.scrollToTopButton {
+  cursor: default;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out; /*transition permet de lisser l'animation. Avec opacity 0.3s ease-in-out, l'opacité mettra 0.3s pour passer de 0 à 1 ou de 1 à 0*/
+}
+
+.btnVisible {
+  cursor: pointer;
+  opacity: 1;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1); /* S'assure que l'échelle est normale par défaut */
+}
+
+.btnVisible:hover {
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.2);
+}

@@ -68,7 +68,7 @@ export default function AgencyCarCard({ vehicle }) {
             Location à partir de{" "}
             <span className="font-bold">{vehicle.price} €</span> par jour
           </p>
-          <button className="btn btn-primary">VOIR</button>
+          <button className="btn btn-primary mr-10">VOIR</button>
         </div>
       </div>
     </div>
