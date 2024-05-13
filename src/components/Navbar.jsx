@@ -57,7 +57,7 @@ const Navbar = () => {
           top: offsetTop,
           behavior: "smooth",
         });
-      }, 600);
+      }, 1000);
     }
 
     //petite tech pour enlever le focus du bouton. Dans daisyui le dropdown reste ouvert si le bouton a le focus

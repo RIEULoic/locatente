@@ -8,6 +8,7 @@ import Loading from "@/components/Loading";
 import Hero from "@/components/Home/Hero";
 import Carousel from "@/components/Home/Carousel";
 import VideoComponent from "./ui/VideoComponent";
+import ScrollTopButton from "@/components/ScrollTopButton";
 
 export default function Home() {
   const [carList, setCarList] = useState([]);
@@ -273,6 +274,7 @@ export default function Home() {
           </Suspense>
         </div>
       </div>
+      <ScrollTopButton />
     </div>
   );
 }
