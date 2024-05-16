@@ -13,6 +13,24 @@ import ScrollToTopButton from "@/components/ScrollTopButton";
 
 export default function Page({ params }) {
   const [dataAgency, setDataAgency] = useState(null);
+  const [filterValues, setFilterValues] = useState({
+    brands: [],
+    places: [],
+    beds: [],
+  });
+
+  const filterOptions = {
+    Marque: filterValues.brands,
+    Prix: ["Prix croissant", "Prix décroissant"],
+    Places: filterValues.places
+      .sort((a, b) => a - b)
+      .map((place) => `${place} places`),
+    Couchages: filterValues.beds
+      .sort((a, b) => a - b)
+      .map((bed) => `${bed} couchages`),
+  };
+
+  const checkboxOptions = ["Tente", "Frigo", "Eau", "WC"];
 
   const handleScrollToMap = () => {
     const mapDiv = document.getElementById("map");
@@ -48,6 +66,7 @@ export default function Page({ params }) {
             id
             name
             price
+            brand
             features {
               beds
               fridge
@@ -74,6 +93,26 @@ export default function Page({ params }) {
       );
       console.log(data.agency.vehicles);
       setDataAgency(data);
+
+      const uniqueBrand = [
+        ...new Set(data.agency.vehicles.map((vehicle) => vehicle.brand)),
+      ];
+      const uniquePlaces = [
+        ...new Set(
+          data.agency.vehicles.map((vehicle) => vehicle.features.seats)
+        ),
+      ];
+      const uniqueBeds = [
+        ...new Set(
+          data.agency.vehicles.map((vehicle) => vehicle.features.beds)
+        ),
+      ];
+
+      setFilterValues({
+        brands: uniqueBrand,
+        places: uniquePlaces,
+        beds: uniqueBeds,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -115,7 +154,7 @@ export default function Page({ params }) {
             >
               Louez votre sublime véhicule aménagé à {dataAgency.agency.city} !
             </div>
-            <div className="flex flex-col  items-center">
+            <div className="flex flex-col  items-center p-14">
               <div className="flex  mt-10 ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -192,6 +231,38 @@ export default function Page({ params }) {
       </div>
 
       <div className="flex flex-col px-16" id="car-cards">
+        <div className="flex gap-12 mb-4">
+          {Object.entries(filterOptions).map(([name, options], index) => (
+            <select
+              className="select select-bordered w-full max-w-xs"
+              key={index}
+            >
+              <option disabled selected>
+                {name}
+              </option>
+              <option className="font-semibold">Indifférent</option>
+
+              {options.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          ))}
+          {checkboxOptions.map((name, index) => (
+            <label className="flex items-center space-x-2" key={index}>
+              <input
+                type="checkbox"
+                className="checkbox  border-violet-600 [--chkbg:theme(colors.violet.500)]"
+              />
+              <span className="hover:cursor-pointer">{name}</span>
+            </label>
+          ))}
+
+          <button className="btn bg-violet-500 border-violet-600  rounded-full">
+            Rechercher
+          </button>
+        </div>
         {dataAgency.agency.vehicles.map((vehicle, index) => (
           <div key={index}>
             <AgencyCarCard vehicle={vehicle} />
