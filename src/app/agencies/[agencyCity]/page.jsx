@@ -29,7 +29,6 @@ export default function Page({ params }) {
       .sort((a, b) => a - b)
       .map((bed) => `${bed} couchages`),
   };
-
   const checkboxOptions = ["Tente", "Frigo", "Eau", "WC"];
 
   const handleScrollToMap = () => {
@@ -97,7 +96,7 @@ export default function Page({ params }) {
       const uniqueBrand = [
         ...new Set(data.agency.vehicles.map((vehicle) => vehicle.brand)),
       ];
-      const uniquePlaces = [
+      const uniqueSeats = [
         ...new Set(
           data.agency.vehicles.map((vehicle) => vehicle.features.seats)
         ),
@@ -110,7 +109,7 @@ export default function Page({ params }) {
 
       setFilterValues({
         brands: uniqueBrand,
-        places: uniquePlaces,
+        places: uniqueSeats,
         beds: uniqueBeds,
       });
     } catch (error) {
