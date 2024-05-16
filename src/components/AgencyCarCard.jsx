@@ -8,12 +8,12 @@ export default function AgencyCarCard({ vehicle }) {
         <Image
           src={vehicle.image.url}
           alt="Carte de visite d'un van"
-          width={400}
-          height={400}
+          width={500}
+          height={500}
           layout="responsive" // Ajouté pour assurer que l'image soit responsive
         />
       </figure>
-      <div className="card-body pt-3 max-w-6xl">
+      <div className="card-body  max-w-7xl">
         <h2 className="card-title mb-6 text-2xl">{vehicle.name}</h2>
         <div className="flex">
           {[

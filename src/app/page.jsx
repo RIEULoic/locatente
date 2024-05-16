@@ -23,6 +23,7 @@ export default function Home() {
           id
           price
           name
+          brand
           image {
             id
             url
