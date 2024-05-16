@@ -4,15 +4,16 @@ export default function AgencyCarCard({ vehicle }) {
   //console.log(vehicle);
   return (
     <div className="card card-side bg-base-100 shadow-xl mb-10 h-96">
-      <figure>
-        <Image
-          src={vehicle.image.url}
-          alt="Carte de visite d'un van"
-          width={500}
-          height={500}
-          layout="responsive" // Ajouté pour assurer que l'image soit responsive
-        />
-      </figure>
+      <div className="h-96 w-full relative ">
+        <figure>
+          <Image
+            className="rounded-l-lg"
+            src={vehicle.image.url}
+            alt="Carte de visite d'un van"
+            fill
+          />
+        </figure>
+      </div>
       <div className="card-body  max-w-7xl">
         <h2 className="card-title mb-6 text-2xl">{vehicle.name}</h2>
         <div className="flex">
