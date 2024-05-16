@@ -7,7 +7,7 @@ export default function AgencyCarCard({ vehicle }) {
       <div className="h-96 w-full relative ">
         <figure>
           <Image
-            className="rounded-l-lg"
+            className="rounded-l-2xl"
             src={vehicle.image.url}
             alt="Carte de visite d'un van"
             fill
