@@ -11,6 +11,7 @@ export default function AgencyCarCard({ vehicle }) {
             src={vehicle.image.url}
             alt="Carte de visite d'un van"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </figure>
       </div>
@@ -40,20 +41,23 @@ export default function AgencyCarCard({ vehicle }) {
             },
             {
               icon: "/images/car_icons/shower.png",
-              feature: vehicle.features.shower ? "Eau chaude" : "Pas d'eau",
+              feature: vehicle.features.water ? "Eau chaude" : "Pas d'eau",
               alt: "icon of shower",
             },
             {
               icon: "/images/car_icons/toilet.png",
-              feature: vehicle.features.toilet ? "WC interieur" : "Pas de WC",
+              feature: vehicle.features.wc ? "WC interieur" : "Pas de WC",
               alt: "icon of toilet",
             },
-          ].map((item, index) => (
-            <div key={index} className="icon-flex-container">
-              <Image src={item.icon} alt={item.alt} width={40} height={40} />
-              <div className="mt-2">{item.feature}</div>
-            </div>
-          ))}
+          ].map((item, index) => {
+            console.log(item.feature);
+            return (
+              <div key={index} className="icon-flex-container">
+                <Image src={item.icon} alt={item.alt} width={40} height={40} />
+                <div className="mt-2">{item.feature}</div>
+              </div>
+            );
+          })}
         </div>
         <p className="mb-6">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
