@@ -90,22 +90,13 @@ export default function Home() {
     fetchVehicles();
     fetchAgencies();
 
-    console.log("fetching data");
+    //console.log("fetching data");
   }, []);
-
-  useEffect(() => {
-    if (!isCarListLoading) {
-      console.log(carList[0].goToTheCarCarousel);
-    }
-  }, [carList, isCarListLoading]); // Dépendances pour réexécuter ce useEffect lorsque carList ou isCarListLoading change
 
   return (
     <div>
       <div className="relative">
         <Hero />
-        {/* <div id="rental-form-container">
-          <RentalFormContainer />
-        </div> */}
       </div>
 
       <div className="mx-auto mt-10 h-[80vh]" style={{ width: "50%" }}>

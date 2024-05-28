@@ -26,10 +26,6 @@ export default function Page({ params }) {
   const [filteredVehicles, setFilteredVehicles] = useState([]);
   // filteredVehicles correspond à la liste des véhicules filtrés par les filtres sélectionnés par l'utilisateur.
 
-  useEffect(() => {
-    console.log(selectedFilters);
-  }, [filteredVehicles]);
-
   // const filterOptions correspond à l'objet qui contient les options possibles pour chaque filtre. Par exemple, pour le filtre Marque, on a les options ["Renault", "Peugeot",...], pour le filtre Prix, on a les options ["Prix croissant", "Prix décroissant"], etc.
   const filterOptions = {
     Marque: filterValues.brands,
@@ -109,6 +105,7 @@ export default function Page({ params }) {
       const uniqueBrand = [
         ...new Set(data.agency.vehicles.map((vehicle) => vehicle.brand)),
       ];
+      // new Set permet de créer un objet Set qui ne contient que des valeurs uniques. Ensuite, on transforme cet objet Set en tableau avec [...]. On récupère les marques uniques des véhicules de l'agence.
       const uniqueSeats = [
         ...new Set(
           data.agency.vehicles.map((vehicle) => vehicle.features.seats)
@@ -131,7 +128,7 @@ export default function Page({ params }) {
   };
 
   useEffect(() => {
-    console.log(params);
+    //console.log(params);
     fetchAgency();
   }, []);
 

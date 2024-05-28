@@ -26,7 +26,7 @@ const Navbar = () => {
       const shouldModif =
         window.scrollY <= RentalFormContainerPosition.top + 650;
       if (shouldModif !== isRentalFormContainerExpanded) {
-        console.log("modifying");
+        //console.log("modifying");
         setRentalFormContainerExpanded(shouldModif);
       }
     };
@@ -82,7 +82,7 @@ const Navbar = () => {
         } overflow-hidden  `}
       >
         <div className="grid grid-cols-12  bg-violet-400/40">
-          <div className="pl-10 pt-1 ">
+          <div className="pl-10 pt-[0.10rem] ">
             <Link href="/">
               <Image
                 src="/images/logo2.png"
@@ -127,7 +127,7 @@ const Navbar = () => {
                   <div
                     tabIndex={0}
                     role="button"
-                    className="btn m-1 border-zinc-300 bg-zinc-200"
+                    className="btn m-1 bg-violet-500 border-violet-600"
                   >
                     Agence de location
                   </div>
