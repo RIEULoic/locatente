@@ -9,6 +9,7 @@ import Hero from "@/components/Home/Hero";
 import Carousel from "@/components/Home/Carousel";
 import VideoComponent from "./ui/VideoComponent";
 import ScrollTopButton from "@/components/ScrollTopButton";
+import PopupWarning from "@/components/PopupWarning";
 
 export default function Home() {
   const [carList, setCarList] = useState([]);
@@ -267,6 +268,7 @@ export default function Home() {
         </div>
       </div>
       <ScrollTopButton />
+      <PopupWarning />
     </div>
   );
 }

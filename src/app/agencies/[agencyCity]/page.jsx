@@ -220,7 +220,7 @@ export default function Page({ params }) {
             <div
               className={`${lobster.className} text-5xl text-center font-bold`}
             >
-              Louez votre sublime véhicule aménagé à {dataAgency.agency.city} !
+              Louez votre véhicule aménagé à {dataAgency.agency.city} !
             </div>
             <div className="flex flex-col  items-center p-14">
               <div className="flex  mt-10 items-center ">
@@ -335,6 +335,7 @@ export default function Page({ params }) {
           ))}
           {checkboxOptions.map((name, index) => (
             <label className="flex items-center space-x-2" key={index}>
+              <form></form>
               <input
                 type="checkbox"
                 className="checkbox  border-violet-600 [--chkbg:theme(colors.violet.500)]"
