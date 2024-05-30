@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -6,12 +7,14 @@ export default function Footer() {
       <div className="mx-10 pb-10">
         <div className="footer px-10 pt-10 rounded-t-3xl bg-violet-400/40 text-base-content">
           <aside>
-            <Image
-              src="/images/logo2.png"
-              alt="locatent logo"
-              width={150}
-              height={150}
-            />
+            <Link href="/">
+              <Image
+                src="/images/logo2.png"
+                alt="locatent logo"
+                width={150}
+                height={150}
+              />
+            </Link>
             <p className="leading-7 pt-2">
               Locatente Ltd.
               <br />
@@ -53,7 +56,7 @@ export default function Footer() {
                   placeholder="Adresse mail"
                   className="input input-bordered join-item"
                 />
-                <button className="btn  bg-violet-500 border-violet-600 join-item">
+                <button className="btn border-zinc-300 bg-zinc-200 join-item">
                   S'inscrire
                 </button>
               </div>

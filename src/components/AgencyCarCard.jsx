@@ -50,7 +50,7 @@ export default function AgencyCarCard({ vehicle }) {
               alt: "icon of toilet",
             },
           ].map((item, index) => {
-            console.log(item.feature);
+            //console.log(item.feature);
             return (
               <div key={index} className="icon-flex-container">
                 <Image src={item.icon} alt={item.alt} width={40} height={40} />
@@ -73,7 +73,9 @@ export default function AgencyCarCard({ vehicle }) {
             Location à partir de{" "}
             <span className="font-bold">{vehicle.price} €</span> par jour
           </p>
-          <button className="btn btn-primary mr-10">VOIR</button>
+          <button className="btn border-zinc-300 bg-zinc-200 mr-10">
+            VOIR
+          </button>
         </div>
       </div>
     </div>

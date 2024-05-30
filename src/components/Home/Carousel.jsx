@@ -26,7 +26,7 @@ export default function Carousel({ carCarousel, carList, agencyList }) {
           </div>
         </div>
         <div>
-          <button className="btn bg-violet-500 border-violet-600 m-2 rounded-full">
+          <button className="btn border-zinc-300 bg-zinc-200 m-2 rounded-full">
             {carCarousel
               ? "Voir tout nos véhicules"
               : "Voir toutes nos agences"}
@@ -39,12 +39,10 @@ export default function Carousel({ carCarousel, carList, agencyList }) {
           className="mySwiper"
           space-between="45"
           slides-per-view={carCarousel ? "3.2" : "4.3"}
-          navigation="true"
-          scrollbar="true"
-          pagination="true"
           slides-per-group="2"
-          //loop="true"
           number-of-slides="20"
+          mousewheel="true"
+          //navigation="true"
         >
           {carCarousel
             ? carList

@@ -9,10 +9,10 @@ const ScrollToTopButton = () => {
       // Afficher le bouton lorsque l'utilisateur descend de plus de 100px
       if (window.scrollY > 100) {
         setIsVisible(true);
-        console.log("visible true");
+        //console.log("visible true");
       } else {
         setIsVisible(false);
-        console.log("visible false");
+        //console.log("visible false");
       }
     };
 

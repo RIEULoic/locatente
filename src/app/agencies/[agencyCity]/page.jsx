@@ -10,6 +10,7 @@ import RentalFormContainer from "@/components/Home/RentalFormContainer";
 import { lobster } from "@/app/fonts";
 import AgencyCarCard from "@/components/AgencyCarCard";
 import ScrollToTopButton from "@/components/ScrollTopButton";
+import PopupWarning from "@/components/PopupWarning";
 
 export default function Page({ params }) {
   const [dataAgency, setDataAgency] = useState(null);
@@ -25,10 +26,6 @@ export default function Page({ params }) {
 
   const [filteredVehicles, setFilteredVehicles] = useState([]);
   // filteredVehicles correspond à la liste des véhicules filtrés par les filtres sélectionnés par l'utilisateur.
-
-  useEffect(() => {
-    console.log(selectedFilters);
-  }, [filteredVehicles]);
 
   // const filterOptions correspond à l'objet qui contient les options possibles pour chaque filtre. Par exemple, pour le filtre Marque, on a les options ["Renault", "Peugeot",...], pour le filtre Prix, on a les options ["Prix croissant", "Prix décroissant"], etc.
   const filterOptions = {
@@ -109,6 +106,7 @@ export default function Page({ params }) {
       const uniqueBrand = [
         ...new Set(data.agency.vehicles.map((vehicle) => vehicle.brand)),
       ];
+      // new Set permet de créer un objet Set qui ne contient que des valeurs uniques. Ensuite, on transforme cet objet Set en tableau avec [...]. On récupère les marques uniques des véhicules de l'agence.
       const uniqueSeats = [
         ...new Set(
           data.agency.vehicles.map((vehicle) => vehicle.features.seats)
@@ -131,7 +129,7 @@ export default function Page({ params }) {
   };
 
   useEffect(() => {
-    console.log(params);
+    //console.log(params);
     fetchAgency();
   }, []);
 
@@ -201,6 +199,7 @@ export default function Page({ params }) {
 
   return (
     <>
+      <PopupWarning />
       <ScrollToTopButton />
       <div className="h-screen relative">
         <div className="h-4/6 mx-10 relative mt-[104px] grid grid-rows-5 grid-cols-2 pt-10   ">
@@ -223,7 +222,7 @@ export default function Page({ params }) {
             <div
               className={`${lobster.className} text-5xl text-center font-bold`}
             >
-              Louez votre sublime véhicule aménagé à {dataAgency.agency.city} !
+              Louez votre véhicule aménagé à {dataAgency.agency.city} !
             </div>
             <div className="flex flex-col  items-center p-14">
               <div className="flex  mt-10 items-center ">
@@ -338,6 +337,7 @@ export default function Page({ params }) {
           ))}
           {checkboxOptions.map((name, index) => (
             <label className="flex items-center space-x-2" key={index}>
+              <form></form>
               <input
                 type="checkbox"
                 className="checkbox  border-violet-600 [--chkbg:theme(colors.violet.500)]"
