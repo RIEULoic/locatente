@@ -1,23 +1,17 @@
-"use client";
-
 import Image from "next/image";
-import { useEffect } from "react";
+import Link from "next/link";
 
 const PopupWarning = () => {
-  useEffect(() => {
-    document.getElementById("my_modal_1").showModal();
-  }, []);
-
   return (
     <>
       {/* Open the modal using document.getElementById('ID').showModal() method */}
 
       <button
-        className=" fixed bottom-0 left-0 m-4 mb-4 z-50"
+        className=" fixed bottom-0 left-0 m-4 mb-4 z-50 btnVisible"
         onClick={() => document.getElementById("my_modal_1").showModal()}
       >
         <Image
-          src="/images/information_icon.png"
+          src="/images/information_icon2.png"
           alt="info icon created by sonnyCandra - Flaticon"
           width={80}
           height={80}
@@ -28,18 +22,27 @@ const PopupWarning = () => {
         <div className="modal-box max-w-7xl ">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-1 top-1">
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕
             </button>
           </form>
-          <h3 className="font-bold text-xl">Bonjour,</h3>
-          <p className="py-4 text-lg leading-10">
+          <div className="font-bold text-2xl">Bonjour,</div>
+          <br />
+          <div className="font-bold text-lg">
+            Technos utilisées pour ce site : NextJS, TailwindCSS, DaisyUI,
+            Graphql, Swiper.
+          </div>
+
+          <div className="py-4 text-lg leading-10">
             Le site est en cours de développement, certaines fonctionnalités ne
             sont pas encore disponibles:
             <ul className="list-disc ml-5">
               <li>
                 Seuls les boutons de couleur{" "}
-                <span className="bg-violet-500 ">violette</span> sont actifs.
+                <span className="btn bg-violet-500 border-violet-600 hover:cursor-default text-lg">
+                  violette
+                </span>{" "}
+                sont actifs.
               </li>
               <li>
                 Le carrousel des agences de location fonctionne. Cliquez sur une
@@ -50,13 +53,26 @@ const PopupWarning = () => {
                 d'accueil.
               </li>
               <li>
-                Cliquez sur la flèche en bas à droite pour revenir en haut de la
-                page.
+                Vous pouvez cliquez sur la flèche en bas à droite pour revenir
+                en haut de la page.
               </li>
             </ul>
-          </p>
+          </div>
+          <div className="font-bold text-xl">
+            Lien Github :{" "}
+            <a
+              href="https://github.com/RIEULoic/locatente"
+              target="_blank"
+              className="text-blue-500 underline"
+            >
+              https://github.com/RIEULoic/locatente
+            </a>
+          </div>
         </div>
-
+        {/*<form method="dialog" className="modal-backdrop ">
+          <button />
+        </form> 
+        Permet de fermer le modal en cliquant en dehors de la boîte de dialogue */}
         <form method="dialog" className="modal-backdrop ">
           <button />
         </form>

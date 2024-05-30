@@ -110,9 +110,9 @@ export default function Home() {
         >
           <div className="hero-content text-center text-neutral-content mt-10">
             <div className="max-w-md">
-              <h1 className="mb-10 text-5xl font-bold">
+              <div className="mb-10 text-5xl font-bold">
                 Achetez votre véhicule tout équipé
-              </h1>
+              </div>
 
               <button className="btn  border-zinc-300 bg-zinc-200 ">
                 Découvrez nos véhicules à la vente
@@ -123,12 +123,12 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col items-center mb-10">
-        <h1
+        <div
           className={`${lobster.className} text-4xl font-bold  mb-5`}
           style={{ width: "50%" }}
         >
           Pourquoi choisir Locatente ?
-        </h1>
+        </div>
         <p className="text-xl" style={{ width: "50%" }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Sem nulla
@@ -250,12 +250,12 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col justify-center mx-80 mb-20 mt-40">
-        <h1
+        <div
           className={`${lobster.className} text-4xl font-semibold  `}
           style={{ width: "50%" }}
         >
           Découvrez notre vidéo de présentation
-        </h1>
+        </div>
         <div className="mt-2 mb-12 text-xl text-neutral-500">
           Évadez-vous avec la vanlife
         </div>
@@ -268,7 +268,9 @@ export default function Home() {
         </div>
       </div>
       <ScrollTopButton />
-      <PopupWarning />
+      <Suspense fallback={<div>Loading...</div>}>
+        <PopupWarning />
+      </Suspense>
     </div>
   );
 }
