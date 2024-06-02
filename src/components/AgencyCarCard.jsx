@@ -5,12 +5,18 @@ export default function AgencyCarCard({ vehicle }) {
   return (
     <div className="card card-side bg-base-100 shadow-xl mb-10 h-96">
       <div className="h-96 w-full relative ">
-        <figure>
+        <figure className="relative h-96">
+          <div className="absolute badge z-50 top-0 left-0  mt-2 ml-2 py-3">
+            Photo non contractuelle&nbsp;
+            <span className="text-xl">&#128521;</span>
+          </div>
+
           <Image
             className="rounded-l-2xl"
             src={vehicle.image.url}
             alt="Carte de visite d'un van"
             fill
+            //sizes va me servir pour le responsive. Il faudra le modifier en fonction de la taille de l'écran
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </figure>
