@@ -5,14 +5,14 @@ export default function AgencyCarCard({ vehicle }) {
   return (
     <div className="card card-side bg-base-100 shadow-xl mb-10 h-96">
       <div className="h-96 w-full relative ">
-        <figure className="relative h-96">
-          <div className="absolute badge z-50 top-0 left-0  mt-2 ml-2 py-3">
+        <figure className="relative h-96 ">
+          <div className="absolute badge z-10 top-0 left-0  mt-2 ml-2 py-3">
             Photo non contractuelle&nbsp;
             <span className="text-xl">&#128521;</span>
           </div>
 
           <Image
-            className="rounded-l-2xl"
+            className="rounded-l-2xl "
             src={vehicle.image.url}
             alt="Carte de visite d'un van"
             fill
