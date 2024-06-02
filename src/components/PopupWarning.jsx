@@ -31,6 +31,8 @@ const PopupWarning = () => {
           <div className="font-bold text-lg">
             Technos utilisées pour ce site : NextJS, TailwindCSS, DaisyUI,
             Graphql, Swiper.
+            <br />
+            Hygraph pour la base de données.
           </div>
 
           <div className="py-4 text-lg leading-10">
@@ -63,6 +65,8 @@ const PopupWarning = () => {
             <a
               href="https://github.com/RIEULoic/locatente"
               target="_blank"
+              //rel="noopener noreferrer" permet de sécuriser le lien pour éviter les attaques de type "tabnabbing"
+              rel="noopener noreferrer"
               className="text-blue-500 underline"
             >
               https://github.com/RIEULoic/locatente

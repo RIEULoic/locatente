@@ -4,6 +4,7 @@ import { GoogleMapsEmbed } from "@next/third-parties/google";
 
 import { request, gql } from "graphql-request";
 import { useEffect, useState, Suspense } from "react";
+import Link from "next/link";
 
 import Image from "next/image";
 import RentalFormContainer from "@/components/Home/RentalFormContainer";
@@ -129,7 +130,7 @@ export default function Page({ params }) {
   };
 
   useEffect(() => {
-    //console.log(params);
+    console.log(params);
     fetchAgency();
   }, []);
 
@@ -356,9 +357,11 @@ export default function Page({ params }) {
             Rechercher
           </button>
         </div>
-        {filteredVehicles.map((vehicle, index) => (
-          <div key={index}>
-            <AgencyCarCard vehicle={vehicle} />
+        {filteredVehicles.map((vehicle) => (
+          <div key={vehicle.id}>
+            <Link href={`/cars/${vehicle.id}`}>
+              <AgencyCarCard vehicle={vehicle} />
+            </Link>
           </div>
         ))}
       </div>
