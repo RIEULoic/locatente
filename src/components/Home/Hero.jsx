@@ -2,7 +2,7 @@ import Image from "next/image";
 import { lobster } from "@/app/fonts";
 import RentalFormContainer from "./RentalFormContainer";
 
-function Hero(params) {
+function Hero() {
   return (
     <div className="h-screen relative mt-[104px] z-40">
       <div

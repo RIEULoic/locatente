@@ -1,13 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
 import { request, gql } from "graphql-request";
-import PopupWarning from "@/components/PopupWarning";
-import ScrollToTopButton from "@/components/ScrollTopButton";
+import Image from "next/image";
 
 export default function Car(params) {
-  useEffect(() => {
-    console.log(params);
-  }, []);
+  // useEffect(() => {
+  //   console.log(params);
+  // }, []);
 
   const [dataCar, setDataCar] = useState(null);
 
@@ -17,6 +16,24 @@ export default function Car(params) {
         vehicle(where: {id: "${params.params.car}"}) {
           id
           brand
+          name
+    features {
+      beds
+      fridge
+      seats
+      tent
+      water
+      wc
+    }
+    price
+    image {
+      url
+    }
+    agency {
+      city
+      adress
+      id
+    }
         }}`;
     try {
       const data = await request(
@@ -34,106 +51,23 @@ export default function Car(params) {
   }, []);
 
   useEffect(() => {
-    console.log(dataCar);
+    //Obligé de faire un if car sinon il y a une erreur. Il faut attendre que dataCar soit rempli.
+    if (dataCar && dataCar.vehicle) {
+      // console.log(dataCar);
+      console.log(dataCar.vehicle.brand);
+    }
   }, [dataCar]);
+
+  if (!dataCar || !dataCar.vehicle)
+    return (
+      <div className="h-1/2 mt-[104px] flex justify-center">
+        <div className="loading loading-spinner loading-lg "></div>
+      </div>
+    );
 
   return (
     <>
-      <PopupWarning />
-      <ScrollToTopButton />
-      <div className="absolute bottom-0">Car {params.params.car}</div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam quos
-        quod, quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor sit
-        amet consectetur adipisicing elit. Quisquam quos quod, quas, quae,
-        quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Quisquam quos quod, quas, quae, quibusdam quia quidem
-        quae quod.Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Quisquam quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem
-        ipsum dolor sit amet consectetur adipisicing elit. Quisquam quos quod,
-        quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Quisquam quos quod, quas, quae, quibusdam
-        quia quidem quae quod.Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Quisquam quos quod, quas, quae, quibusdam quia quidem quae
-        quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-        quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor
-        sit amet consectetur adipisicing elit. Quisquam quos quod, quas, quae,
-        quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Quisquam quos quod, quas, quae, quibusdam quia quidem
-        quae quod.Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Quisquam quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem
-        ipsum dolor sit amet consectetur adipisicing elit. Quisquam quos quod,
-        quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Quisquam quos quod, quas, quae, quibusdam
-        quia quidem quae quod.Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Quisquam quos quod, quas, quae, quibusdam quia quidem quae
-        quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-        quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor
-        sit amet consectetur adipisicing elit. Quisquam quos quod, quas, quae,
-        quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Quisquam quos quod, quas, quae, quibusdam quia quidem
-        quae quod.Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Quisquam quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem
-        ipsum dolor sit amet consectetur adipisicing elit. Quisquam quos quod,
-        quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Quisquam quos quod, quas, quae, quibusdam
-        quia quidem quae quod.Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Quisquam quos quod, quas, quae, quibusdam quia quidem quae
-        quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-        quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor
-        sit amet consectetur adipisicing elit. Quisquam quos quod, quas, quae,
-        quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Quisquam quos quod, quas, quae, quibusdam quia quidem
-        quae quod.Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Quisquam quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem
-        ipsum dolor sit amet consectetur adipisicing elit. Quisquam quos quod,
-        quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Quisquam quos quod, quas, quae, quibusdam
-        quia quidem quae quod.Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Quisquam quos quod, quas, quae, quibusdam quia quidem quae
-        quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-        quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor
-        sit amet consectetur adipisicing elit. Quisquam quos quod, quas, quae,
-        quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Quisquam quos quod, quas, quae, quibusdam quia quidem
-        quae quod.Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Quisquam quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem
-        ipsum dolor sit amet consectetur adipisicing elit. Quisquam quos quod,
-        quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Quisquam quos quod, quas, quae, quibusdam
-        quia quidem quae quod.Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Quisquam quos quod, quas, quae, quibusdam quia quidem quae
-        quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-        quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor
-        sit amet consectetur adipisicing elit. Quisquam quos quod, quas, quae,
-        quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Quisquam quos quod, quas, quae, quibusdam quia quidem
-        quae quod.Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Quisquam quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem
-        ipsum dolor sit amet consectetur adipisicing elit. Quisquam quos quod,
-        quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Quisquam quos quod, quas, quae, quibusdam
-        quia quidem quae quod.Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Quisquam quos quod, quas, quae, quibusdam quia quidem quae
-        quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-        quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor
-        sit amet consectetur adipisicing elit. Quisquam quos quod, quas, quae,
-        quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Quisquam quos quod, quas, quae, quibusdam quia quidem
-        quae quod.Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Quisquam quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem
-        ipsum dolor sit amet consectetur adipisicing elit. Quisquam quos quod,
-        quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Quisquam quos quod, quas, quae, quibusdam
-        quia quidem quae quod.Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Quisquam quos quod, quas, quae, quibusdam quia quidem quae
-        quod.Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-        quos quod, quas, quae, quibusdam quia quidem quae quod.Lorem ipsum dolor
-        sit amet consectetur adipisicing elit. Quisquam quos quod, quas, quae,
-        quibusdam quia quidem quae quod.Lorem ipsum dolor sit amet consectetur
-        adipisicing elit. Quisquam quos quod, quas, quae, quibusdam quia quidem
-        quae quod.
-      </div>
+      <div className="mt-[104px]">fuck</div>
     </>
   );
 }
