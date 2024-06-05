@@ -22,7 +22,7 @@ export default function AgencyCarCard({ vehicle }) {
         </figure>
       </div>
       <div className="card-body  max-w-7xl">
-        <h2 className="card-title mb-6 text-2xl">{vehicle.name}</h2>
+        <div className="card-title mb-6 text-2xl">{vehicle.name}</div>
         <div className="flex">
           {[
             {

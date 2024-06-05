@@ -15,7 +15,7 @@ export default function AgencyCard({ agency }) {
         </figure>
 
         <div className="card-body p-2 ">
-          <h2 className="card-title mb-4 justify-center">{agency.city}</h2>
+          <div className="card-title mb-4 justify-center">{agency.city}</div>
         </div>
       </div>
     )

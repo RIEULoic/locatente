@@ -16,9 +16,9 @@ export default function CarCard({ vehicle }) {
           />
         </figure>
         <div className="card-body pl-1 pt-3 pb-0 pr-0">
-          <h2 className="card-title mb-4">
+          <div className="card-title mb-4">
             <span>{vehicle.name}</span>
-          </h2>
+          </div>
           <div className="flex  flex-wrap  ">
             <div className="icon-flex-container ">
               <Image

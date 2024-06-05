@@ -50,7 +50,9 @@ export default function Carousel({ carCarousel, carList, agencyList }) {
                 .map((vehicle) => {
                   return (
                     <swiper-slide key={vehicle.id}>
-                      <CarCard vehicle={vehicle} />
+                      <Link href={`/cars/${vehicle.id}`}>
+                        <CarCard vehicle={vehicle} />
+                      </Link>
                     </swiper-slide>
                   );
                 })
