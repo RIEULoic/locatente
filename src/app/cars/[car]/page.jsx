@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { request, gql } from "graphql-request";
 import Image from "next/image";
+import BadgePic from "@/components/BadgePic";
 
 export default function Car(params) {
   const [dataCar, setDataCar] = useState(null);
@@ -68,29 +69,34 @@ export default function Car(params) {
         <div className="w-[66vw] overflow-hidden">
           <div className="grid grid-rows-2 grid-cols-3 gap-4">
             <div className="row-span-2 col-span-2 mt-6 overflow-hidden">
-              <Image
-                src={dataCar.vehicle.image.url}
-                alt="photo 1 du vehicule"
-                width={822}
-                height={822}
-                priority
-                style={{ borderRadius: "1.5rem" }}
-              />
+              <figure className="relative">
+                <BadgePic />
+                <Image
+                  src={dataCar.vehicle.image.url}
+                  alt="photo 1 du véhicule"
+                  width={822}
+                  height={822}
+                  priority
+                  style={{ borderRadius: "1.5rem" }}
+                />
+              </figure>
             </div>
-            <div className="row-span-1 col-span-1 mt-6 overflow-hidden">
+            <div className=" relative row-span-1 col-span-1 mt-6 overflow-hidden">
+              <BadgePic />
               <Image
                 src={dataCar.vehicle.image.url}
-                alt="photo 2 du vehicule"
+                alt="photo 2 du véhicule"
                 width={400}
                 height={400}
                 priority
                 style={{ borderRadius: "1.5rem" }}
               />
             </div>
-            <div className="row-span-1 col-span-1 overflow-hidden">
+            <div className="relative row-span-1 col-span-1 overflow-hidden">
+              <BadgePic />
               <Image
                 src={dataCar.vehicle.image.url}
-                alt="photo 3 du vehicule"
+                alt="photo 3 du véhicule"
                 width={400}
                 height={400}
                 priority
@@ -103,12 +109,12 @@ export default function Car(params) {
       <div className="flex justify-center">
         <div className="w-[66vw] ">
           <div className="grid grid-cols-3 gap-4">
-            <div className="col-span-2 border-2 border-red-500">
+            <div className="col-span-2  pl-2">
               <p className="text-2xl font-bold mb-4">{dataCar.vehicle.name}</p>
               <p className="text-lg mb-10 font-light">
                 Marque : {dataCar.vehicle.brand}
               </p>
-              <div className="flex">
+              <div className="flex border-y-[1px] pt-2">
                 {[
                   {
                     icon: "/images/car_icons/seat.png",
@@ -151,7 +157,8 @@ export default function Car(params) {
                 ].map((item, index) => {
                   //console.log(item.feature);
                   return (
-                    <div key={index} className="icon-flex-container">
+                    <div key={index} className="icon-flex-container !mb-2">
+                    {/* Obligé de mettre !mb-2 pour que la marge définie dans icon-flex-container (margin-bottom: 40px) soit supprimée et remplacée par mb-2. Si je mets seulement mb-2, ça ne fonctionne pas, la marge est tjrs de 40px. */}
                       <Image
                         src={item.icon}
                         alt={item.alt}
@@ -165,8 +172,8 @@ export default function Car(params) {
               </div>
 
               <div>
-                <div className="font-medium text-xl mb-2">
-                  Description du vehicule
+                <div className="font-medium text-xl mt-10 mb-2">
+                  Description du véhicule
                 </div>
                 <p className="text-gray-700 mb-10">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
@@ -182,59 +189,66 @@ export default function Car(params) {
                   libero. Sed nec dapibus dolor, id porta elit.
                 </p>
               </div>
-              <div>
-                <div>DIMENSIONS</div>
-                <div className="flex">
+              <div className="border-t-[1px]">
+              <div className="w-[35rem] my-10">
+                <div className="font-medium text-xl mb-4">Dimensions</div>
+                <div className="flex justify-between text-gray-700">
                   <div>
-                    Length: 5.99 m <br /> Width: 2.08 m <br />
-                    Height: 2.65 m <br />
-                    Interior height : 1.90 m <br />
-                    Wheelbase: 4035 mm <br />
-                    Number of seats: 4 <br />
-                    Unladen weight: 2755 kg
+                    Longueur: 5.99 m <br /> 
+                    Largeur: 2.08 m <br />
+                    Hauteur: 2.65 m <br />
+                    Hauteur intérieure : 1.90 m
                   </div>
                   <div>
-                    Width: 2.08 m <br />
-                    Height: 2.65 m <br />
-                    Interior height : 1.90 m <br />
-                    Wheelbase: 4035 mm <br />
-                    Number of seats: 4
+                    Empattement: 4035 mm <br />
+                    Nombre de sièges: {dataCar.vehicle.features.seats} <br />
+                    Poids à vide: 2755 kg
                   </div>
                 </div>
               </div>
-              <div>ÉQUIPEMENT</div>
-              <div>PERFORMANCE</div>
-              <p>{dataCar.vehicle.price}</p>
-              <p>{dataCar.vehicle.agency.city}</p>
-              <p>{dataCar.vehicle.agency.adress}</p>
-              <p>{dataCar.vehicle.features.beds}</p>
-              <p>{dataCar.vehicle.features.fridge}</p>
-              <p>{dataCar.vehicle.features.seats}</p>
-              <p>{dataCar.vehicle.features.tent}</p>
-              <p>{dataCar.vehicle.features.water}</p>
-              <p>{dataCar.vehicle.features.wc}</p>
-              <p>{dataCar.vehicle.brand}</p>
-              <p>{dataCar.vehicle.price}</p>
-              <p>{dataCar.vehicle.agency.city}</p>
-              <p>{dataCar.vehicle.agency.adress}</p>
-              <p>{dataCar.vehicle.features.beds}</p>
-              <p>{dataCar.vehicle.features.fridge}</p>
-              <p>{dataCar.vehicle.features.seats}</p>
-              <p>{dataCar.vehicle.features.tent}</p>
-              <p>{dataCar.vehicle.features.water}</p>
-              <p>{dataCar.vehicle.features.wc}</p>
+              </div>
+               <div className="border-t-[1px]">
+              <div className="w-[42.5rem] my-10">
+                <div className="font-medium text-xl mb-4">Équipements</div>
+                <div className="flex justify-between text-gray-700">
+                  <div>
+                    Airbags doubles <br /> 
+                    Système d'assistance au stationnement<br />
+                    Sièges chauffants<br />
+                    Combi 4 chauffages<br/> 
+                    Climatisation <br />
+                    Pré-installation radio <br />
+                    Porte-gobelets
+                  </div>
+                  <div>
+                    Régulateur de vitesse<br />
+                    ABS - système de freinage anti-blocage <br />
+                    Start & Stop <br/>
+                    Assistance au freinage post-collision <br />
+                    Alternateur renforcé de 220 A
+                  </div>
+                </div>
+              </div>
+              </div>
+               <div className="border-t-[1px]">
+              <div className="w-[42.5rem] my-10">
+                <div className="font-medium text-xl mb-4">Performances</div>
+                <div className="flex justify-between text-gray-700">
+                  <div>
+                    Consommation de carburant : 10 L/100 km <br /> 
+                    Émissions de CO2 : 173 g/km
+                  </div>
+                  <div>
+                    Norme d'émission : EU6.2 (C et D-Temp)<br />
+                    Vitesse maximale : 153 km/h
+                  
+                  </div>
+                </div>
+              </div>    
+              </div>         
             </div>
             <div className="col-span-1 border-2 border-red-500">
-              <p>{dataCar.vehicle.brand}</p>
-              <p>{dataCar.vehicle.price}</p>
-              <p>{dataCar.vehicle.agency.city}</p>
-              <p>{dataCar.vehicle.agency.adress}</p>
-              <p>{dataCar.vehicle.features.beds}</p>
-              <p>{dataCar.vehicle.features.fridge}</p>
-              <p>{dataCar.vehicle.features.seats}</p>
-              <p>{dataCar.vehicle.features.tent}</p>
-              <p>{dataCar.vehicle.features.water}</p>
-              <p>{dataCar.vehicle.features.wc}</p>
+              <p>EN COURS DE CONSTRUCTION</p>
             </div>
           </div>
         </div>

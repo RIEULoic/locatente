@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import BadgePic from "./BadgePic";
 
 export default function AgencyCarCard({ vehicle }) {
   //console.log(vehicle);
@@ -6,11 +8,7 @@ export default function AgencyCarCard({ vehicle }) {
     <div className="card card-side bg-base-100 shadow-xl mb-10 h-96">
       <div className="h-96 w-full relative ">
         <figure className="relative h-96 ">
-          <div className="absolute badge z-10 top-0 left-0  mt-2 ml-2 py-3">
-            Photo non contractuelle&nbsp;
-            <span className="text-xl">&#128521;</span>
-          </div>
-
+          <BadgePic />
           <Image
             className="rounded-l-2xl "
             src={vehicle.image.url}
@@ -79,9 +77,11 @@ export default function AgencyCarCard({ vehicle }) {
             Location à partir de{" "}
             <span className="font-bold">{vehicle.price} €</span> par jour
           </p>
-          <button className="btn border-zinc-300 bg-zinc-200 mr-10">
-            VOIR
-          </button>
+          <Link href={`/cars/${vehicle.id}`}>
+            <button className="btn bg-violet-500 border-violet-600 mr-10">
+              VOIR
+            </button>
+          </Link>
         </div>
       </div>
     </div>

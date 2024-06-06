@@ -47,8 +47,8 @@ const PopupWarning = () => {
                 sont actifs.
               </li>
               <li>
-                Le carrousel des agences de location fonctionne. Cliquez sur une
-                agence pour accéder à la page de celle-ci.
+                Les carrousels des agences et des véhicules fonctionnent. Cliquez sur une
+                agence ou un véhicule pour accéder à la page de celui-ci.
               </li>
               <li>
                 Vous pouvez cliquer sur les logos du site pour accéder à la page

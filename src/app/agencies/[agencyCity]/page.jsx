@@ -6,7 +6,6 @@ import { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import RentalFormContainer from "@/components/Home/RentalFormContainer";
-import { lobster } from "@/app/fonts";
 import AgencyCarCard from "@/components/AgencyCarCard";
 
 export default function Page({ params }) {
@@ -214,9 +213,7 @@ export default function Page({ params }) {
             </div>
           </div>
           <div className=" row-span-3  col-span-1 ">
-            <div
-              className={`${lobster.className} text-5xl text-center font-bold`}
-            >
+            <div className="font-lobster text-5xl text-center ">
               Louez votre véhicule aménagé à {dataAgency.agency.city} !
             </div>
             <div className="flex flex-col  items-center p-14">
@@ -353,9 +350,7 @@ export default function Page({ params }) {
         </div>
         {filteredVehicles.map((vehicle) => (
           <div key={vehicle.id}>
-            <Link href={`/cars/${vehicle.id}`}>
-              <AgencyCarCard vehicle={vehicle} />
-            </Link>
+            <AgencyCarCard vehicle={vehicle} />
           </div>
         ))}
       </div>

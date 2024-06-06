@@ -3,7 +3,7 @@ import { request, gql } from "graphql-request";
 import { Suspense, useEffect, useState } from "react";
 
 import Image from "next/image";
-import { lobster } from "@/app/fonts";
+import { lobster, local } from "@/app/fonts";
 import Loading from "@/components/Loading";
 import Hero from "@/components/Home/Hero";
 import Carousel from "@/components/Home/Carousel";
@@ -97,7 +97,6 @@ export default function Home() {
       <div className="relative">
         <Hero />
       </div>
-
       <div className="mx-auto mt-10 h-[80vh]" style={{ width: "50%" }}>
         <div
           className="hero items-start  rounded-box shadow-2xl "
@@ -120,14 +119,11 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col items-center mb-10">
-        <div
-          className={`${lobster.className} text-4xl font-bold  mb-5`}
-          style={{ width: "50%" }}
-        >
+      <div className=" flex flex-col items-center mb-10">
+        <div className="font-lobster text-4xl mb-5" style={{ width: "50%" }}>
           Pourquoi choisir Locatente ?
         </div>
-        <p className="text-xl" style={{ width: "50%" }}>
+        <p className=" text-2xl" style={{ width: "50%" }}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Sem nulla
           pharetra diam sit amet nisl suscipit adipiscing. Faucibus purus in
@@ -156,7 +152,7 @@ export default function Home() {
             De Nombreuses Agences
           </div>
           <div
-            className="text-center text-slate-600"
+            className=" text-center text-slate-600"
             style={{ width: "auto", height: "auto" }}
           >
             10 agences à votre disposition pour être au plus proche de chez vous
@@ -226,7 +222,7 @@ export default function Home() {
             className="text-center text-slate-600"
             style={{ width: "auto", height: "auto" }}
           >
-            Assurance et assistance 24h/7j inclues
+            Assurance et assistance 24h/7j incluses
           </div>
         </div>
       </div>
@@ -248,10 +244,7 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col justify-center mx-80 mb-20 mt-40">
-        <div
-          className={`${lobster.className} text-4xl font-semibold  `}
-          style={{ width: "50%" }}
-        >
+        <div className={`font-lobster text-4xl   `} style={{ width: "50%" }}>
           Découvrez notre vidéo de présentation
         </div>
         <div className="mt-2 mb-12 text-xl text-neutral-500">
