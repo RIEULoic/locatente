@@ -3,8 +3,8 @@ import Image from "next/image";
 export default function AgencyCard({ agency }) {
   return (
     agency && (
-      <div className="card  bg-neutral-100  mb-10 ">
-        <figure className="h-[160px]  agency-card-image ">
+      <div className="card agency-card bg-neutral-100  mb-10 ">
+        <figure className="h-[160px]   ">
           <Image
             src={`${agency.image.url}`}
             alt={agency.city}
@@ -15,7 +15,7 @@ export default function AgencyCard({ agency }) {
         </figure>
 
         <div className="card-body p-2 ">
-          <h2 className="card-title mb-4 justify-center">{agency.city}</h2>
+          <div className="card-title mb-4 justify-center">{agency.city}</div>
         </div>
       </div>
     )

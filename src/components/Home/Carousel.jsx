@@ -1,7 +1,6 @@
 "use client";
 import { useEffect } from "react";
 import { register } from "swiper/element/bundle";
-import { lobster } from "@/app/fonts";
 import CarCard from "./CarCard";
 import AgencyCard from "./AgencyCard";
 import Link from "next/link";
@@ -16,7 +15,7 @@ export default function Carousel({ carCarousel, carList, agencyList }) {
     <div className="mt-40 mx-80">
       <div className=" mb-12 flex justify-between">
         <div className="flex flex-col">
-          <div className={`text-4xl font-semibold ${lobster.className}`}>
+          <div className="text-4xl  font-lobster">
             {carCarousel ? "Nos Véhicules Aménagés" : "Nos Agences"}
           </div>
           <div className="mt-2 text-xl text-neutral-500">
@@ -50,7 +49,9 @@ export default function Carousel({ carCarousel, carList, agencyList }) {
                 .map((vehicle) => {
                   return (
                     <swiper-slide key={vehicle.id}>
-                      <CarCard vehicle={vehicle} />
+                      <Link href={`/cars/${vehicle.id}`}>
+                        <CarCard vehicle={vehicle} />
+                      </Link>
                     </swiper-slide>
                   );
                 })

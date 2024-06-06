@@ -1,22 +1,26 @@
 import Image from "next/image";
+import Link from "next/link";
+import BadgePic from "./BadgePic";
 
 export default function AgencyCarCard({ vehicle }) {
   //console.log(vehicle);
   return (
     <div className="card card-side bg-base-100 shadow-xl mb-10 h-96">
       <div className="h-96 w-full relative ">
-        <figure>
+        <figure className="relative h-96 ">
+          <BadgePic />
           <Image
-            className="rounded-l-2xl"
+            className="rounded-l-2xl "
             src={vehicle.image.url}
             alt="Carte de visite d'un van"
             fill
+            //sizes va me servir pour le responsive. Il faudra le modifier en fonction de la taille de l'écran
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </figure>
       </div>
       <div className="card-body  max-w-7xl">
-        <h2 className="card-title mb-6 text-2xl">{vehicle.name}</h2>
+        <div className="card-title mb-6 text-2xl">{vehicle.name}</div>
         <div className="flex">
           {[
             {
@@ -73,9 +77,11 @@ export default function AgencyCarCard({ vehicle }) {
             Location à partir de{" "}
             <span className="font-bold">{vehicle.price} €</span> par jour
           </p>
-          <button className="btn border-zinc-300 bg-zinc-200 mr-10">
-            VOIR
-          </button>
+          <Link href={`/cars/${vehicle.id}`}>
+            <button className="btn bg-violet-500 border-violet-600 mr-10">
+              VOIR
+            </button>
+          </Link>
         </div>
       </div>
     </div>

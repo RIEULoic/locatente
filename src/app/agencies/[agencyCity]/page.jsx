@@ -1,16 +1,12 @@
 "use client";
 
 import { GoogleMapsEmbed } from "@next/third-parties/google";
-
 import { request, gql } from "graphql-request";
 import { useEffect, useState, Suspense } from "react";
-
+import Link from "next/link";
 import Image from "next/image";
 import RentalFormContainer from "@/components/Home/RentalFormContainer";
-import { lobster } from "@/app/fonts";
 import AgencyCarCard from "@/components/AgencyCarCard";
-import ScrollToTopButton from "@/components/ScrollTopButton";
-import PopupWarning from "@/components/PopupWarning";
 
 export default function Page({ params }) {
   const [dataAgency, setDataAgency] = useState(null);
@@ -129,7 +125,7 @@ export default function Page({ params }) {
   };
 
   useEffect(() => {
-    //console.log(params);
+    console.log(params);
     fetchAgency();
   }, []);
 
@@ -199,8 +195,6 @@ export default function Page({ params }) {
 
   return (
     <>
-      <PopupWarning />
-      <ScrollToTopButton />
       <div className="h-screen relative">
         <div className="h-4/6 mx-10 relative mt-[104px] grid grid-rows-5 grid-cols-2 pt-10   ">
           <div className=" row-span-1 col-span-1 "></div>
@@ -219,9 +213,7 @@ export default function Page({ params }) {
             </div>
           </div>
           <div className=" row-span-3  col-span-1 ">
-            <div
-              className={`${lobster.className} text-5xl text-center font-bold`}
-            >
+            <div className="font-lobster text-5xl text-center ">
               Louez votre véhicule aménagé à {dataAgency.agency.city} !
             </div>
             <div className="flex flex-col  items-center p-14">
@@ -356,8 +348,8 @@ export default function Page({ params }) {
             Rechercher
           </button>
         </div>
-        {filteredVehicles.map((vehicle, index) => (
-          <div key={index}>
+        {filteredVehicles.map((vehicle) => (
+          <div key={vehicle.id}>
             <AgencyCarCard vehicle={vehicle} />
           </div>
         ))}
