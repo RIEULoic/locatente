@@ -1,5 +1,5 @@
 import { useNavbarState } from "@/context/NavbarStateContext";
-import RentalForm from "../RentalForm";
+import RentalForm from "./RentalForm";
 
 function RentalFormContainer() {
   const { isRentalFormContainerExpanded } = useNavbarState();
