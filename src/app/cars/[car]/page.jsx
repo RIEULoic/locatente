@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import { request, gql } from "graphql-request";
 import Image from "next/image";
 import BadgePic from "@/components/BadgePic";
+import Carousel from "@/components/Carousel";
 
 export default function Car(params) {
   const [dataCar, setDataCar] = useState(null);
+  const [dataRelatedAgencies, setDataRelatedAgencies] = useState([]);
 
   const fetchCar = async () => {
     const query = gql`
@@ -45,15 +47,42 @@ export default function Car(params) {
     }
   };
 
+  const fetchAgencies = async (carName) => {
+    const query = gql`
+    query ReferedAgencies {
+  agencies(where: {vehicles_some: {name: "${carName}"}}) {
+    city
+    id
+    image {
+      url
+    }
+  }}`;
+    try {
+      const data = await request(
+        "https://api-ap-south-1.hygraph.com/v2/clu3n13wt0dsm07upg0ccd3nh/master",
+        query
+      );
+      setDataRelatedAgencies(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     fetchCar();
   }, []);
 
-  // useEffect(() => {
-  //   if (dataCar && dataCar.vehicle) {
-  //     console.log(dataCar.vehicle.brand);
-  //   }
-  // }, [dataCar]);
+  useEffect(() => {
+    if (dataCar && dataCar.vehicle) {
+      fetchAgencies(dataCar.vehicle.name);
+    }
+  }, [dataCar]);
+
+  useEffect(() => {
+    if (dataRelatedAgencies) {
+      console.log(dataRelatedAgencies.agencies);
+    }
+  }, [dataRelatedAgencies]);
 
   if (!dataCar || !dataCar.vehicle) {
     return (
@@ -158,7 +187,7 @@ export default function Car(params) {
                   //console.log(item.feature);
                   return (
                     <div key={index} className="icon-flex-container !mb-2">
-                    {/* Obligé de mettre !mb-2 pour que la marge définie dans icon-flex-container (margin-bottom: 40px) soit supprimée et remplacée par mb-2. Si je mets seulement mb-2, ça ne fonctionne pas, la marge est tjrs de 40px. */}
+                      {/* Obligé de mettre !mb-2 pour que la marge définie dans icon-flex-container (margin-bottom: 40px) soit supprimée et remplacée par mb-2. Si je mets seulement mb-2, ça ne fonctionne pas, la marge est tjrs de 40px. */}
                       <Image
                         src={item.icon}
                         alt={item.alt}
@@ -190,66 +219,126 @@ export default function Car(params) {
                 </p>
               </div>
               <div className="border-t-[1px]">
-              <div className="w-[35rem] my-10">
-                <div className="font-medium text-xl mb-4">Dimensions</div>
-                <div className="flex justify-between text-gray-700">
-                  <div>
-                    Longueur: 5.99 m <br /> 
-                    Largeur: 2.08 m <br />
-                    Hauteur: 2.65 m <br />
-                    Hauteur intérieure : 1.90 m
-                  </div>
-                  <div>
-                    Empattement: 4035 mm <br />
-                    Nombre de sièges: {dataCar.vehicle.features.seats} <br />
-                    Poids à vide: 2755 kg
-                  </div>
-                </div>
-              </div>
-              </div>
-               <div className="border-t-[1px]">
-              <div className="w-[42.5rem] my-10">
-                <div className="font-medium text-xl mb-4">Équipements</div>
-                <div className="flex justify-between text-gray-700">
-                  <div>
-                    Airbags doubles <br /> 
-                    Système d'assistance au stationnement<br />
-                    Sièges chauffants<br />
-                    Combi 4 chauffages<br/> 
-                    Climatisation <br />
-                    Pré-installation radio <br />
-                    Porte-gobelets
-                  </div>
-                  <div>
-                    Régulateur de vitesse<br />
-                    ABS - système de freinage anti-blocage <br />
-                    Start & Stop <br/>
-                    Assistance au freinage post-collision <br />
-                    Alternateur renforcé de 220 A
+                <div className="w-[35rem] my-10">
+                  <div className="font-medium text-xl mb-4">Dimensions</div>
+                  <div className="flex justify-between text-gray-700">
+                    <div>
+                      Longueur: 5.99 m <br />
+                      Largeur: 2.08 m <br />
+                      Hauteur: 2.65 m <br />
+                      Hauteur intérieure : 1.90 m
+                    </div>
+                    <div>
+                      Empattement: 4035 mm <br />
+                      Nombre de sièges: {dataCar.vehicle.features.seats} <br />
+                      Poids à vide: 2755 kg
+                    </div>
                   </div>
                 </div>
               </div>
-              </div>
-               <div className="border-t-[1px]">
-              <div className="w-[42.5rem] my-10">
-                <div className="font-medium text-xl mb-4">Performances</div>
-                <div className="flex justify-between text-gray-700">
-                  <div>
-                    Consommation de carburant : 10 L/100 km <br /> 
-                    Émissions de CO2 : 173 g/km
-                  </div>
-                  <div>
-                    Norme d'émission : EU6.2 (C et D-Temp)<br />
-                    Vitesse maximale : 153 km/h
-                  
+              <div className="border-t-[1px]">
+                <div className="w-[42.5rem] my-10">
+                  <div className="font-medium text-xl mb-4">Équipements</div>
+                  <div className="flex justify-between text-gray-700">
+                    <div>
+                      Airbags doubles <br />
+                      Système d'assistance au stationnement
+                      <br />
+                      Sièges chauffants
+                      <br />
+                      Combi 4 chauffages
+                      <br />
+                      Climatisation <br />
+                      Pré-installation radio <br />
+                      Porte-gobelets
+                    </div>
+                    <div>
+                      Régulateur de vitesse
+                      <br />
+                      ABS - système de freinage anti-blocage <br />
+                      Start & Stop <br />
+                      Assistance au freinage post-collision <br />
+                      Alternateur renforcé de 220 A
+                    </div>
                   </div>
                 </div>
-              </div>    
-              </div>         
+              </div>
+              <div className="border-t-[1px]">
+                <div className="w-[42.5rem] my-10">
+                  <div className="font-medium text-xl mb-4">Performances</div>
+                  <div className="flex justify-between text-gray-700">
+                    <div>
+                      Consommation de carburant : 10 L/100 km <br />
+                      Émissions de CO2 : 173 g/km
+                    </div>
+                    <div>
+                      Norme d'émission : EU6.2 (C et D-Temp)
+                      <br />
+                      Vitesse maximale : 153 km/h
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="col-span-1 border-2 border-red-500">
-              <p>EN COURS DE CONSTRUCTION</p>
+            <div className="col-span-1 ">
+              <div className="card  bg-neutral-100 shadow-xl sticky top-[115px]">
+                <div className="card-body">
+                  <div className="card-title">
+                    À partir de {dataCar.vehicle.price}€ par jour
+                  </div>
+                  <ul>
+                    {[
+                      "Kilométrage illimité inclus",
+                      "Kit cuisine inclus",
+                      "Table et chaises d'extérieur incluses",
+                      "Forfait d'assurance standard inclus",
+                    ].map((item, index) => {
+                      return (
+                        <li className="flex items-center" key={index}>
+                          <svg
+                            stroke="currentColor"
+                            fill="currentColor"
+                            stroke-width="0"
+                            viewBox="0 0 512 512"
+                            color="black"
+                            height="1em"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                            style={{ color: `black` }}
+                          >
+                            <path
+                              fill="none"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="32"
+                              d="M416 128L192 384l-96-96"
+                            ></path>
+                          </svg>
+                          <div className="ml-1">{item}</div>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <div className="w-[66vw] overflow-hidden">
+          <div className="border-t-[1px]">
+            {!dataRelatedAgencies.agencies ? (
+              <div className="flex justify-center">
+                <div className="loading loading-spinner loading-lg"></div>
+              </div>
+            ) : (
+              <Carousel
+                carCarousel={false}
+                referedAgencies={true}
+                agencyList={dataRelatedAgencies.agencies}
+              />
+            )}
           </div>
         </div>
       </div>

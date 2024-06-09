@@ -6,7 +6,7 @@ import Image from "next/image";
 import { lobster, local } from "@/app/fonts";
 import Loading from "@/components/Loading";
 import Hero from "@/components/Home/Hero";
-import Carousel from "@/components/Home/Carousel";
+import Carousel from "@/components/Carousel";
 import VideoComponent from "./ui/VideoComponent";
 
 export default function Home() {

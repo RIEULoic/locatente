@@ -5,7 +5,7 @@ import { request, gql } from "graphql-request";
 import { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import RentalFormContainer from "@/components/Home/RentalFormContainer";
+import RentalFormContainer from "@/components/RentalFormContainer";
 import AgencyCarCard from "@/components/AgencyCarCard";
 
 export default function Page({ params }) {

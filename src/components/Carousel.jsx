@@ -1,26 +1,37 @@
 "use client";
 import { useEffect } from "react";
 import { register } from "swiper/element/bundle";
-import CarCard from "./CarCard";
-import AgencyCard from "./AgencyCard";
+import CarCard from "./Home/CarCard";
+import AgencyCard from "./Home/AgencyCard";
 import Link from "next/link";
 
-export default function Carousel({ carCarousel, carList, agencyList }) {
+export default function Carousel({
+  carCarousel,
+  carList,
+  agencyList,
+  referedAgencies,
+}) {
   useEffect(() => {
     register();
-    //console.log(agencyList);
+    //console.log(referedAgencies);
   }, []);
   // console.log(carCarousel);
   return (
-    <div className="mt-40 mx-80">
+    <div className={` ${referedAgencies ? "mt-16" : "mt-40 mx-80"} `}>
       <div className=" mb-12 flex justify-between">
         <div className="flex flex-col">
           <div className="text-4xl  font-lobster">
-            {carCarousel ? "Nos Véhicules Aménagés" : "Nos Agences"}
+            {carCarousel
+              ? "Nos Véhicules Aménagés"
+              : referedAgencies
+              ? "Ce modèle de véhicule est disponible dans les agences suivantes"
+              : "Nos Agences"}
           </div>
           <div className="mt-2 text-xl text-neutral-500">
             {carCarousel
               ? "Le modèle conçu selon vos envies"
+              : referedAgencies
+              ? ""
               : "Retrouvez-nous tout près de chez vous"}
           </div>
         </div>
@@ -37,7 +48,10 @@ export default function Carousel({ carCarousel, carList, agencyList }) {
         <swiper-container
           className="mySwiper"
           space-between="45"
-          slides-per-view={carCarousel ? "3.2" : "4.3"}
+          slides-per-view={
+            carCarousel ? "3.2" : referedAgencies ? "3.2" : "4.3"
+          }
+          // si referedAgencies est null ou undefined, il sera considéré comme false par javascript
           slides-per-group="2"
           number-of-slides="20"
           mousewheel="true"

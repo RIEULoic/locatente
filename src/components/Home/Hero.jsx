@@ -1,5 +1,5 @@
 import Image from "next/image";
-import RentalFormContainer from "./RentalFormContainer";
+import RentalFormContainer from "../RentalFormContainer";
 
 function Hero() {
   return (
