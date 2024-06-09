@@ -86,9 +86,21 @@ export default function Car(params) {
 
   if (!dataCar || !dataCar.vehicle) {
     return (
-      <div className="mt-[104px] flex justify-center">
-        <div className="loading loading-spinner loading-lg"></div>
-      </div>
+      <>
+        <div className="flex justify-center mt-[104px] mb-10">
+          <div className="w-[66vw] overflow-hidden">
+            <div className="grid grid-rows-2 grid-cols-3 gap-4">
+              <div className="row-span-2 col-span-2 mt-6 overflow-hidden skeleton  h-[550px]"></div>
+              <div className=" relative row-span-1 col-span-1 mt-6 overflow-hidden skeleton"></div>
+              <div className="relative row-span-1 col-span-1 overflow-hidden skeleton"></div>
+            </div>
+          </div>
+        </div>
+
+        <div className=" flex justify-center mb-40">
+          <div className="loading loading-spinner loading-lg"></div>
+        </div>
+      </>
     );
   }
 

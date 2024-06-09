@@ -188,8 +188,17 @@ export default function Page({ params }) {
 
   if (!dataAgency)
     return (
-      <div className="h-1/2 mt-[104px] flex justify-center">
-        <div className="loading loading-spinner loading-lg "></div>
+      <div className="h-screen relative">
+        <div className="h-4/6 mx-10 relative mt-[104px] grid grid-rows-5 grid-cols-2 pt-10   ">
+          <div className=" row-span-1 col-span-1 "></div>
+          <div className=" row-span-5 col-span-1 ">
+            <div className="skeleton rounded-3xl  w-full h-full relative"></div>
+          </div>
+          <div className=" row-span-1 col-span-1 "></div>
+          <div className="row-span-1  flex justify-center  ">
+            <div className="loading loading-spinner loading-lg"></div>
+          </div>
+        </div>
       </div>
     );
 
@@ -199,7 +208,7 @@ export default function Page({ params }) {
         <div className="h-4/6 mx-10 relative mt-[104px] grid grid-rows-5 grid-cols-2 pt-10   ">
           <div className=" row-span-1 col-span-1 "></div>
           <div className=" row-span-5 col-span-1 ">
-            <div className="skeleton rounded-3xl  w-full h-full relative">
+            <div className=" rounded-3xl  w-full h-full relative">
               <Image
                 src={dataAgency.agency.image.url}
                 alt={dataAgency.agency.city}

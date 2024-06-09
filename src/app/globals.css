@@ -63,19 +63,19 @@ body {
 .scrollToTopButton {
   cursor: default;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out; /*transition permet de lisser l'animation. Avec opacity 0.3s ease-in-out, l'opacité mettra 0.3s pour passer de 0 à 1 ou de 1 à 0*/
+  transform: scale(0.8);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /*transition permet de lisser l'animation. Avec opacity 0.3s ease-in-out, l'opacité mettra 0.3s pour passer de 0 à 1 ou de 1 à 0. Avec transform 0.3s ease-in-out, la transformation mettra 0.3s pour passer d'une échelle réduite à une échelle normale ou vice versa */
 }
 
 .btnVisible {
   cursor: pointer;
   opacity: 1;
-  transition: transform 0.3s ease-in-out;
   transform: scale(1); /* S'assure que l'échelle est normale par défaut */
 }
 
 .btnVisible:hover {
-  transition: transform 0.3s ease-in-out;
   transform: scale(1.2);
+  transition: transform 0.3s ease-in-out;
 }
 
 /*******************************************/
