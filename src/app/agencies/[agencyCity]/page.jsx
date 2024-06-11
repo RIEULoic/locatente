@@ -3,13 +3,20 @@
 import { GoogleMapsEmbed } from "@next/third-parties/google";
 import { request, gql } from "graphql-request";
 import { useEffect, useState, Suspense } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import RentalFormContainer from "@/components/RentalFormContainer";
 import AgencyCarCard from "@/components/AgencyCarCard";
+import CarsFilter from "@/components/CarsFilter";
 
 export default function Page({ params }) {
+  const handleDataFromCarsFilter = (data) => {
+    // console.log(data);
+    setDataFromCarsFilter(data);
+    setIsFiltering(true);
+  };
   const [dataAgency, setDataAgency] = useState(null);
+  const [dataFromCarsFilter, setDataFromCarsFilter] = useState([]);
+  const [isFiltering, setIsFiltering] = useState(false);
   const [filterValues, setFilterValues] = useState({
     brands: [],
     places: [],
@@ -125,7 +132,7 @@ export default function Page({ params }) {
   };
 
   useEffect(() => {
-    console.log(params);
+    // console.log(params);
     fetchAgency();
   }, []);
 
@@ -306,62 +313,29 @@ export default function Page({ params }) {
       </div>
 
       <div className="flex flex-col px-16" id="car-cards">
-        <div className="flex gap-12 mb-4">
-          {/*Object.entries(filterOptions) permet de transformer un objet en tableau de tableaux. Dans ce cas, on récupère les clés et les valeurs de l'objet filterOptions qui serait par exemple {Marque: ["Renault", "Peugeot"], Prix: ["Prix croissant", "Prix décroissant"], Places: ["2 places", "4 places"], Couchages: ["2 couchages", "4 couchages"]} et on les map pour créer un select pour chaque clé avec les valeurs associées. Ça donnera pour cette exemple un select pour Marque avec les options Renault et Peugeot, un select pour Prix avec les options Prix croissant et Prix décroissant, etc.*/}
-          {Object.entries(filterOptions).map(([name, options], index) => (
-            <select
-              className="select select-bordered w-full max-w-xs"
-              key={index}
-              defaultValue={name}
-              onChange={(e) => {
-                if (e.target.value === "Indifférent") {
-                  const { [name]: _, ...rest } = selectedFilters;
-                  // const { [name]: _, ...rest } = selectedFilters permet de supprimer la clé name de l'objet selectedFilters. Par exemple, si name vaut "Marque", ça donnera const { Marque: _, ...rest } = selectedFilters, ce qui revient à supprimer la clé Marque de selectedFilters. On stocke le reste des clés dans la variable rest. Ça permet de supprimer la clé name de selectedFilters sans avoir à connaître son nom à l'avance.
-                  setSelectedFilters(rest);
-                } else {
-                  setSelectedFilters({
-                    ...selectedFilters,
-                    [name]: e.target.value,
-                  });
-                }
-              }}
-            >
-              <option disabled>{name}</option>
-              <option className="font-semibold">Indifférent</option>
-
-              {options.map((option, index) => (
-                <option key={index} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          ))}
-          {checkboxOptions.map((name, index) => (
-            <label className="flex items-center space-x-2" key={index}>
-              <form></form>
-              <input
-                type="checkbox"
-                className="checkbox  border-violet-600 [--chkbg:theme(colors.violet.500)]"
-                name={name}
-                checked={selectedFilters[name]}
-                onChange={handleCheckboxChange}
-              />
-              <span className="hover:cursor-pointer">{name}</span>
-            </label>
-          ))}
-
-          <button
-            className="btn bg-violet-500 border-violet-600  rounded-full"
-            onClick={handleSearchWithFilters}
-          >
-            Rechercher
-          </button>
-        </div>
-        {filteredVehicles.map((vehicle) => (
+        <CarsFilter data={dataAgency} onData={handleDataFromCarsFilter} />
+        {isFiltering === false
+          ? filteredVehicles.map((vehicle) => {
+              // console.log(dataFromCarsFilter);
+              return (
+                <div key={vehicle.id}>
+                  <AgencyCarCard vehicle={vehicle} />
+                </div>
+              );
+            })
+          : dataFromCarsFilter.map((vehicle) => {
+              // console.log(vehicle);
+              return (
+                <div key={vehicle.id}>
+                  <AgencyCarCard vehicle={vehicle} />
+                </div>
+              );
+            })}
+        {/* {dataFromCarsFilter.map((vehicle) => (
           <div key={vehicle.id}>
             <AgencyCarCard vehicle={vehicle} />
           </div>
-        ))}
+        ))} */}
       </div>
       <div className="flex justify-center  mb-20 mt-20" id="map">
         <div className="w-2/5 h-1/2">
