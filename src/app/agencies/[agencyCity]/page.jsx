@@ -9,39 +9,16 @@ import AgencyCarCard from "@/components/AgencyCarCard";
 import CarsFilter from "@/components/CarsFilter";
 
 export default function Page({ params }) {
+  const [filteredVehicles, setFilteredVehicles] = useState(null);
+  const [dataAgency, setDataAgency] = useState(null);
+  const [dataFromCarsFilter, setDataFromCarsFilter] = useState([]);
+  const [isFiltering, setIsFiltering] = useState(false);
+
   const handleDataFromCarsFilter = (data) => {
     // console.log(data);
     setDataFromCarsFilter(data);
     setIsFiltering(true);
   };
-  const [dataAgency, setDataAgency] = useState(null);
-  const [dataFromCarsFilter, setDataFromCarsFilter] = useState([]);
-  const [isFiltering, setIsFiltering] = useState(false);
-  const [filterValues, setFilterValues] = useState({
-    brands: [],
-    places: [],
-    beds: [],
-  });
-  // filterValues correspond à l'objet qui contient les valeurs possibles pour les filtres Marque, Places et Couchages.
-
-  const [selectedFilters, setSelectedFilters] = useState([]);
-  // selectedFilters correspond à l'objet qui contient les filtres sélectionnés par l'utilisateur.
-
-  const [filteredVehicles, setFilteredVehicles] = useState([]);
-  // filteredVehicles correspond à la liste des véhicules filtrés par les filtres sélectionnés par l'utilisateur.
-
-  // const filterOptions correspond à l'objet qui contient les options possibles pour chaque filtre. Par exemple, pour le filtre Marque, on a les options ["Renault", "Peugeot",...], pour le filtre Prix, on a les options ["Prix croissant", "Prix décroissant"], etc.
-  const filterOptions = {
-    Marque: filterValues.brands,
-    Prix: ["Prix croissant", "Prix décroissant"],
-    Places: filterValues.places
-      .sort((a, b) => a - b)
-      .map((place) => `${place} places`),
-    Couchages: filterValues.beds
-      .sort((a, b) => a - b)
-      .map((bed) => `${bed} couchages`),
-  };
-  const checkboxOptions = ["Tente", "Frigo", "Eau", "WC"];
 
   const handleScrollToMap = () => {
     const mapDiv = document.getElementById("map");
@@ -105,27 +82,6 @@ export default function Page({ params }) {
       // console.log(data.agency.vehicles);
       setDataAgency(data);
       setFilteredVehicles(data.agency.vehicles);
-
-      const uniqueBrand = [
-        ...new Set(data.agency.vehicles.map((vehicle) => vehicle.brand)),
-      ];
-      // new Set permet de créer un objet Set qui ne contient que des valeurs uniques. Ensuite, on transforme cet objet Set en tableau avec [...]. On récupère les marques uniques des véhicules de l'agence.
-      const uniqueSeats = [
-        ...new Set(
-          data.agency.vehicles.map((vehicle) => vehicle.features.seats)
-        ),
-      ];
-      const uniqueBeds = [
-        ...new Set(
-          data.agency.vehicles.map((vehicle) => vehicle.features.beds)
-        ),
-      ];
-
-      setFilterValues({
-        brands: uniqueBrand,
-        places: uniqueSeats,
-        beds: uniqueBeds,
-      });
     } catch (error) {
       console.log(error);
     }
@@ -135,63 +91,6 @@ export default function Page({ params }) {
     // console.log(params);
     fetchAgency();
   }, []);
-
-  const handleSearchWithFilters = () => {
-    if (!dataAgency) return;
-
-    const filtered = dataAgency.agency.vehicles.filter((vehicle) => {
-      const filterByBrand = selectedFilters.Marque
-        ? vehicle.brand === selectedFilters.Marque
-        : true;
-
-      const filterBySeats = selectedFilters.Places
-        ? vehicle.features.seats === parseInt(selectedFilters.Places)
-        : true;
-
-      const filterByBeds = selectedFilters.Couchages
-        ? vehicle.features.beds === parseInt(selectedFilters.Couchages)
-        : true;
-
-      const filterByTent = selectedFilters.Tente ? vehicle.features.tent : true;
-
-      const filterByFridge = selectedFilters.Frigo
-        ? vehicle.features.fridge
-        : true;
-
-      const filterByWater = selectedFilters.Eau ? vehicle.features.water : true;
-
-      const filterByWC = selectedFilters.WC ? vehicle.features.wc : true;
-
-      return (
-        filterByBrand &&
-        filterBySeats &&
-        filterByBeds &&
-        filterByTent &&
-        filterByFridge &&
-        filterByWater &&
-        filterByWC
-      );
-    });
-
-    const sortedVehicles = selectedFilters.Prix
-      ? filtered.sort((a, b) => {
-          if (selectedFilters.Prix === "Prix croissant") {
-            return a.price - b.price;
-          } else if (selectedFilters.Prix === "Prix décroissant") {
-            return b.price - a.price;
-          }
-        })
-      : filtered;
-    setFilteredVehicles(sortedVehicles);
-  };
-
-  const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
-    setSelectedFilters((prevFilters) => ({
-      ...prevFilters,
-      [name]: checked,
-    }));
-  };
 
   if (!dataAgency)
     return (
