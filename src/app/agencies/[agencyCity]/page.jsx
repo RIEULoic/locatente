@@ -10,13 +10,13 @@ import CarsFilter from "@/components/CarsFilter";
 
 export default function Page({ params }) {
   const [filteredVehicles, setFilteredVehicles] = useState(null);
-  const [dataAgency, setDataAgency] = useState(null);
-  const [dataFromCarsFilter, setDataFromCarsFilter] = useState([]);
+  const [agencyData, setAgencyData] = useState(null);
+  const [carsFilterData, setCarsFilterData] = useState([]);
   const [isFiltering, setIsFiltering] = useState(false);
 
-  const handleDataFromCarsFilter = (data) => {
+  const handleVehiclesFilterData = (data) => {
     // console.log(data);
-    setDataFromCarsFilter(data);
+    setCarsFilterData(data);
     setIsFiltering(true);
   };
 
@@ -80,7 +80,7 @@ export default function Page({ params }) {
         query
       );
       // console.log(data.agency.vehicles);
-      setDataAgency(data);
+      setAgencyData(data);
       setFilteredVehicles(data.agency.vehicles);
     } catch (error) {
       console.log(error);
@@ -92,7 +92,7 @@ export default function Page({ params }) {
     fetchAgency();
   }, []);
 
-  if (!dataAgency)
+  if (!agencyData)
     return (
       <div className="h-screen relative">
         <div className="h-4/6 mx-10 relative mt-[104px] grid grid-rows-5 grid-cols-2 pt-10   ">
@@ -116,8 +116,8 @@ export default function Page({ params }) {
           <div className=" row-span-5 col-span-1 ">
             <div className=" rounded-3xl  w-full h-full relative">
               <Image
-                src={dataAgency.agency.image.url}
-                alt={dataAgency.agency.city}
+                src={agencyData.agency.image.url}
+                alt={agencyData.agency.city}
                 quality={50}
                 sizes="33vw"
                 fill
@@ -129,7 +129,7 @@ export default function Page({ params }) {
           </div>
           <div className=" row-span-3  col-span-1 ">
             <div className="font-lobster text-5xl text-center ">
-              Louez votre véhicule aménagé à {dataAgency.agency.city} !
+              Louez votre véhicule aménagé à {agencyData.agency.city} !
             </div>
             <div className="flex flex-col  items-center p-14">
               <div className="flex  mt-10 items-center ">
@@ -153,7 +153,7 @@ export default function Page({ params }) {
                   />
                 </svg>
                 <div className="ml-2 text-slate-600 text-xl">
-                  {dataAgency.agency.adress}
+                  {agencyData.agency.adress}
                 </div>
               </div>
 
@@ -183,7 +183,7 @@ export default function Page({ params }) {
                   style={{ width: "auto", height: "auto" }}
                 />
                 <div className="ml-4 text-slate-600 text-xl">
-                  {dataAgency.agency.tel}
+                  {agencyData.agency.tel}
                 </div>
               </div>
             </div>
@@ -212,17 +212,17 @@ export default function Page({ params }) {
       </div>
 
       <div className="flex flex-col px-16" id="car-cards">
-        <CarsFilter data={dataAgency} onData={handleDataFromCarsFilter} />
+        <CarsFilter data={agencyData} onData={handleVehiclesFilterData} />
         {isFiltering === false
           ? filteredVehicles.map((vehicle) => {
-              // console.log(dataFromCarsFilter);
+              // console.log(carsFilterData);
               return (
                 <div key={vehicle.id}>
                   <AgencyCarCard vehicle={vehicle} />
                 </div>
               );
             })
-          : dataFromCarsFilter.map((vehicle) => {
+          : carsFilterData.map((vehicle) => {
               // console.log(vehicle);
               return (
                 <div key={vehicle.id}>
@@ -230,7 +230,7 @@ export default function Page({ params }) {
                 </div>
               );
             })}
-        {/* {dataFromCarsFilter.map((vehicle) => (
+        {/* {carsFilterData.map((vehicle) => (
           <div key={vehicle.id}>
             <AgencyCarCard vehicle={vehicle} />
           </div>
@@ -245,7 +245,7 @@ export default function Page({ params }) {
                 width={800}
                 height={400}
                 mode="place"
-                q={dataAgency.agency.adress}
+                q={agencyData.agency.adress}
               />
             </div>
           </Suspense>

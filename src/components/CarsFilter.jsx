@@ -3,15 +3,15 @@
 import { useState, useEffect } from "react";
 
 export default function CarsFilter(params) {
-  const [filterValues, setFilterValues] = useState({
+  const [filterCriteria, setFilterCriteria] = useState({
     brands: [],
     places: [],
     beds: [],
   });
-  // filterValues correspond à l'objet qui contient les valeurs possibles pour les filtres Marque, Places et Couchages.
+  // filterCriteria correspond à l'objet qui contient les valeurs possibles pour les filtres Marque, Places et Couchages.
 
-  const [selectedFilters, setSelectedFilters] = useState([]);
-  // selectedFilters correspond à l'objet qui contient les filtres sélectionnés par l'utilisateur.
+  const [chosenFilters, setChosenFilters] = useState([]);
+  // chosenFilters correspond à l'objet qui contient les filtres sélectionnés par l'utilisateur.
 
   const [filteredVehicles, setFilteredVehicles] = useState(
     params.data.agency.vehicles
@@ -20,12 +20,12 @@ export default function CarsFilter(params) {
 
   // const filterOptions correspond à l'objet qui contient les options possibles pour chaque filtre. Par exemple, pour le filtre Marque, on a les options ["Renault", "Peugeot",...], pour le filtre Prix, on a les options ["Prix croissant", "Prix décroissant"], etc.
   const filterOptions = {
-    Marque: filterValues.brands,
+    Marque: filterCriteria.brands,
     Prix: ["Prix croissant", "Prix décroissant"],
-    Places: filterValues.places
+    Places: filterCriteria.places
       .sort((a, b) => a - b)
       .map((place) => `${place} places`),
-    Couchages: filterValues.beds
+    Couchages: filterCriteria.beds
       .sort((a, b) => a - b)
       .map((bed) => `${bed} couchages`),
   };
@@ -54,7 +54,7 @@ export default function CarsFilter(params) {
         ),
       ];
 
-      setFilterValues({
+      setFilterCriteria({
         brands: uniqueBrand,
         places: uniqueSeats,
         beds: uniqueBeds,
@@ -66,27 +66,27 @@ export default function CarsFilter(params) {
     if (!params.data) return;
 
     const filtered = params.data.agency.vehicles.filter((vehicle) => {
-      const filterByBrand = selectedFilters.Marque
-        ? vehicle.brand === selectedFilters.Marque
+      const filterByBrand = chosenFilters.Marque
+        ? vehicle.brand === chosenFilters.Marque
         : true;
 
-      const filterBySeats = selectedFilters.Places
-        ? vehicle.features.seats === parseInt(selectedFilters.Places)
+      const filterBySeats = chosenFilters.Places
+        ? vehicle.features.seats === parseInt(chosenFilters.Places)
         : true;
 
-      const filterByBeds = selectedFilters.Couchages
-        ? vehicle.features.beds === parseInt(selectedFilters.Couchages)
+      const filterByBeds = chosenFilters.Couchages
+        ? vehicle.features.beds === parseInt(chosenFilters.Couchages)
         : true;
 
-      const filterByTent = selectedFilters.Tente ? vehicle.features.tent : true;
+      const filterByTent = chosenFilters.Tente ? vehicle.features.tent : true;
 
-      const filterByFridge = selectedFilters.Frigo
+      const filterByFridge = chosenFilters.Frigo
         ? vehicle.features.fridge
         : true;
 
-      const filterByWater = selectedFilters.Eau ? vehicle.features.water : true;
+      const filterByWater = chosenFilters.Eau ? vehicle.features.water : true;
 
-      const filterByWC = selectedFilters.WC ? vehicle.features.wc : true;
+      const filterByWC = chosenFilters.WC ? vehicle.features.wc : true;
 
       return (
         filterByBrand &&
@@ -99,11 +99,11 @@ export default function CarsFilter(params) {
       );
     });
 
-    const sortedVehicles = selectedFilters.Prix
+    const sortedVehicles = chosenFilters.Prix
       ? filtered.sort((a, b) => {
-          if (selectedFilters.Prix === "Prix croissant") {
+          if (chosenFilters.Prix === "Prix croissant") {
             return a.price - b.price;
-          } else if (selectedFilters.Prix === "Prix décroissant") {
+          } else if (chosenFilters.Prix === "Prix décroissant") {
             return b.price - a.price;
           }
         })
@@ -114,7 +114,7 @@ export default function CarsFilter(params) {
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
-    setSelectedFilters((prevFilters) => ({
+    setChosenFilters((prevFilters) => ({
       ...prevFilters,
       [name]: checked,
     }));
@@ -130,12 +130,12 @@ export default function CarsFilter(params) {
           defaultValue={name}
           onChange={(e) => {
             if (e.target.value === "Indifférent") {
-              const { [name]: _, ...rest } = selectedFilters;
-              // const { [name]: _, ...rest } = selectedFilters permet de supprimer la clé name de l'objet selectedFilters. Par exemple, si name vaut "Marque", ça donnera const { Marque: _, ...rest } = selectedFilters, ce qui revient à supprimer la clé Marque de selectedFilters. On stocke le reste des clés dans la variable rest. Ça permet de supprimer la clé name de selectedFilters sans avoir à connaître son nom à l'avance.
-              setSelectedFilters(rest);
+              const { [name]: _, ...rest } = chosenFilters;
+              // const { [name]: _, ...rest } = chosenFilters permet de supprimer la clé name de l'objet chosenFilters. Par exemple, si name vaut "Marque", ça donnera const { Marque: _, ...rest } = chosenFilters, ce qui revient à supprimer la clé Marque de chosenFilters. On stocke le reste des clés dans la variable rest. Ça permet de supprimer la clé name de chosenFilters sans avoir à connaître son nom à l'avance.
+              setChosenFilters(rest);
             } else {
-              setSelectedFilters({
-                ...selectedFilters,
+              setChosenFilters({
+                ...chosenFilters,
                 [name]: e.target.value,
               });
             }
@@ -158,7 +158,7 @@ export default function CarsFilter(params) {
             type="checkbox"
             className="checkbox  border-violet-600 [--chkbg:theme(colors.violet.500)]"
             name={name}
-            checked={selectedFilters[name]}
+            checked={chosenFilters[name]}
             onChange={handleCheckboxChange}
           />
           <span className="hover:cursor-pointer">{name}</span>
