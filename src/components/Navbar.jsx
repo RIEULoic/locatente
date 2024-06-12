@@ -31,7 +31,8 @@ const Navbar = () => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    //{passive: true} pour améliorer les performances. J'ai rajouter ça car je prends des warnings de partout en console. Du genre "Added non-passive event listener to a scroll-blocking 'touchstart' event. Consider marking event handler as 'passive' to make the page more responsive. See https://www.chromestatus.com/feature/5745543795965952". Mais visiblement, c'est swiper qui fout la merde
 
     return () => {
       window.removeEventListener("scroll", handleScroll);

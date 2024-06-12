@@ -310,7 +310,7 @@ export default function Car(params) {
                           <svg
                             stroke="currentColor"
                             fill="currentColor"
-                            stroke-width="0"
+                            strokeWidth="0"
                             viewBox="0 0 512 512"
                             color="black"
                             height="1em"
@@ -320,9 +320,9 @@ export default function Car(params) {
                           >
                             <path
                               fill="none"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="32"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="32"
                               d="M416 128L192 384l-96-96"
                             ></path>
                           </svg>
