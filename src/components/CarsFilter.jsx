@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-export default function CarsFilter(params) {
+export default function CarsFilter({ data, onData }) {
   const [filterCriteria, setFilterCriteria] = useState({
     brands: [],
     places: [],
@@ -13,9 +13,7 @@ export default function CarsFilter(params) {
   const [chosenFilters, setChosenFilters] = useState([]);
   // chosenFilters correspond à l'objet qui contient les filtres sélectionnés par l'utilisateur.
 
-  const [filteredVehicles, setFilteredVehicles] = useState(
-    params.data.agency.vehicles
-  );
+  const [filteredVehicles, setFilteredVehicles] = useState(data);
   // filteredVehicles correspond à la liste des véhicules filtrés par les filtres sélectionnés par l'utilisateur.
 
   // const filterOptions correspond à l'objet qui contient les options possibles pour chaque filtre. Par exemple, pour le filtre Marque, on a les options ["Renault", "Peugeot",...], pour le filtre Prix, on a les options ["Prix croissant", "Prix décroissant"], etc.
@@ -32,26 +30,19 @@ export default function CarsFilter(params) {
   const checkboxOptions = ["Tente", "Frigo", "Eau", "WC"];
 
   useEffect(() => {
-    //console.log(params.data.agency);
-    setFilteredVehicles(params.data.agency.vehicles);
+    setFilteredVehicles(data);
   }, []);
 
   useEffect(() => {
     if (filteredVehicles) {
       //console.log(filteredVehicles);
-      const uniqueBrand = [
-        ...new Set(params.data.agency.vehicles.map((vehicle) => vehicle.brand)),
-      ];
+      const uniqueBrand = [...new Set(data.map((vehicle) => vehicle.brand))];
       // new Set permet de créer un objet Set qui ne contient que des valeurs uniques. Ensuite, on transforme cet objet Set en tableau avec [...]. On récupère les marques uniques des véhicules de l'agence.
       const uniqueSeats = [
-        ...new Set(
-          params.data.agency.vehicles.map((vehicle) => vehicle.features.seats)
-        ),
+        ...new Set(data.map((vehicle) => vehicle.features.seats)),
       ];
       const uniqueBeds = [
-        ...new Set(
-          params.data.agency.vehicles.map((vehicle) => vehicle.features.beds)
-        ),
+        ...new Set(data.map((vehicle) => vehicle.features.beds)),
       ];
 
       setFilterCriteria({
@@ -63,9 +54,9 @@ export default function CarsFilter(params) {
   }, [filteredVehicles]);
 
   const handleSearchWithFilters = () => {
-    if (!params.data) return;
+    if (!data) return;
 
-    const filtered = params.data.agency.vehicles.filter((vehicle) => {
+    const filtered = data.filter((vehicle) => {
       const filterByBrand = chosenFilters.Marque
         ? vehicle.brand === chosenFilters.Marque
         : true;
@@ -109,7 +100,7 @@ export default function CarsFilter(params) {
         })
       : filtered;
     // setFilteredVehicles(sortedVehicles);
-    params.onData(sortedVehicles);
+    onData(sortedVehicles);
   };
 
   const handleCheckboxChange = (e) => {

@@ -36,11 +36,15 @@ export default function Carousel({
           </div>
         </div>
         <div>
-          <button className="btn border-zinc-300 bg-zinc-200 m-2 rounded-full">
-            {carCarousel
-              ? "Voir tout nos véhicules"
-              : "Voir toutes nos agences"}
-          </button>
+          {carCarousel ? (
+            <Link href="/cars">
+              <button className="btn bg-violet-500 border-violet-600 m-2 rounded-full">
+                Voir tous nos véhicules
+              </button>
+            </Link>
+          ) : (
+            "Voir toutes nos agences"
+          )}
         </div>
       </div>
 
