@@ -4,7 +4,6 @@ import { register } from "swiper/element/bundle";
 import CarCard from "./Home/CarCard";
 import AgencyCard from "./Home/AgencyCard";
 import Link from "next/link";
-import ButtonPassingProps from "./ButtonPassingProps";
 
 export default function Carousel({
   carCarousel,
@@ -39,9 +38,9 @@ export default function Carousel({
         <div>
           {carCarousel ? (
             <Link href="/cars">
-              <ButtonPassingProps carList={carList}>
-                Voir tout nos véhicules
-              </ButtonPassingProps>
+              <button className="btn bg-violet-500 border-violet-600 m-2 rounded-full">
+                Voir tous nos véhicules
+              </button>
             </Link>
           ) : (
             "Voir toutes nos agences"

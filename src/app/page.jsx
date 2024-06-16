@@ -1,10 +1,10 @@
 "use client";
 import { request, gql } from "graphql-request";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Image from "next/image";
 import { lobster, local } from "@/app/fonts";
-import Loading from "@/components/Loading";
+
 import Hero from "@/components/Home/Hero";
 import Carousel from "@/components/Carousel";
 import VideoComponent from "./ui/VideoComponent";
@@ -12,8 +12,6 @@ import VideoComponent from "./ui/VideoComponent";
 export default function Home() {
   const [carList, setCarList] = useState([]);
   const [agencyList, setAgencyList] = useState([]);
-  const [isCarListLoading, setIsCarListLoading] = useState(true);
-  const [isAgencyListLoading, setIsAgencyListLoading] = useState(true);
 
   const fetchVehicles = async () => {
     const query = gql`
@@ -52,7 +50,6 @@ export default function Home() {
       //console.log(data.vehicles);
       setCarList(data.vehicles);
       //console.log(carList);
-      setIsCarListLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -79,7 +76,6 @@ export default function Home() {
       //console.log(data.agencies);
       setAgencyList(data.agencies);
       //console.log(agencyList);
-      setIsAgencyListLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -227,20 +223,11 @@ export default function Home() {
         </div>
       </div>
       <div>
-        {/* Apparement, <Suspense/> ne fonctionne pas. <Loading/> n'est jamais appelé. J'ai du mal à le croire (genre la connexion est tellement rapide que le fallback de <Suspense/> n'a pas le temps d'être utilisé) */}
-        <Suspense fallback={<Loading />}>
-          {!isCarListLoading && (
-            <Carousel carCarousel={true} carList={carList} />
-          )}
-        </Suspense>
+        <Carousel carCarousel={true} carList={carList} />
       </div>
 
       <div id="agencies">
-        <Suspense fallback={<Loading />}>
-          {!isAgencyListLoading && (
-            <Carousel carCarousel={false} agencyList={agencyList} />
-          )}
-        </Suspense>
+        <Carousel carCarousel={false} agencyList={agencyList} />
       </div>
 
       <div className="flex flex-col justify-center mx-80 mb-20 mt-40">
@@ -251,11 +238,9 @@ export default function Home() {
           Évadez-vous avec la vanlife
         </div>
         <div className="flex justify-center ">
-          <Suspense fallback={<div>Loading...</div>}>
-            <div className=" rounded-3xl overflow-hidden">
-              <VideoComponent />
-            </div>
-          </Suspense>
+          <div className=" rounded-3xl overflow-hidden">
+            <VideoComponent />
+          </div>
         </div>
       </div>
     </div>

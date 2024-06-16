@@ -79,7 +79,7 @@ export default function Page({ params }) {
         "https://api-ap-south-1.hygraph.com/v2/clu3n13wt0dsm07upg0ccd3nh/master",
         query
       );
-      // console.log(data.agency.vehicles);
+      // console.log(data);
       setAgencyData(data);
       setFilteredVehicles(data.agency.vehicles);
     } catch (error) {
@@ -91,6 +91,12 @@ export default function Page({ params }) {
     // console.log(params);
     fetchAgency();
   }, []);
+
+  // useEffect(() => {
+  //   if (agencyData !== null) {
+  //     console.log(agencyData.agency.vehicles);
+  //   }
+  // }, [agencyData]);
 
   if (!agencyData)
     return (
@@ -212,7 +218,10 @@ export default function Page({ params }) {
       </div>
 
       <div className="flex flex-col px-16" id="car-cards">
-        <CarsFilter data={agencyData} onData={handleVehiclesFilterData} />
+        <CarsFilter
+          data={agencyData.agency.vehicles}
+          onData={handleVehiclesFilterData}
+        />
         {isFiltering === false
           ? filteredVehicles.map((vehicle) => {
               // console.log(carsFilterData);
@@ -230,11 +239,6 @@ export default function Page({ params }) {
                 </div>
               );
             })}
-        {/* {carsFilterData.map((vehicle) => (
-          <div key={vehicle.id}>
-            <AgencyCarCard vehicle={vehicle} />
-          </div>
-        ))} */}
       </div>
       <div className="flex justify-center  mb-20 mt-20" id="map">
         <div className="w-2/5 h-1/2">
