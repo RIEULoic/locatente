@@ -2,7 +2,7 @@
 
 import { GoogleMapsEmbed } from "@next/third-parties/google";
 import { request, gql } from "graphql-request";
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import RentalFormContainer from "@/components/RentalFormContainer";
 import AgencyCarCard from "@/components/AgencyCarCard";
@@ -242,17 +242,15 @@ export default function Page({ params }) {
       </div>
       <div className="flex justify-center  mb-20 mt-20" id="map">
         <div className="w-2/5 h-1/2">
-          <Suspense fallback={<div>Loading...</div>}>
-            <div className=" rounded-3xl overflow-hidden">
-              <GoogleMapsEmbed
-                apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
-                width={800}
-                height={400}
-                mode="place"
-                q={agencyData.agency.adress}
-              />
-            </div>
-          </Suspense>
+          <div className=" rounded-3xl overflow-hidden">
+            <GoogleMapsEmbed
+              apiKey={process.env.NEXT_PUBLIC_GOOGLE_API_KEY}
+              width={800}
+              height={400}
+              mode="place"
+              q={agencyData.agency.adress}
+            />
+          </div>
         </div>
       </div>
     </>

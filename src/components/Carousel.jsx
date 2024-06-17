@@ -43,9 +43,11 @@ export default function Carousel({
               </button>
             </Link>
           ) : (
-            <button className="btn rounded-full m-2">
-              Voir toutes nos agences
-            </button>
+            <Link href="/agencies">
+              <button className="btn btn-active-color rounded-full m-2">
+                Voir toutes nos agences
+              </button>
+            </Link>
           )}
         </div>
       </div>
