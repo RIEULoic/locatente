@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useNavbarState } from "@/context/NavbarStateContext";
 import RentalForm from "./RentalForm";
 
@@ -40,11 +40,11 @@ const Navbar = () => {
   }, [isRentalFormContainerExpanded]);
   /*Pas clair cette histoire de dépendance */
 
-  const handleScrollToAgencies = () => {
-    // console.log("scrolling to agencies list");
-    const agenciesDiv = document.getElementById("agencies");
-    if (agenciesDiv) {
-      const offsetTop = agenciesDiv.offsetTop - 300;
+  const handleScrollToSection = (params) => {
+    const sectionDiv = document.getElementById(params);
+
+    if (sectionDiv) {
+      const offsetTop = sectionDiv.offsetTop - 300;
       window.scrollTo({
         top: offsetTop,
         behavior: "smooth",
@@ -52,8 +52,8 @@ const Navbar = () => {
     } else {
       router.push("/");
       setTimeout(() => {
-        const agenciesDiv = document.getElementById("agencies");
-        const offsetTop = agenciesDiv.offsetTop - 300;
+        const sectionDiv = document.getElementById(params);
+        const offsetTop = sectionDiv.offsetTop - 300;
         window.scrollTo({
           top: offsetTop,
           behavior: "smooth",
@@ -106,19 +106,31 @@ const Navbar = () => {
                   <div
                     tabIndex={0}
                     role="button"
-                    className="btn m-1 border-zinc-300 bg-zinc-200"
+                    className="btn m-1 btn-active-color"
                   >
                     Choisir un véhicule
                   </div>
                   <ul
                     tabIndex={0}
-                    className="dropdown-content z-[1] menu p-2  border-zinc-300 bg-zinc-200 rounded-box w-52"
+                    className="dropdown-content z-[1] menu p-2  btn-active-color rounded-box w-52"
                   >
-                    <li onClick={handleClick}>
-                      <a>Véhicules en location</a>
+                    {/* 
+                    We can't use <button> here because Safari has a bug that prevents the button from being   focused.
+                    <div role="button" tabindex="0"> is a workaround for this bug.
+                    It is accessible and works in all browsers. */}
+                    <li
+                      tabIndex={0}
+                      role="button"
+                      onClick={() => handleScrollToSection("rental-cars")}
+                    >
+                      <div>Véhicules en location</div>
                     </li>
-                    <li onClick={handleClick}>
-                      <a>Véhicules à la vente</a>
+                    <li
+                      tabIndex={0}
+                      role="button"
+                      onClick={() => handleScrollToSection("cars-for-sale")}
+                    >
+                      <div>Véhicules à la vente</div>
                     </li>
                   </ul>
                 </div>
@@ -128,13 +140,13 @@ const Navbar = () => {
                   <div
                     tabIndex={0}
                     role="button"
-                    className="btn m-1 bg-violet-500 border-violet-600"
+                    className="btn m-1 btn-active-color"
                   >
                     Agence de location
                   </div>
                   <ul
                     tabIndex={0}
-                    className="dropdown-content z-[1] menu p-2  border-zinc-300 bg-zinc-200 rounded-box w-52"
+                    className="dropdown-content z-[1] menu p-2 btn-active-color rounded-box w-52"
                   >
                     {/* 
                     We can't use <button> here because Safari has a bug that prevents the button from being   focused.
@@ -143,7 +155,7 @@ const Navbar = () => {
                     <li
                       tabIndex={0}
                       role="button"
-                      onClick={handleScrollToAgencies}
+                      onClick={() => handleScrollToSection("agencies")}
                     >
                       <div>Liste des agences</div>
                     </li>
@@ -155,7 +167,7 @@ const Navbar = () => {
                   <div
                     tabIndex={0}
                     role="button"
-                    className="btn m-1 border-zinc-300 bg-zinc-200"
+                    className="btn m-1 btn-active-color"
                   >
                     Équipement de camping
                   </div>

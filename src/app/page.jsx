@@ -93,7 +93,11 @@ export default function Home() {
       <div className="relative">
         <Hero />
       </div>
-      <div className="mx-auto mt-10 h-[80vh]" style={{ width: "50%" }}>
+      <div
+        id="cars-for-sale"
+        className="mx-auto mt-10 h-[80vh]"
+        style={{ width: "50%" }}
+      >
         <div
           className="hero items-start  rounded-box shadow-2xl "
           style={{
@@ -222,7 +226,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div>
+      <div id="rental-cars">
         <Carousel carCarousel={true} carList={carList} />
       </div>
 

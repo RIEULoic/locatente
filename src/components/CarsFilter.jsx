@@ -157,7 +157,7 @@ export default function CarsFilter({ data, onData }) {
       ))}
 
       <button
-        className="btn bg-violet-500 border-violet-600  rounded-full"
+        className="btn btn-active-color  rounded-full"
         onClick={handleSearchWithFilters}
       >
         Rechercher

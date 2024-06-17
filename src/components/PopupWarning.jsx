@@ -41,14 +41,15 @@ const PopupWarning = () => {
             <ul className="list-disc ml-5">
               <li>
                 Seuls les boutons de couleur{" "}
-                <span className="btn bg-violet-500 border-violet-600 hover:cursor-default text-lg">
+                <span className="btn btn-active-color hover:cursor-default text-lg">
                   violette
                 </span>{" "}
                 sont actifs.
               </li>
               <li>
-                Les carrousels des agences et des véhicules fonctionnent. Cliquez sur une
-                agence ou un véhicule pour accéder à la page de celui-ci.
+                Les carrousels des agences et des véhicules fonctionnent.
+                Cliquez sur une agence ou un véhicule pour accéder à la page de
+                celui-ci.
               </li>
               <li>
                 Vous pouvez cliquer sur les logos du site pour accéder à la page

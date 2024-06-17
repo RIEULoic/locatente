@@ -78,9 +78,7 @@ export default function AgencyCarCard({ vehicle }) {
             <span className="font-bold">{vehicle.price} €</span> par jour
           </p>
           <Link href={`/cars/${vehicle.id}`}>
-            <button className="btn bg-violet-500 border-violet-600 mr-10">
-              VOIR
-            </button>
+            <button className="btn btn-active-color mr-10">VOIR</button>
           </Link>
         </div>
       </div>

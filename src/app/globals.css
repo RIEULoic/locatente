@@ -28,6 +28,13 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
+.btn-active-color {
+  --tw-bg-opacity: 1;
+  background-color: rgb(139 92 246 / var(--tw-bg-opacity));
+  --tw-border-opacity: 1;
+  border-color: rgb(124 58 237 / var(--tw-border-opacity));
+}
+
 /*Pour appliquer un effet de flou à tout ce qui est derrière l'élément*/
 .blur-container {
   backdrop-filter: blur(10px);
