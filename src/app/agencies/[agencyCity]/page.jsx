@@ -196,13 +196,13 @@ export default function Page({ params }) {
           </div>
           <div className="row-span-1 col-span-1 flex justify-evenly">
             <button
-              className="btn bg-violet-500 border-violet-600 m-2 rounded-full"
+              className="btn btn-active-color m-2 rounded-full"
               onClick={handleScrollToMap}
             >
               Localiser sur la carte
             </button>
             <button
-              className="btn bg-violet-500 border-violet-600 m-2 rounded-full"
+              className="btn btn-active-color m-2 rounded-full"
               onClick={handleScrollToCarCards}
             >
               voir les véhicules dispo

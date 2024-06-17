@@ -38,12 +38,14 @@ export default function Carousel({
         <div>
           {carCarousel ? (
             <Link href="/cars">
-              <button className="btn bg-violet-500 border-violet-600 m-2 rounded-full">
+              <button className="btn btn-active-color m-2 rounded-full">
                 Voir tous nos véhicules
               </button>
             </Link>
           ) : (
-            "Voir toutes nos agences"
+            <button className="btn rounded-full m-2">
+              Voir toutes nos agences
+            </button>
           )}
         </div>
       </div>
