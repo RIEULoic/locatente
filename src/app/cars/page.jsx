@@ -47,7 +47,6 @@ const Page = () => {
       );
       //console.log(data.vehicles);
       setCarList(data.vehicles);
-      //console.log(carList);
 
       setFilteredVehicles(data.vehicles);
     } catch (error) {
