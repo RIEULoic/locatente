@@ -8,7 +8,7 @@ export default function CarCard({ vehicle }) {
   return (
     vehicle && (
       <div className="card car-card w-96 bg-neutral-100 shadow-xl mb-10 ">
-        <figure className="h-[200px] overflow-hidden">     
+        <figure className="h-[200px] overflow-hidden">
           <Image
             src={`${vehicle.image.url}`}
             alt="van"

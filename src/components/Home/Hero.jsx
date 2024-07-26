@@ -3,7 +3,10 @@ import RentalFormContainer from "../RentalFormContainer";
 
 function Hero() {
   return (
-    <div className="h-screen relative mt-[104px] z-40">
+    <div
+      className="h-screen relative mt-[104px] z-40 border-solid border-b-2"
+      style={{ borderColor: "#7C3AED" }}
+    >
       <div
         id="rental-form-container"
         className=" absolute bottom-0 left-1/2 -translate-x-1/2 mb-40 "
