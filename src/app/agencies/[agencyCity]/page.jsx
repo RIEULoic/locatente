@@ -216,29 +216,34 @@ export default function Page({ params }) {
           <RentalFormContainer />
         </div>
       </div>
-
-      <div className="flex flex-col px-16" id="car-cards">
-        <CarsFilter
-          data={agencyData.agency.vehicles}
-          onData={handleVehiclesFilterData}
-        />
-        {isFiltering === false
-          ? filteredVehicles.map((vehicle) => {
-              // console.log(carsFilterData);
-              return (
-                <div key={vehicle.id}>
-                  <AgencyCarCard vehicle={vehicle} />
-                </div>
-              );
-            })
-          : carsFilterData.map((vehicle) => {
-              // console.log(vehicle);
-              return (
-                <div key={vehicle.id}>
-                  <AgencyCarCard vehicle={vehicle} />
-                </div>
-              );
-            })}
+      <div className="flex justify-center">
+        <div
+          className="flex flex-col px-10 pt-10 pb-2 border-solid border-4 rounded-3xl"
+          style={{ borderColor: "#7C3AED", width: "98%" }}
+          id="car-cards"
+        >
+          <CarsFilter
+            data={agencyData.agency.vehicles}
+            onData={handleVehiclesFilterData}
+          />
+          {isFiltering === false
+            ? filteredVehicles.map((vehicle) => {
+                // console.log(carsFilterData);
+                return (
+                  <div key={vehicle.id}>
+                    <AgencyCarCard vehicle={vehicle} />
+                  </div>
+                );
+              })
+            : carsFilterData.map((vehicle) => {
+                // console.log(vehicle);
+                return (
+                  <div key={vehicle.id}>
+                    <AgencyCarCard vehicle={vehicle} />
+                  </div>
+                );
+              })}
+        </div>
       </div>
       <div className="flex justify-center  mb-20 mt-20" id="map">
         <div className="w-2/5 h-1/2">

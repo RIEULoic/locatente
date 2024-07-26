@@ -112,56 +112,61 @@ export default function CarsFilter({ data, onData }) {
   };
 
   return (
-    <div className="flex gap-12 mb-4">
-      {/*Object.entries(filterOptions) permet de transformer un objet en tableau de tableaux. Dans ce cas, on récupère les clés et les valeurs de l'objet filterOptions qui serait par exemple {Marque: ["Renault", "Peugeot"], Prix: ["Prix croissant", "Prix décroissant"], Places: ["2 places", "4 places"], Couchages: ["2 couchages", "4 couchages"]} et on les map pour créer un select pour chaque clé avec les valeurs associées. Ça donnera pour cette exemple un select pour Marque avec les options Renault et Peugeot, un select pour Prix avec les options Prix croissant et Prix décroissant, etc.*/}
-      {Object.entries(filterOptions).map(([name, options], index) => (
-        <select
-          className="select select-bordered w-full max-w-xs"
-          key={index}
-          defaultValue={name}
-          onChange={(e) => {
-            if (e.target.value === "Indifférent") {
-              const { [name]: _, ...rest } = chosenFilters;
-              // const { [name]: _, ...rest } = chosenFilters permet de supprimer la clé name de l'objet chosenFilters. Par exemple, si name vaut "Marque", ça donnera const { Marque: _, ...rest } = chosenFilters, ce qui revient à supprimer la clé Marque de chosenFilters. On stocke le reste des clés dans la variable rest. Ça permet de supprimer la clé name de chosenFilters sans avoir à connaître son nom à l'avance.
-              setChosenFilters(rest);
-            } else {
-              setChosenFilters({
-                ...chosenFilters,
-                [name]: e.target.value,
-              });
-            }
-          }}
+    <div
+      className="border-2 border-solid  p-4 mb-6 rounded-2xl"
+      style={{ borderColor: "#7C3AED" }}
+    >
+      <div className="flex gap-12 ">
+        {/*Object.entries(filterOptions) permet de transformer un objet en tableau de tableaux. Dans ce cas, on récupère les clés et les valeurs de l'objet filterOptions qui serait par exemple {Marque: ["Renault", "Peugeot"], Prix: ["Prix croissant", "Prix décroissant"], Places: ["2 places", "4 places"], Couchages: ["2 couchages", "4 couchages"]} et on les map pour créer un select pour chaque clé avec les valeurs associées. Ça donnera pour cette exemple un select pour Marque avec les options Renault et Peugeot, un select pour Prix avec les options Prix croissant et Prix décroissant, etc.*/}
+        {Object.entries(filterOptions).map(([name, options], index) => (
+          <select
+            className="select select-bordered w-full max-w-xs"
+            key={index}
+            defaultValue={name}
+            onChange={(e) => {
+              if (e.target.value === "Indifférent") {
+                const { [name]: _, ...rest } = chosenFilters;
+                // const { [name]: _, ...rest } = chosenFilters permet de supprimer la clé name de l'objet chosenFilters. Par exemple, si name vaut "Marque", ça donnera const { Marque: _, ...rest } = chosenFilters, ce qui revient à supprimer la clé Marque de chosenFilters. On stocke le reste des clés dans la variable rest. Ça permet de supprimer la clé name de chosenFilters sans avoir à connaître son nom à l'avance.
+                setChosenFilters(rest);
+              } else {
+                setChosenFilters({
+                  ...chosenFilters,
+                  [name]: e.target.value,
+                });
+              }
+            }}
+          >
+            <option disabled>{name}</option>
+            <option className="font-semibold">Indifférent</option>
+
+            {options.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        ))}
+        {checkboxOptions.map((name, index) => (
+          <label className="flex items-center space-x-2" key={index}>
+            <form></form>
+            <input
+              type="checkbox"
+              className="checkbox  border-violet-600 [--chkbg:theme(colors.violet.500)]"
+              name={name}
+              checked={chosenFilters[name]}
+              onChange={handleCheckboxChange}
+            />
+            <span className="hover:cursor-pointer">{name}</span>
+          </label>
+        ))}
+
+        <button
+          className="btn btn-active-color  rounded-full"
+          onClick={handleSearchWithFilters}
         >
-          <option disabled>{name}</option>
-          <option className="font-semibold">Indifférent</option>
-
-          {options.map((option, index) => (
-            <option key={index} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      ))}
-      {checkboxOptions.map((name, index) => (
-        <label className="flex items-center space-x-2" key={index}>
-          <form></form>
-          <input
-            type="checkbox"
-            className="checkbox  border-violet-600 [--chkbg:theme(colors.violet.500)]"
-            name={name}
-            checked={chosenFilters[name]}
-            onChange={handleCheckboxChange}
-          />
-          <span className="hover:cursor-pointer">{name}</span>
-        </label>
-      ))}
-
-      <button
-        className="btn btn-active-color  rounded-full"
-        onClick={handleSearchWithFilters}
-      >
-        Rechercher
-      </button>
+          Rechercher
+        </button>
+      </div>
     </div>
   );
 }

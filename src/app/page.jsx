@@ -99,13 +99,14 @@ export default function Home() {
         style={{ width: "50%" }}
       >
         <div
-          className="hero items-start  rounded-box shadow-2xl "
+          className="hero items-start  rounded-box shadow-2xl border-solid border-2"
           style={{
             backgroundImage: "url(/images/luminescent_sky.jpg)",
             height: "90%",
+            borderColor: "#7C3AED",
           }}
         >
-          <div className="hero-content text-center text-neutral-content mt-10">
+          <div className="hero-content text-center text-neutral-content mt-10 ">
             <div className="max-w-md">
               <div className="mb-10 text-5xl font-bold">
                 Achetez votre véhicule tout équipé
@@ -135,94 +136,114 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="flex justify-around mb-44">
-        <div className="flex flex-col items-center " style={{ width: "15%" }}>
-          <Image
-            src="/images/agency_icon.png"
-            alt="icon of agency building"
-            width={64}
-            height={64}
-            href="https://www.flaticon.com/free-icons/branch"
-          />
+      <div className="flex justify-center">
+        <div
+          className="flex  justify-center rounded-full border-solid border-2  py-8"
+          style={{ width: "95%", borderColor: "#7C3AED" }}
+        >
+          <div className="flex justify-around  ">
+            <div
+              className="flex flex-col items-center "
+              style={{ width: "15%" }}
+            >
+              <Image
+                src="/images/agency_icon.png"
+                alt="icon of agency building"
+                width={64}
+                height={64}
+                href="https://www.flaticon.com/free-icons/branch"
+              />
 
-          <div
-            className="text-xl my-5 font-bold"
-            style={{ width: "auto", height: "auto" }}
-          >
-            De Nombreuses Agences
-          </div>
-          <div
-            className=" text-center text-slate-600"
-            style={{ width: "auto", height: "auto" }}
-          >
-            10 agences à votre disposition pour être au plus proche de chez vous
-          </div>
-        </div>
-        <div className="flex flex-col items-center " style={{ width: "15%" }}>
-          <Image
-            src="/images/car_tent_icon.png"
-            alt="car icon with tent"
-            width={64}
-            height={64}
-            href="https://www.flaticon.com/free-icons/tent"
-          />
+              <div
+                className="text-xl my-5 font-bold"
+                style={{ width: "auto", height: "auto" }}
+              >
+                De Nombreuses Agences
+              </div>
+              <div
+                className=" text-center text-slate-600"
+                style={{ width: "auto", height: "auto" }}
+              >
+                10 agences à votre disposition pour être au plus proche de chez
+                vous
+              </div>
+            </div>
+            <div
+              className="flex flex-col items-center "
+              style={{ width: "15%" }}
+            >
+              <Image
+                src="/images/car_tent_icon.png"
+                alt="car icon with tent"
+                width={64}
+                height={64}
+                href="https://www.flaticon.com/free-icons/tent"
+              />
 
-          <div
-            className="text-xl my-5 font-bold"
-            style={{ width: "auto", height: "auto" }}
-          >
-            Louer Tout Équipé
-          </div>
-          <div
-            className="text-center text-slate-600"
-            style={{ width: "auto", height: "auto" }}
-          >
-            Tente de toit, accessoires de camping et appli smartphone inclus
-          </div>
-        </div>
+              <div
+                className="text-xl my-5 font-bold"
+                style={{ width: "auto", height: "auto" }}
+              >
+                Louer Tout Équipé
+              </div>
+              <div
+                className="text-center text-slate-600"
+                style={{ width: "auto", height: "auto" }}
+              >
+                Tente de toit, accessoires de camping et appli smartphone inclus
+              </div>
+            </div>
 
-        <div className="flex flex-col items-center " style={{ width: "15%" }}>
-          <Image
-            src="/images/odometer_icon.png"
-            alt="odometer icon"
-            width={64}
-            height={64}
-            href="https://www.flaticon.com/free-icons/kilometers"
-          />
+            <div
+              className="flex flex-col items-center "
+              style={{ width: "15%" }}
+            >
+              <Image
+                src="/images/odometer_icon.png"
+                alt="odometer icon"
+                width={64}
+                height={64}
+                href="https://www.flaticon.com/free-icons/kilometers"
+              />
 
-          <div
-            className="text-xl my-5 font-bold"
-            style={{ width: "auto", height: "auto" }}
-          >
-            Kilométrage illimité
-          </div>
-          <div
-            className="text-center text-slate-600"
-            style={{ width: "auto", height: "auto" }}
-          >
-            Partez à l'aventure sans vous soucier du kilométrage
-          </div>
-        </div>
-        <div className="flex flex-col items-center " style={{ width: "15%" }}>
-          <Image
-            src="/images/calm_icon.png"
-            alt="calm_icon"
-            width={64}
-            height={64}
-            href="https://www.flaticon.com/free-icons/calm"
-          />
+              <div
+                className="text-xl my-5 font-bold"
+                style={{ width: "auto", height: "auto" }}
+              >
+                Kilométrage illimité
+              </div>
+              <div
+                className="text-center text-slate-600"
+                style={{ width: "auto", height: "auto" }}
+              >
+                Partez à l'aventure sans vous soucier du kilométrage
+              </div>
+            </div>
+            <div
+              className="flex flex-col items-center "
+              style={{ width: "15%" }}
+            >
+              <Image
+                src="/images/calm_icon.png"
+                alt="calm_icon"
+                width={64}
+                height={64}
+                href="https://www.flaticon.com/free-icons/calm"
+              />
 
-          <div
-            className="text-xl my-5 font-bold"
-            style={{ width: "auto", height: "auto" }}
-          >
-            Partez En Toute Sérénité
-          </div>
-          <div
-            className="text-center text-slate-600"
-            style={{ width: "auto", height: "auto" }}
-          >
-            Assurance et assistance 24h/7j incluses
+              <div
+                className="text-xl my-5 font-bold"
+                style={{ width: "auto", height: "auto" }}
+              >
+                Partez En Toute Sérénité
+              </div>
+              <div
+                className="text-center text-slate-600"
+                style={{ width: "auto", height: "auto" }}
+              >
+                Assurance et assistance 24h/7j incluses
+              </div>
+            </div>
           </div>
         </div>
       </div>
