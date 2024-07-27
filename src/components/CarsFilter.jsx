@@ -114,7 +114,7 @@ export default function CarsFilter({ data, onData }) {
   return (
     <div
       className="border-2 border-solid  p-4 mb-6 rounded-2xl"
-      style={{ borderColor: "#7C3AED" }}
+      style={{ borderColor: "#E5E7EB" }}
     >
       <div className="flex gap-12 ">
         {/*Object.entries(filterOptions) permet de transformer un objet en tableau de tableaux. Dans ce cas, on récupère les clés et les valeurs de l'objet filterOptions qui serait par exemple {Marque: ["Renault", "Peugeot"], Prix: ["Prix croissant", "Prix décroissant"], Places: ["2 places", "4 places"], Couchages: ["2 couchages", "4 couchages"]} et on les map pour créer un select pour chaque clé avec les valeurs associées. Ça donnera pour cette exemple un select pour Marque avec les options Renault et Peugeot, un select pour Prix avec les options Prix croissant et Prix décroissant, etc.*/}
